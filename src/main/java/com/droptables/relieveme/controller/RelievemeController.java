@@ -1,0 +1,37 @@
+package com.droptables.relieveme.controller;
+
+import com.droptables.relieveme.domain.Feedback;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class RelievemeController {
+
+    // TODO: currently all skeletons. Flesh out as project progresses
+
+    @GetMapping("/{buildingName}")
+    public String getBuilding(@PathVariable String buildingName) {
+        // search functionality should direct here. Match the buildingName with building name in our database
+        return "Found building " + buildingName.toUpperCase() + ". Here are its bathrooms.";
+    }
+
+    @GetMapping("/{buildingName}/floorplans")
+    public String getFloorPlans(@PathVariable String buildingName) {
+        return "Here are floor plans for the building!";
+    }
+
+    @GetMapping("/buildings")
+    public String getMatchingBuildings(@RequestParam(value = "sort") String sort,
+                                       @RequestParam(value = "filter") String filter,
+                                       @RequestParam(value = "region") String region) {
+        // sortType valid values: {None, Alphabetical}
+        // filterType valid values: {None, Accessible, GenderNeutral}
+        // regionType valid values: {None, ECAV, Freshman Hill, Main Campus}
+        return "Here are the results for sort = " + sort + ", filter = " + filter + ", and region = " + region;
+    }
+
+    @PostMapping("/submit")
+    public String submitFeedback(@RequestBody Feedback feedback) {
+        return "Received your feedback!";
+    }
+}
