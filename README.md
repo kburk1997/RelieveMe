@@ -35,3 +35,6 @@ This build updates every time you change the frontend.
 Cd into `frontend` from terminal.
 Run `npm run dev`.
 Open your browser to http://localhost:8081 (assuming you are already running the backend server).
+
+## Configuring the PostgreSQL Database
+
