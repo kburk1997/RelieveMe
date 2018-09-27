@@ -38,3 +38,20 @@ Open your browser to http://localhost:8081 (assuming you are already running the
 
 ## Configuring the PostgreSQL Database
 
+1. Install [PostgreSQL](https://www.postgresql.org/download/) or start the PostgreSQL server.
+2. Enter PostgreSQL (or use a PostgreSQL GUI) as user `postgres`.
+    - `psql -U postgres`
+3. Assure that PostgreSQL is running on port `5432` (should be default port in installation).
+    - `\conninfo` inside PostgreSQL
+4. Create superuser `admin` with password `admin`.
+    - `CREATE USER admin PASSWORD 'admin' LOGIN SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;`
+5. Create database `RelieveMe`.
+    - `CREATE DATABASE "RelieveMe" WITH OWNER postgres ENCODING 'UTF8' LC_COLLATE 'English_United States.1252' LC_CTYPE 'English_United States.1252' TABLESPACE pg_default CONNECTION_LIMIT -1;`
+6. Run our application.
+    - For now, test the database connection by going to:
+        http://localhost:8080/api/buildings?sort=None&amp;filter=None&amp;region=None
+        - Should see various buildings in JSON
+
+### Editing Dummy Data
+`src/main/java/resources/data.sql` and `src/main/java/resources/schema.sql` contain SQL queries that are run by Spring
+on boot and populate the database.
