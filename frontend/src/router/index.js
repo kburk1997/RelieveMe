@@ -1,21 +1,21 @@
-import Vue from "vue";
-import Router from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
-import BuildingList from "@/components/BuildingList";
+import Vue from 'vue'
+import Router from 'vue-router'
+import HelloWorld from '@/components/HelloWorld'
+import BuildingList from '@/components/BuildingList'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: "/",
-      name: "HelloWorld",
+      path: '/',
+      name: 'HelloWorld',
       component: HelloWorld
     },
     {
-      path: "/buildings/",
-      name: "BuildingList",
+      path: '/buildings/',
+      name: 'BuildingList',
       component: BuildingList
     }
   ]
-});
+})
