@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="building-list">
   <h1>All Buildings</h1>
   <table>
     <thead>
@@ -13,7 +13,7 @@
       <tr v-for="building in buildings" :key="building.name">
         <td>
           <!-- TODO: have this link to the building once skeleton individual building plan fleshed out -->
-          <a href='#'>{{building.name}}</a>
+          <router-link :to="{name: 'Building', params:{name: building.name}}">{{building.name}}</router-link>
         </td>
         <td v-if="building.abbreviation">
           {{building.abbreviation}}
@@ -35,8 +35,7 @@ export default {
   name: 'BuildingList',
   data () {
     return {
-      buildings: [],
-      msg: 'Welcome to Your Vue.js App'
+      buildings: []
     }
   },
   methods: {
