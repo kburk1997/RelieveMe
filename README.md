@@ -53,7 +53,7 @@ Open your browser to http://localhost:8081 (assuming you are already running the
 
 6. Run our application.
    - For now, test the database connection by going to:
-     http://localhost:8080/api/buildings?sort=None&amp;filter=None&amp;region=None
+     http://localhost:8080/api/buildings?sort=None&filter=None&region=None
      - Should see various buildings in JSON
 
 ### Editing Dummy Data

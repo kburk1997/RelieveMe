@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import BuildingList from '@/components/BuildingList'
 import Building from '@/components/Building'
+import Feedback from '@/components/Feedback'
+import FeedbackSubmitted from '@/components/FeedbackSubmitted'
+
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +24,17 @@ export default new Router({
       path: '/buildings/:name',
       name: 'Building',
       component: Building
+    },
+    {
+      path: '/feedback',
+      name: 'Feedback',
+      component: Feedback,
+      props: (route) => ({ preSelectedCategoryId: route.query.categoryId })
+    },
+    {
+      path: '/feedbackSubmitted/',
+      name: 'FeedbackSubmitted',
+      component: FeedbackSubmitted
     }
   ]
 })
