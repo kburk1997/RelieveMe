@@ -67,10 +67,6 @@ export default {
       ]
     },
     getPostBody: function () {
-      console.log(this.email)
-      console.log(this.selectedCategoryId)
-      console.log(this.subject)
-      console.log(this.description)
       return {
         email: this.email,
         categoryId: this.selectedCategoryId,
