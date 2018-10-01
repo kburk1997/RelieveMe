@@ -1,38 +1,34 @@
 <template>
 <div id="feedback" align="left">
-  <h1>Send an email</h1>
+  <h1 class="title is-2">Send an email</h1>
   <form id="feedback-form">
-    <p>
-      <label for="email">Email: </label>
-      <input type="text" id="email" v-model="email">
-    </p>
+      <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
 
-    <p>
-      <label for="category">Category: </label>
-      <select id="category" v-model="selectedCategoryId">
+      <b-field horizontal label ="Category">
+        <b-select id="category" v-model="selectedCategoryId">
         <option
           v-for="category in categories"
           :key="category.id"
           :value="category.id">
             {{category.text}}
         </option>
-      </select>
-    </p>
+      </b-select>
+      </b-field>
 
-    <p>
-      <label for="subject">Subject: </label>
-      <input type="text" id="subject" v-model="subject">
-    </p>
+      <b-field horizontal label="Subject">
+        <b-input type="text" id="subject" v-model="subject"></b-input>
 
-    <p>
-      <label for="description">Description:</label>
-      <br>
-      <textarea id="description" rows="10" cols ="70" v-model="description"></textarea>
-    </p>
+      </b-field>
 
-    <p>
-      <input type="submit" value="Submit" @click.stop.prevent="submit()">
-    </p>
+      <b-field horizontal label ="Description">
+      <b-input type="textarea" id="description" rows="10" cols ="70" v-model="description"></b-input>
+      </b-field>
+
+    <b-field horizontal>
+      <p class="control">
+        <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
+      </p>
+    </b-field>
   </form>
 </div>
 </template>
@@ -92,5 +88,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
