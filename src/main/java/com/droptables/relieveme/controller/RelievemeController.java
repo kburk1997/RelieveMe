@@ -44,7 +44,5 @@ public class RelievemeController {
     }
 
     @PostMapping("/submit")
-    public String submitFeedback(@RequestBody Feedback feedback) {
-        return "Received your feedback!";
-    }
+    public String submitFeedback(@RequestBody Feedback feedback) { return "Received your feedback!"; }
 }

@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import BuildingList from '@/components/BuildingList'
 import Building from '@/components/Building'
 import BuildingFloorPlans from '@/components/BuildingFloorPlans'
+import Feedback from '@/components/Feedback'
+import FeedbackSubmitted from '@/components/FeedbackSubmitted'
 
 Vue.use(Router)
 
@@ -28,6 +30,17 @@ export default new Router({
       path: '/buildings/:name/floorplans',
       name: 'BuildingFloorPlans',
       component: BuildingFloorPlans
+    },
+    {
+      path: '/feedback',
+      name: 'Feedback',
+      component: Feedback,
+      props: (route) => ({ preSelectedCategoryId: route.query.categoryId })
+    },
+    {
+      path: '/feedbackSubmitted/',
+      name: 'FeedbackSubmitted',
+      component: FeedbackSubmitted
     }
   ]
 })

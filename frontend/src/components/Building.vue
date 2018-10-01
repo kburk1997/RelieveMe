@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       name: '',
-      floors: ['1','2','3'] // TODO get rid of hardcoded floors
+      floors: ['1', '2', '3'] // TODO get rid of hardcoded floors
     }
   }
 
