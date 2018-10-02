@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class FloorPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long floorPlanId;
 
     private Integer buildingId;
     private Integer floorNumber;

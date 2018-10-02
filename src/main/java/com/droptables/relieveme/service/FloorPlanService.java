@@ -1,14 +1,10 @@
 package com.droptables.relieveme.service;
 
 import com.droptables.relieveme.domain.FloorPlan;
-import com.droptables.relieveme.repository.BuildingRepository;
 import com.droptables.relieveme.repository.FloorPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,6 +13,7 @@ public class FloorPlanService {
 
     /**
      * The Service layer for the floor_plan table.
+     *
      * @param floorPlanRepository - automatically injected by the Spring framework
      */
     @Autowired
@@ -26,6 +23,7 @@ public class FloorPlanService {
 
     /**
      * Calls the floorPlanRepository to access the floor_plan table to get the floor plans corresponding to a building.
+     *
      * @param buildingId - the integer id of a building
      * @return a list of floor plans corresponding to a building; returns an empty list if there aren't any
      */
