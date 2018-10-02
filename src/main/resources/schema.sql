@@ -1,14 +1,14 @@
 /* regions where buildings are located */
 DROP TABLE IF EXISTS regions;
 CREATE TABLE regions (
-  id SERIAL PRIMARY KEY,
+  region_id SERIAL PRIMARY KEY,
   name VARCHAR(256) NOT NULL
 );
 
 /* all buildings on campus along with its corresponding region */
 DROP TABLE IF EXISTS building;
 CREATE TABLE building (
-  id SERIAL PRIMARY KEY,
+  building_id SERIAL PRIMARY KEY,
   proper_name VARCHAR(256) NOT NULL,
   region_id INTEGER NOT NULL
 );
@@ -38,4 +38,22 @@ CREATE TABLE floor_plan (
   PRIMARY KEY (building_id, floor_number)
 );
 
-/* TODO: add table for bathroom using similar to above format */
+/* bathrooms for a building with its corresponding floor */
+DROP TABLE IF EXISTS bathroom;
+CREATE TABLE bathroom (
+  bathroom_id SERIAL PRIMARY KEY,
+  building_id INTEGER NOT NULL,
+  floor_number INTEGER NOT NULL,
+  gender_type INTEGER NOT NULL,
+  wheelchair_accessible BOOLEAN NOT NULL,
+  location_string VARCHAR(256) NOT NULL,
+  shelves BOOLEAN NOT NULL,
+  menstrual_disposal BOOLEAN NOT NULL,
+  menstrual_product_type INTEGER,
+  num_negative_rating INTEGER NOT NULL DEFAULT 0,
+  num_positive_rating INTEGER NOT NULL DEFAULT 0,
+  maintenance_issue_num INTEGER NOT NULL DEFAULT 0,
+  baby_changing_station BOOLEAN NOT NULL,
+  fragrance_free BOOLEAN,
+  single_stall BOOLEAN
+);
