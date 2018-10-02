@@ -1,7 +1,7 @@
 <template>
-<div id="feedback" align="left">
+<div id="feedback" >
   <h1 class="title is-2">Send an email</h1>
-  <form id="feedback-form">
+  <form id="feedback-form" align="left">
       <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
 
       <b-field horizontal label ="Category">

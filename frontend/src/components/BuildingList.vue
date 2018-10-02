@@ -5,7 +5,6 @@
   :loading="loading"
   paginated
         per-page="10"
-        :default-sort-direction="asc"
          default-sort="name"
   >
   <template slot-scope="buildings">
