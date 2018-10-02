@@ -2,6 +2,15 @@ INSERT INTO regions (name) VALUES ('East Campus Athletic Village');
 INSERT INTO regions (name) VALUES ('Freshman Hill');
 INSERT INTO regions (name) VALUES ('Main Campus');
 
+/* TODO: remove once building table is fully integrated */
+INSERT INTO buildings VALUES ('Mueller Center', 'Freshman Hill', null);
+INSERT INTO buildings VALUES ('Student Union', 'Freshman Hill', 'Union');
+INSERT INTO buildings VALUES ('Commons Dining Hall', 'Freshman Hill', 'Commons');
+INSERT INTO buildings VALUES ('Sage Laboratories', 'Main Campus', 'Sage Labs');
+INSERT INTO buildings VALUES ('Sage Dining Hall', 'Main Campus', 'Sage');
+INSERT INTO buildings VALUES ('Ricketts', 'Main Campus', null);
+INSERT INTO buildings VALUES ('East Campus Athletic Village', 'East Campus Athletic Village', 'ECAV');
+
 INSERT INTO building (proper_name, region_id) VALUES ('Houston Field House', 1);
 INSERT INTO building (proper_name, region_id) VALUES ('Rensselaer Union', 2);
 INSERT INTO building (proper_name, region_id) VALUES ('Walker Laboratory', 3);
