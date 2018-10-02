@@ -7,11 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BuildingRepository extends JpaRepository<Building, String> {
-
-    List<Building> findByName(String name);
-
-    List<Building> findByAbbreviation(String abbreviation);
-
-    List<Building> findByRegion(String region);
+public interface BuildingRepository extends JpaRepository<Building, Integer> {
 }

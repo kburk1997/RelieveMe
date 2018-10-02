@@ -1,42 +1,40 @@
 package com.droptables.relieveme.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "buildings")
+@Table(name = "building")
 public class Building {
-
     @Id
-    private String name;
-    private String abbreviation;
-    private String region;
+    private Integer buildingId;
 
-    protected Building() {
+    private String properName;
+
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    private Region region;
+
+    public Integer getBuildingId() {
+        return buildingId;
     }
 
-    public String getName() {
-        return name;
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getProperName() {
+        return properName;
     }
 
-    public String getAbbreviation() {
-        return abbreviation;
+    public void setProperName(String properName) {
+        this.properName = properName;
     }
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
-    }
-
-    public String getRegion() {
+    public Region getRegion() {
         return region;
     }
 
-    public void setRegion(String region) {
+    public void setRegion(Region region) {
         this.region = region;
     }
 }

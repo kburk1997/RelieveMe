@@ -5,16 +5,6 @@ CREATE TABLE regions (
   name VARCHAR(256) NOT NULL
 );
 
-/* TODO: remove once building integration is set */
-DROP TABLE IF EXISTS buildings;
-CREATE TABLE buildings
-(
-  name character varying(256) NOT NULL,
-  region character varying(256) NOT NULL,
-  abbreviation character varying(256),
-  PRIMARY KEY (name)
-);
-
 /* all buildings on campus along with its corresponding region */
 DROP TABLE IF EXISTS building;
 CREATE TABLE building (
