@@ -1,30 +1,21 @@
 <template>
 <div id="building-list">
-  <h1>All Buildings</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Abbreviation</th>
-        <th>Region</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="building in buildings" :key="building.name">
-        <td>
-          <!-- TODO: have this link to the building once skeleton individual building plan fleshed out -->
-          <router-link :to="{name: 'Building', params:{name: building.name}}">{{building.name}}</router-link>
-        </td>
-        <td v-if="building.abbreviation">
-          {{building.abbreviation}}
-        </td>
-        <td v-if="!building.abbreviation">
-          None
-        </td>
-        <td>{{building.region}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h1 class="title is-2">All Buildings</h1>
+  <b-table :data="buildings"
+  :loading="loading"
+  paginated
+        per-page="10"
+         default-sort="name"
+  >
+  <template slot-scope="buildings">
+      <b-table-column field="name" label ="Name" sortable>
+        <router-link :to="{name: 'Building', params:{name: buildings.row.name}}">
+        {{buildings.row.name}}</router-link></b-table-column>
+      <b-table-column field="abbreviation" label ="Abbreviation" sortable>{{buildings.row.abbreviation}}</b-table-column>
+      <b-table-column field="region" label ="Region" sortable>{{buildings.row.region}}</b-table-column>
+  </template>
+
+  </b-table>
 </div>
 </template>
 
@@ -35,14 +26,29 @@ export default {
   name: 'BuildingList',
   data () {
     return {
-      buildings: []
+      buildings: [],
+      columns: [{
+        field: 'name',
+        label: 'Name'
+      },
+      {
+        field: 'abbreviation',
+        label: 'Abbreviation'
+      },
+      {
+        field: 'region',
+        label: 'Region'
+      }],
+      loading: false
     }
   },
   methods: {
     getBuildingList: function () {
+      this.loading = true
       axios
         .get(`/api/buildings?sort=None&filter=None&region=None`)
         .then(response => {
+          this.loading = false
           // console.log(response);
           this.buildings = response.data
         })
