@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 @Embeddable
 public class FloorPlanKey implements Serializable {
-
     private Integer buildingId;
     private Integer floorNumber;
 
