@@ -17,5 +17,5 @@ public interface BuildingNameRepository extends JpaRepository<BuildingName, Buil
      * @param buildingId - id of the building to find names for
      * @return a list of all objects in table building_name where building_id.equals(buildingId).
      */
-    List<BuildingName> findByBuildingId(Integer buildingId);
+    List<BuildingName> findByBuildingNameKeyBuildingId(Integer buildingId);
 }
