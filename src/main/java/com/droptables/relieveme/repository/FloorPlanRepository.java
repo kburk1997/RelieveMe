@@ -16,5 +16,5 @@ public interface FloorPlanRepository extends JpaRepository<FloorPlan, Long> {
      * @param buildingId - the id of the building to get floor plans for
      * @return a list of floor plans corresponding to a building; returns an empty list if there aren't any
      */
-    List<FloorPlan> findByBuildingId(Integer buildingId);
+    List<FloorPlan> findByFloorPlanKeyBuildingId(Integer buildingId);
 }
