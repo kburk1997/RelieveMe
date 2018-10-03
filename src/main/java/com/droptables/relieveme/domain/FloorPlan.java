@@ -1,32 +1,26 @@
 package com.droptables.relieveme.domain;
 
-import javax.persistence.*;
+import com.droptables.relieveme.domain.key.FloorPlanKey;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "floor_plan")
 public class FloorPlan {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long floorPlanId;
 
-    private Integer buildingId;
-    private Integer floorNumber;
+    @EmbeddedId
+    private FloorPlanKey floorPlanKey;
+
     private String link;
 
-    public Integer getBuildingId() {
-        return buildingId;
+    public FloorPlanKey getFloorPlanKey() {
+        return floorPlanKey;
     }
 
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
-    }
-
-    public Integer getFloorNumber() {
-        return floorNumber;
-    }
-
-    public void setFloorNumber(Integer floorNumber) {
-        this.floorNumber = floorNumber;
+    public void setFloorPlanKey(FloorPlanKey floorPlanKey) {
+        this.floorPlanKey = floorPlanKey;
     }
 
     public String getLink() {

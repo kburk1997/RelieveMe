@@ -2,26 +2,40 @@
   <div id ="building-floor-plan">
     <h1 class="title is-2">{{$route.params.name}} Floor Plan</h1>
 
-    <div v-for="floor in floors" v-bind:key="floor">
-      <h2 class="subtitle is-3">Floor {{floor.name}} <a v-bind:href="floor.link"> link </a> </h2>
-
-      </div>
+    <div v-for="plan in plans" v-bind:key="plan.floorNumber">
+      <h2 class="subtitle is-3">
+        Floor {{plan.floorNumber}}  <a v-bind:href="plan.link">link </a>
+      </h2>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'BuildingFloorPlans',
   data () {
     return {
-      floors: [
-        {name: '1', link: 'http://zim2411.info/floorplans/Union1.pdf'},
-        {name: '2', link: 'http://zim2411.info/floorplans/Union2.pdf'},
-        {name: '3', link: 'http://zim2411.info/floorplans/Union3.pdf'}
-      ]
+      plans: []
     }
+  },
+  methods: {
+    getFloorPlans: function () {
+      axios
+        .get('/api/' + this.$route.params.name + '/floorplans')
+        .then(response => {
+          console.log(response)
+          this.plans = response.data
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
+  },
+  mounted: function () {
+    this.getFloorPlans()
   }
-
 }
 </script>
 

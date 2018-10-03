@@ -22,7 +22,7 @@ public class RegionService {
     }
 
     /**
-     * Calls the regionRepository to access the regions table to get the name of the region with the given id.
+     * Accesses the regions table to get the name of the region with the given id.
      *
      * @param regionId - the integer id of a region
      * @return the corresponding name of the region where region_id == regionId; null if no matching region exists
