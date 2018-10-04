@@ -1,13 +1,7 @@
 <template>
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-      <router-link :to="{name: 'Feedback'}">Contact us</router-link>
-    </a>
-    <a class="navbar-item">
-      <a href="https://github.com/kburk1997/RelieveMe">GitHub</a>
-    </a>
-  </div>
+  <router-link class="navbar-item" :to="{name: 'Feedback'}">Contact us</router-link>
+  <a class="navbar-item" target="_blank" href="https://github.com/kburk1997/RelieveMe">GitHub</a>
 </nav>
 </template>
 
