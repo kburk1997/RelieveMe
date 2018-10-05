@@ -24,9 +24,15 @@ public class RelievemeController {
         this.floorPlanService = floorPlanService;
     }
 
+    @GetMapping("/search")
+    public String searchForBuilding(@RequestParam(value = "searchTerm") String searchTerm) {
+        return "Rensselaer Union"; // TODO: match the search term with a building in our database
+    }
+
     @GetMapping("/{buildingName}")
     public String getBuilding(@PathVariable String buildingName) {
-        // search functionality should direct here. Match the buildingName with building name in our database
+        // match the buildingName with building name in our database.
+        // FOR NOW, ASSUME THE USER ALWAYS TYPES IN A CORRECT QUERY
         return "Found building " + buildingName.toUpperCase() + ". Here are its bathrooms.";
     }
 
