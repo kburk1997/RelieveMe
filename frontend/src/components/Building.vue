@@ -4,7 +4,7 @@
     <router-link :to="{name: 'BuildingFloorPlans'}">Floor Plans</router-link>
 
     <div v-for="floor in floors" v-bind:key="floor.number">
-<b-collapse class="card" :open.sync="floor.isOpen" >
+      <b-collapse class="card" :open.sync="floor.isOpen" >
             <div slot="trigger" class="card-header is-primary">
                 <p class="card-header-title">
                     Floor {{floor.number}}
