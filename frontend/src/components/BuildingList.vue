@@ -9,10 +9,9 @@
   >
   <template slot-scope="buildings">
       <b-table-column field="name" label ="Name" sortable>
-        <router-link :to="{name: 'Building', params:{name: buildings.row.name}}">
-        {{buildings.row.name}}</router-link></b-table-column>
-      <b-table-column field="abbreviation" label ="Abbreviation" sortable>{{buildings.row.abbreviation}}</b-table-column>
-      <b-table-column field="region" label ="Region" sortable>{{buildings.row.region}}</b-table-column>
+        <router-link :to="{name: 'Building', params:{name: buildings.row.properName}}">
+        {{buildings.row.properName}}</router-link></b-table-column>
+      <b-table-column field="region.name" label ="Region" sortable>{{buildings.row.region.name}}</b-table-column>
   </template>
 
   </b-table>
@@ -32,11 +31,7 @@ export default {
         label: 'Name'
       },
       {
-        field: 'abbreviation',
-        label: 'Abbreviation'
-      },
-      {
-        field: 'region',
+        field: 'region.name',
         label: 'Region'
       }],
       loading: false
