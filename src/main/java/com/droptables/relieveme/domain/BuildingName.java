@@ -1,30 +1,22 @@
 package com.droptables.relieveme.domain;
 
-import javax.persistence.*;
+import com.droptables.relieveme.domain.key.BuildingNameKey;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "building_name")
 public class BuildingName {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long buildingNameId;
+    @EmbeddedId
+    private BuildingNameKey buildingNameKey;
 
-    private String name;
-    private Integer buildingId;
-
-    public String getName() {
-        return name;
+    public BuildingNameKey getBuildingNameKey() {
+        return buildingNameKey;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getBuildingId() {
-        return buildingId;
-    }
-
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
+    public void setBuildingNameKey(BuildingNameKey buildingNameKey) {
+        this.buildingNameKey = buildingNameKey;
     }
 }

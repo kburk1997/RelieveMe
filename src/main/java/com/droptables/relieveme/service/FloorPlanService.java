@@ -22,12 +22,12 @@ public class FloorPlanService {
     }
 
     /**
-     * Calls the floorPlanRepository to access the floor_plan table to get the floor plans corresponding to a building.
+     * Accesses the floor_plan table to get the floor plans for a building.
      *
      * @param buildingId - the integer id of a building
      * @return a list of floor plans corresponding to a building; returns an empty list if there aren't any
      */
     public List<FloorPlan> getFloorPlansForBuildingId(int buildingId) {
-        return floorPlanRepository.findByBuildingId(buildingId);
+        return floorPlanRepository.findByFloorPlanKeyBuildingId(buildingId);
     }
 }

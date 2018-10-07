@@ -22,11 +22,19 @@ public class BuildingService {
     }
 
     /**
-     * Returns all buildings in the building table.
-     *
      * @return a list of all buildings in the building table; empty list if there aren't any buildings
      */
     public List<Building> getAllBuildings() {
         return buildingRepository.findAll();
+    }
+
+    /**
+     * Access the building table to find the building with the corresponding name.
+     *
+     * @param properName - official name of a building
+     * @return the building where proper_name == properName; null otherwise
+     */
+    public Building getBuildingWithProperName(String properName) {
+        return buildingRepository.findByProperName(properName);
     }
 }
