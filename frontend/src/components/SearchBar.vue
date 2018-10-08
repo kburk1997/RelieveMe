@@ -47,7 +47,7 @@ export default {
         .then(response => { // TODO: put the data in buildings
         })
         .catch(error => {
-          console.error(error)
+          //console.error(error)
         })
     }
   },
