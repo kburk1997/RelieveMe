@@ -25,11 +25,11 @@ export default {
       axios
         .get('/api/' + this.$route.params.name + '/floorplans')
         .then(response => {
-          console.log(response)
+          //console.log(response)
           this.plans = response.data
         })
         .catch(error => {
-          console.error(error)
+          //console.error(error)
         })
     }
   },

@@ -9,23 +9,25 @@ let vm
 describe('Building.vue', () => {
   beforeEach(() => {
     const Constructor = Vue.extend(Building)
-    vm = new Constructor()
+    vm = new Constructor().$mount()
 
-    const localVue = createLocalVue()
-    localVue.use(VueRouter)
-    localVue.use(Buefy, {
+    // const localVue = createLocalVue()
+    // localVue.use(VueRouter)
+    Vue.use(Buefy, {
       defaultIconPack: 'fas',
       defaultContainerElement: '#content'
       // ...
     })
-    const router = new VueRouter()
+    /* const router = new VueRouter()
 
     shallowMount(vm, {
       localVue,
       router
-    })
+    }) */
   })
   it('should render correct header', () => {
-    expect(vm.$el.querySelector('h1').textContent).toEqual('All Buildings')
+    vm.$nextTick(() => {
+      expect(vm.$el.querySelector('h1').textContent).toEqual('All Buildings')
+    })
   })
 })
