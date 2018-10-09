@@ -32,9 +32,19 @@ public class BuildingService {
      * Access the building table to find the building with the corresponding name.
      *
      * @param properName - official name of a building
-     * @return the building where proper_name == properName; null otherwise
+     * @return the building where proper_name == properName; null if it can't be found
      */
     public Building getBuildingWithProperName(String properName) {
         return buildingRepository.findByProperName(properName);
+    }
+
+    /**
+     * Access the building table to find the building with the corresponding id.
+     *
+     * @param buildingId - id of the building
+     * @return the building where building_id == buildingid; null if it can't be found
+     */
+    public Building getBuildingWithId(int buildingId) {
+        return buildingRepository.findByBuildingId(buildingId);
     }
 }

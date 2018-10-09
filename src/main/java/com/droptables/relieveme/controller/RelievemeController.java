@@ -1,15 +1,19 @@
 package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.Building;
+import com.droptables.relieveme.domain.BuildingName;
 import com.droptables.relieveme.domain.Feedback;
 import com.droptables.relieveme.domain.FloorPlan;
+import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -17,23 +21,40 @@ public class RelievemeController {
 
     private BuildingService buildingService;
     private FloorPlanService floorPlanService;
+    private BuildingNameService buildingNameService;
 
     @Autowired
-    public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService) {
+    public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
+                               BuildingNameService buildingNameService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
+        this.buildingNameService = buildingNameService;
     }
 
-    @GetMapping("/search")
-    public String searchForBuilding(@RequestParam(value = "searchTerm") String searchTerm) {
-        return "Rensselaer Union"; // TODO: match the search term with a building in our database
+    /**
+     * @return a list of names nicknames and official names for a building. Returns empty list if there are none.
+     */
+    @GetMapping("/buildingNames")
+    public List<String> getAllBuildingNames() {
+        return buildingNameService.getAllBuildingNames().stream()
+                .map(buildingName -> buildingName.getBuildingNameKey().getName()).collect(Collectors.toList());
     }
 
+    /**
+     * Matches the given building name to a building.
+     *
+     * @param buildingName - non-null name of a building; must correspond to a name in the building_name table;
+     *                     case-insensitive
+     * @return the building with the corresponding name, case insensitive. Null if none could be found.
+     */
     @GetMapping("/{buildingName}")
-    public String getBuilding(@PathVariable String buildingName) {
-        // match the buildingName with building name in our database.
-        // FOR NOW, ASSUME THE USER ALWAYS TYPES IN A CORRECT QUERY
-        return "Found building " + buildingName.toUpperCase() + ". Here are its bathrooms.";
+    public Building getBuilding(@PathVariable String buildingName) {
+        BuildingName matchingBuildingName = buildingNameService.getBuildingWithName(buildingName);
+        if (null == matchingBuildingName) {
+            return null;
+        }
+        return buildingService
+                .getBuildingWithId(matchingBuildingName.getBuildingNameKey().getBuildingId());
     }
 
     /**
@@ -58,9 +79,6 @@ public class RelievemeController {
                                                @RequestParam(value = "filter") String filter,
                                                @RequestParam(value = "region") String region) {
         return buildingService.getAllBuildings();
-        // sortType valid values: {None, Alphabetical}
-        // filterType valid values: {None, Accessible, GenderNeutral}
-        // regionType valid values: {None, ECAV, Freshman Hill, Main Campus}
     }
 
     @PostMapping("/submit")

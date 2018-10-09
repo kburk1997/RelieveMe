@@ -58,6 +58,18 @@ public class BuildingServiceTest {
         assertSame(buildingService.getBuildingWithProperName(properName), expectedBuilding);
     }
 
+    @Test
+    public void givenNonExistentBuildingIdReturnsNull() {
+        assertNull(buildingService.getBuildingWithId(-1));
+    }
+
+    @Test
+    public void givenExistingBuildingIdReturnsBuilding() {
+        expectedBuilding.setBuildingId(1);
+        when(buildingRepository.findByBuildingId(1)).thenReturn(expectedBuilding);
+        assertSame(buildingService.getBuildingWithId(1), expectedBuilding);
+    }
+
     private void givenExpectedBuilding() {
         expectedBuilding = new Building();
     }

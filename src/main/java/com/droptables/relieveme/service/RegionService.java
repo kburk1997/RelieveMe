@@ -31,5 +31,4 @@ public class RegionService {
         Optional<Region> possibleRegion = regionRepository.findById(regionId);
         return possibleRegion.map(Region::getName).orElse(null);
     }
-
 }

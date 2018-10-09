@@ -18,7 +18,8 @@ export default {
   name: 'SearchBar',
   data () {
     return {
-      buildings: ['hi', 'bob', 'bill'], // TODO: remove hard coded stuff
+      buildings: [],
+      properSearch: '',
       searchTerm: '',
       selected: null
     }
@@ -32,8 +33,7 @@ export default {
       var autocompleteComponent = this.$refs.autocomplete
       if (autocompleteComponent.hovered === null) {
         // make search request and clear & close the dropdown
-        console.log('Sending to...' + '/api/' + this.searchTerm)
-        this.$router.push('/buildings/' + this.searchTerm)
+        this.getBuilding()
         autocompleteComponent.isActive = false
         this.resetState()
       } else {
@@ -41,14 +41,18 @@ export default {
         autocompleteComponent.enterPressed()
       }
     },
+    getBuilding: function () {
+      axios
+        .get('/api/' + this.searchTerm)
+        .then(response => {
+          this.properSearch = response.data.properName
+          this.$router.push('/buildings/' + this.properSearch)
+        })
+    },
     getAllBuildings: function () {
       axios
-        .get(`/api/buildings?sort=None&filter=None&region=None`)
-        .then(response => { // TODO: put the data in buildings
-        })
-        .catch(error => {
-          //console.error(error)
-        })
+        .get(`/api/buildingNames`)
+        .then(response => { this.buildings = response.data })
     }
   },
   computed: {

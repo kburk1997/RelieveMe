@@ -17,4 +17,13 @@ public interface BuildingRepository extends JpaRepository<Building, Integer> {
      * @return the building with proper_name.equals(properName). Null otherwise
      */
     Building findByProperName(String properName);
+
+    /**
+     * Finds the building in building table with the given building id.
+     * Spring parses the method name as a SQL query.
+     *
+     * @param buildingId - id of the building
+     * @return the building with building_id.equals(buildingId). Null otherwise
+     */
+    Building findByBuildingId(Integer buildingId);
 }

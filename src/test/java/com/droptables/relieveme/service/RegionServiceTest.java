@@ -31,7 +31,7 @@ public class RegionServiceTest {
     }
 
     @Test
-    public void givenNonExistentRegionIdThenReturnnull() {
+    public void givenNonExistentRegionIdThenReturnNull() {
         assertNull(regionService.returnNameOfRegionWithRegionId(1));
     }
 }
