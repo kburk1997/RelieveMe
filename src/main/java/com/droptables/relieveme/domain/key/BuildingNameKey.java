@@ -18,7 +18,7 @@ public class BuildingNameKey implements Serializable {
     /**
      * Composite key for BuildingName
      *
-     * @param name - nickname
+     * @param name       - nickname
      * @param buildingId - id of the building that this.name is associated with
      */
     public BuildingNameKey(String name, Integer buildingId) {
