@@ -33,109 +33,110 @@ public class Bathroom {
         this.bathroomId = bathroomId;
     }
 
-    public int getFloorNumber() {
+    public Integer getFloorNumber() {
         return floorNumber;
     }
 
-    public void setFloorNumber(int floorNumber) {
+    public void setFloorNumber(Integer floorNumber) {
         this.floorNumber = floorNumber;
     }
 
-    public int getGenderType() {
+    public Integer getGenderType() {
         return genderType;
     }
-  
-    public void setGenderType(int genderType) {
+
+    public void setGenderType(Integer genderType) {
         this.genderType = genderType;
     }
 
-    public boolean getWheelchairAccessibility() {
+    public Boolean getWheelchairAccessible() {
         return wheelchairAccessible;
     }
 
-    public void setWheelchairAccessibility(int wheelchairAccessible) {
+    public void setWheelchairAccessible(Boolean wheelchairAccessible) {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
-    public string getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(string location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public boolean getShelves() {
+    public Boolean getShelves() {
         return shelves;
     }
 
-    public void setShelves(boolean shelves) {
+    public void setShelves(Boolean shelves) {
         this.shelves = shelves;
     }
 
-    public boolean getMenstrualDisposal() {
+    public Boolean getMenstrualDisposal() {
         return menstrualDisposal;
     }
 
-    public void setMenstrualDisposal(boolean menstrualDisposal) {
+    public void setMenstrualDisposal(Boolean menstrualDisposal) {
         this.menstrualDisposal = menstrualDisposal;
     }
 
-    public int getMenstrualProductType() {
+    public Integer getMenstrualProductType() {
         return menstrualProductType;
     }
 
-    public void setMenstrualProductType() {
+    public void setMenstrualProductType(Integer menstrualProductType) {
         this.menstrualProductType = menstrualProductType;
     }
 
-    public int getNegativeRatings() {
+    public Integer getNumNegativeRating() {
         return numNegativeRating;
     }
 
-    public void setNegativeRatings(int numNegativeRating) {
+    public void setNumNegativeRating(Integer numNegativeRating) {
         this.numNegativeRating = numNegativeRating;
     }
 
-    public int getPositiveRatings() {
-        return numPositiveRating;    
+    public Integer getNumPositiveRating() {
+        return numPositiveRating;
     }
 
-    public void setPositiveRatings(int numPositiveRating) {
+    public void setNumPositiveRating(Integer numPositiveRating) {
         this.numPositiveRating = numPositiveRating;
     }
 
-    public int getMaintenceIssueNumber() {
-        retrun maintenanceIssueNum;
+    public Integer getMaintenanceIssueNum() {
+        return maintenanceIssueNum;
     }
-    public void setMaintenceIssueNumber(int maintenanceIssueNum) {
+
+    public void setMaintenanceIssueNum(Integer maintenanceIssueNum) {
         this.maintenanceIssueNum = maintenanceIssueNum;
     }
 
-    public boolean getBabyChangingStation() {
+    public Boolean getBabyChangingStation() {
         return babyChangingStation;
     }
 
-    public void setBabyChangingStation() {
+    public void setBabyChangingStation(Boolean babyChangingStation) {
         this.babyChangingStation = babyChangingStation;
     }
-    
-    public boolean getFrangranceFreeSoap() {
+
+    public Boolean getFrangranceFreeSoap() {
         return frangranceFreeSoap;
     }
 
-    public void setFragranceFreeSoap(boolean frangranceFreeSoap) {
+    public void setFrangranceFreeSoap(Boolean frangranceFreeSoap) {
         this.frangranceFreeSoap = frangranceFreeSoap;
     }
 
-    public boolean getSingleStall() {
+    public Boolean getSingleStall() {
         return singleStall;
     }
 
-    public void setSingleStall(boolean singleStall) {
+    public void setSingleStall(Boolean singleStall) {
         this.singleStall = singleStall;
     }
-    
+
     public Building getBuilding() {
         return building;
     }

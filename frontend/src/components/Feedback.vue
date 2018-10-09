@@ -76,9 +76,6 @@ export default {
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })
-        .catch((e) => {
-          //console.error(e)
-        })
     }
   },
   mounted: function () {

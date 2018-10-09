@@ -15,6 +15,17 @@ public class BuildingNameKey implements Serializable {
     public BuildingNameKey() {
     }
 
+    /**
+     * Composite key for BuildingName
+     *
+     * @param name       - nickname
+     * @param buildingId - id of the building that this.name is associated with
+     */
+    public BuildingNameKey(String name, Integer buildingId) {
+        this.name = name;
+        this.buildingId = buildingId;
+    }
+
     public String getName() {
         return name;
     }
