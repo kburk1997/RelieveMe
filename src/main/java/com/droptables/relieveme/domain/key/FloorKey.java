@@ -2,29 +2,31 @@ package com.droptables.relieveme.domain.key;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class FloorPlanKey implements Serializable {
+public class FloorKey implements Serializable {
+    private Integer number;
+    @Column(name = "building_id")
     private Integer buildingId;
-    private Integer floorNumber;
 
     /**
-     * Default constructor for JPA
+     * Default constructor for JPA.
      */
-    public FloorPlanKey() {
+    public FloorKey() {
     }
 
     /**
-     * Composite key for FloorPlan
+     * Composite key for Floor
      *
-     * @param buildingId  - id of the building the floor is in
-     * @param floorNumber - id of the floor number the floor is in
+     * @param number     - number of the floor in the building
+     * @param buildingId - id of the building the floor is located in
      */
-    public FloorPlanKey(Integer buildingId, Integer floorNumber) {
+    public FloorKey(Integer number, Integer buildingId) {
+        this.number = number;
         this.buildingId = buildingId;
-        this.floorNumber = floorNumber;
     }
 
     public Integer getBuildingId() {
@@ -35,12 +37,12 @@ public class FloorPlanKey implements Serializable {
         this.buildingId = buildingId;
     }
 
-    public Integer getFloorNumber() {
-        return floorNumber;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setFloorNumber(Integer floorNumber) {
-        this.floorNumber = floorNumber;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     /**
@@ -50,9 +52,9 @@ public class FloorPlanKey implements Serializable {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof FloorPlanKey) {
-            FloorPlanKey otherObject = (FloorPlanKey) o;
-            return getFloorNumber().equals(otherObject.getFloorNumber())
+        if (o instanceof FloorKey) {
+            FloorKey otherObject = (FloorKey) o;
+            return getNumber().equals(otherObject.getNumber())
                     && getBuildingId().equals(otherObject.getBuildingId());
         }
         return false;
@@ -64,7 +66,7 @@ public class FloorPlanKey implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(getFloorNumber())
+                .append(getNumber())
                 .append(getBuildingId())
                 .toHashCode();
     }

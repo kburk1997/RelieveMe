@@ -44,12 +44,7 @@ export default {
         .get(`/api/buildings?sort=None&filter=None&region=None`)
         .then(response => {
           this.loading = false
-          // console.log(response);
           this.buildings = response.data
-        })
-        .catch(error => {
-          //console.error(error)
-          this.loading = false
         })
     }
   },

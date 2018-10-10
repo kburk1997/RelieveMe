@@ -27,28 +27,44 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Building',
   data () {
     return {
       name: '',
-      floors: [
-        {
-          number: 1,
-          isOpen: false
-        },
-        {
-          number: 2,
-          isOpen: false
-        },
-        {
-          number: 3,
-          isOpen: false
-        }
-      ] // TODO get rid of hardcoded floors
+      floors: []
     }
+  },
+  methods: {
+    getBuilding: function () {
+      axios
+        .get('/api/' + this.$route.params.name)
+        .then(response => {
+          this.floors = []
+          response.data.floors.forEach(this.addFloor)
+        })
+    },
+    makeFloor: function (floor) {
+      var newFloor = {
+        number: floor.floorKey.number,
+        isOpen: false
+      }
+      return newFloor
+    },
+    addFloor: function (floor) {
+      this.floors.push(this.makeFloor(floor))
+    }
+  },
+  watch: {
+    '$route': function (to, from) {
+      this.getBuilding()
+    }
+  },
+  mounted: function () {
+    this.getBuilding()
   }
-
 }
 </script>
 

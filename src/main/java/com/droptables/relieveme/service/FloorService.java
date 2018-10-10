@@ -21,13 +21,13 @@ public class FloorService {
         this.floorRepository = floorRepository;
     }
 
-    /**
-     * Calls the floorRepository to access the floor table to get the floors corresponding to a building.
-     *
-     * @param buildingId - the integer id of a building
-     * @return a list of floors corresponding to a building; cannot return an empty list
-     */
-    public List<Floor> getFloorsForBuildingId(int buildingId) {
-        return floorRepository.findByBuildingId(buildingId);
-    }
+//    /**
+//     * Calls the floorRepository to access the floor table to get the floors corresponding to a building.
+//     *
+//     * @param buildingId - the integer id of a building
+//     * @return a list of floors corresponding to a building; cannot return an empty list
+//     */
+//    public List<Floor> getFloorsForBuildingId(int buildingId) {
+//        return floorRepository.findByBuildingId(buildingId);
+//    }
 }
