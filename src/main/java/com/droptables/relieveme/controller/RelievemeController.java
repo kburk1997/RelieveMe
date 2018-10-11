@@ -1,12 +1,10 @@
 package com.droptables.relieveme.controller;
 
-import com.droptables.relieveme.domain.Building;
-import com.droptables.relieveme.domain.BuildingName;
-import com.droptables.relieveme.domain.Feedback;
-import com.droptables.relieveme.domain.FloorPlan;
+import com.droptables.relieveme.domain.*;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
+import com.droptables.relieveme.service.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +19,23 @@ public class RelievemeController {
     private BuildingService buildingService;
     private FloorPlanService floorPlanService;
     private BuildingNameService buildingNameService;
+    private RegionService regionService;
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService) {
+                               BuildingNameService buildingNameService, RegionService regionService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
+        this.regionService = regionService;
+    }
+
+    /**
+     * @return a list of all regions. Empty list if there are none.
+     */
+    @GetMapping("/regions")
+    public List<Region> getAllRegions() {
+        return regionService.getAllRegions();
     }
 
     /**

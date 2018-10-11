@@ -3,6 +3,7 @@ package com.droptables.relieveme;
 import com.droptables.relieveme.domain.Building;
 import com.droptables.relieveme.domain.BuildingName;
 import com.droptables.relieveme.domain.FloorPlan;
+import com.droptables.relieveme.domain.Region;
 import com.droptables.relieveme.domain.key.BuildingNameKey;
 import com.droptables.relieveme.domain.key.FloorPlanKey;
 
