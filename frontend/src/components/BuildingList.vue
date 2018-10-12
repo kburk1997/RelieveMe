@@ -1,7 +1,7 @@
 <template>
   <div class="columns">
     <div class="column is-2" id="filter-sidebar">
-      <b-field class="left" label="Filter by region:">
+      <b-field id="region-filter" class="left" label="Filter by region:">
         <b-select @input="calculateFilters()" v-model="filters.selectedRegionId" placeholder="Select a region">
           <option
             v-for="region in regions"
@@ -9,6 +9,18 @@
             :key="region.regionId"
             >
             {{region.name}}
+          </option>
+        </b-select>
+      </b-field>
+      <br>
+      <b-field id="accessibility-filter" class="left" label="Filter by restroom accessibility:">
+        <b-select @input="calculateFilters()" v-model="filters.selectedAccessibility" placeholder="Select a type">
+          <option
+            v-for="accessibility in accessibilities"
+            :value="accessibility.id"
+            :key="accessibility.id"
+          >
+            {{accessibility.name}}
           </option>
         </b-select>
       </b-field>
@@ -44,8 +56,10 @@ export default {
   name: 'BuildingList',
   data () {
     return {
+      genderNeutralType: 2, // gender-neutral restrooms in backend gender type == 2
       filters: {
-        selectedRegionId: null
+        selectedRegionId: null,
+        selectedAccessibility: null
       },
       allBuildings: [],
       columns: [{
@@ -58,6 +72,11 @@ export default {
       }],
       loading: false,
       regions: [{regionId: -1, name: 'None'}],
+      accessibilities: [
+        {id: -1, name: 'None'},
+        {id: 0, name: 'Wheelchair accessible'},
+        {id: 1, name: 'Gender-neutral'}
+      ],
       filteredBuildings: []
     }
   },
@@ -80,14 +99,47 @@ export default {
         })
     },
     calculateFilters: function () {
-      // first filter is applied on all buildings
-      this.filteredBuildings = this.allBuildings.filter(this.filterBuildingsByRegion, this)
-      // other filters are applied on the filtered buildings
+      this.filteredBuildings = this.allBuildings.filter(this.filterAll, this)
+    },
+    filterAll: function (building) {
+      return this.filterBuildingsByRegion(building) && this.filterBuildingsByRestroomAccessibility(building)
     },
     filterBuildingsByRegion: function (building) {
-      // return all buildings if "None" region filter is selected, or the building is in the selected region
-      return Number(this.filters.selectedRegionId === -1) ||
+      // return all given buildings if no region filter is selected; or return buildings in the selected region
+      return this.filters.selectedRegionId === null ||
+        Number(this.filters.selectedRegionId === -1) ||
         Number(this.filters.selectedRegionId) === Number(building.region.regionId)
+    },
+    filterBuildingsByRestroomAccessibility: function (building) {
+      // return all given buildings if no accessibility filter is selected;
+      // or return all buildings that contain bathrooms with that accessibility option
+      return this.filters.selectedAccessibility === null ||
+        Number(this.filters.selectedAccessibility === -1) ||
+        this.buildingContainsAccessibility(building)
+    },
+    buildingContainsAccessibility: function (building) {
+      // look at each floor in the building, each bathroom on the floor, and check if it has the accessibility option
+      for (var floorInd = 0; floorInd < building.floors.length; floorInd++) {
+        if (this.floorContainsAccessibility(building.floors[floorInd])) {
+          return true
+        }
+      }
+      return false
+    },
+    floorContainsAccessibility: function (floor) {
+      for (var bathroomInd = 0; bathroomInd < floor.bathrooms.length; bathroomInd++) {
+        if (this.bathroomHasAccessibility(floor.bathrooms[bathroomInd])) {
+          return true
+        }
+      }
+      return false
+    },
+    bathroomHasAccessibility: function (bathroom) {
+      if (Number(this.filters.selectedAccessibility) === 0) {
+        return bathroom.wheelchairAccessible
+      } else if (Number(this.filters.selectedAccessibility) === 1) {
+        return Number(bathroom.genderType) === this.genderNeutralType
+      }
     }
   },
   mounted: function () {

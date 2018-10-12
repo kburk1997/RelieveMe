@@ -32,9 +32,13 @@ INSERT INTO building_name (name, building_id) VALUES ('Sage Dining Hall', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building', 8);
 INSERT INTO building_name (name, building_id) VALUES ('Ricketts', 8);
 
+/* RPI Union */
 INSERT INTO floor (number, building_id) VALUES (1, 2);
 INSERT INTO floor (number, building_id) VALUES (2, 2);
 INSERT INTO floor (number, building_id) VALUES (3, 2);
+
+/* Houston Field House */
+INSERT INTO floor (number, building_id) VALUES (3, 1);
 
 /* basement (floor 0) and rooftop are not added into floor plan because students cannot get there */
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/Houston%20Field%20House%20100%20Level.pdf', 1, 1);
@@ -66,6 +70,7 @@ INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/Ricketts500.pdf', 8, 5);
 
 /* gender_type: male = 0, female = 1, gender-neutral = 2 */
+/* RPI Union */
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
 VALUES (2, 1, 0, false, 'Next to games room', false, false, null, false);
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
@@ -76,3 +81,7 @@ INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessi
 VALUES (2, 2, 1, false, 'Mock Bathroom 2nd Floor', false, false, null, false);
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
 VALUES (2, 3, 2, true, 'Mock Bathroom 3rd Floor with all shelves, accessible, menstrual disposal, product type, and changing stations', true, true, 1, true);
+
+/* Houston Field House */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
+VALUES (1, 3, 1, true, 'Mock wheelchair accessible only bathroom', false, false, null, false);
