@@ -82,9 +82,7 @@ public class RelievemeController {
     }
 
     @GetMapping("/buildings")
-    public List<Building> getMatchingBuildings(@RequestParam(value = "sort") String sort,
-                                               @RequestParam(value = "filter") String filter,
-                                               @RequestParam(value = "region") String region) {
+    public List<Building> getAllBuildings() {
         return buildingService.getAllBuildings();
     }
 
