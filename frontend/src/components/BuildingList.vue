@@ -56,6 +56,7 @@ export default {
   name: 'BuildingList',
   data () {
     return {
+      genderNeutralType: 2, // gender-neutral restrooms in backend gender type == 2
       filters: {
         selectedRegionId: null,
         selectedAccessibility: null
@@ -136,6 +137,8 @@ export default {
     bathroomHasAccessibility: function (bathroom) {
       if (Number(this.filters.selectedAccessibility) === 0) {
         return bathroom.wheelchairAccessible
+      } else if (Number(this.filters.selectedAccessibility) === 1) {
+        return Number(bathroom.genderType) === this.genderNeutralType
       }
     }
   },
