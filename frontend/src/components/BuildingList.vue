@@ -84,7 +84,7 @@ export default {
     getAllBuildings: function () {
       this.loading = true
       axios
-        .get(`/api/buildings?sort=None&filter=None&region=None`)
+        .get(`/api/buildings`)
         .then(response => {
           this.loading = false
           this.allBuildings = response.data
