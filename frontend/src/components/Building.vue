@@ -23,32 +23,70 @@
         </b-collapse>
 
       </div>
+
+    <!-- TODO: remove below in final product. ONLY FOR EASE OF FRONTEND TESTING -->
+    <div v-for="floor in [{number: 9000, isOpen: false}]" v-bind:key="floor.number">
+      <b-collapse class="card" :open.sync="floor.isOpen" >
+        <div slot="trigger" class="card-header is-primary">
+          <p class="card-header-title">
+            Floor {{floor.number}} TESTING This is just a hardcoded panel for ease of frontend testing through npm run dev.
+          </p>
+          <a class="card-header-icon">
+            <b-icon
+              :icon="floor.isOpen ? 'angle-down' : 'angle-right'">
+            </b-icon>
+          </a>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            Bathrooms
+          </div>
+        </div>
+      </b-collapse>
+    </div>
+    <!-- TODO: remove this section above me in final product -->
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Building',
   data () {
     return {
       name: '',
-      floors: [
-        {
-          number: 1,
-          isOpen: false
-        },
-        {
-          number: 2,
-          isOpen: false
-        },
-        {
-          number: 3,
-          isOpen: false
-        }
-      ] // TODO get rid of hardcoded floors
+      floors: []
     }
+  },
+  methods: {
+    getBuilding: function () {
+      axios
+        .get('/api/' + this.$route.params.name)
+        .then(response => {
+          this.floors = []
+          response.data.floors.forEach(this.addFloor)
+        })
+    },
+    makeFloor: function (floor) {
+      var newFloor = {
+        number: floor.floorKey.number,
+        isOpen: false
+      }
+      return newFloor
+    },
+    addFloor: function (floor) {
+      this.floors.push(this.makeFloor(floor))
+    }
+  },
+  watch: {
+    '$route': function (to, from) {
+      this.getBuilding()
+    }
+  },
+  mounted: function () {
+    this.getBuilding()
   }
-
 }
 </script>
 

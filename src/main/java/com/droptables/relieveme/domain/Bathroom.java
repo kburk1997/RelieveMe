@@ -7,10 +7,11 @@ import javax.persistence.*;
 public class Bathroom {
     @Id
     private Integer bathroomId;
+    @Column(name = "floor_number")
     private Integer floorNumber;
     private Integer genderType;
     private Boolean wheelchairAccessible;
-    private String location;
+    private String locationString;
     private Boolean shelves;
     private Boolean menstrualDisposal;
     private Integer menstrualProductType;
@@ -18,12 +19,10 @@ public class Bathroom {
     private Integer numPositiveRating;
     private Integer maintenanceIssueNum;
     private Boolean babyChangingStation;
-    private Boolean frangranceFreeSoap;
+    private Boolean fragranceFreeSoap;
     private Boolean singleStall;
-
-    @ManyToOne
-    @JoinColumn(name = "building_id")
-    private Building building;
+    @Column(name = "building_id")
+    private Integer buildingId;
 
     public Integer getBathroomId() {
         return bathroomId;
@@ -57,12 +56,12 @@ public class Bathroom {
         this.wheelchairAccessible = wheelchairAccessible;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocationString() {
+        return locationString;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationString(String locationString) {
+        this.locationString = locationString;
     }
 
     public Boolean getShelves() {
@@ -121,12 +120,12 @@ public class Bathroom {
         this.babyChangingStation = babyChangingStation;
     }
 
-    public Boolean getFrangranceFreeSoap() {
-        return frangranceFreeSoap;
+    public Boolean getFragranceFreeSoap() {
+        return fragranceFreeSoap;
     }
 
-    public void setFrangranceFreeSoap(Boolean frangranceFreeSoap) {
-        this.frangranceFreeSoap = frangranceFreeSoap;
+    public void setFragranceFreeSoap(Boolean fragranceFreeSoap) {
+        this.fragranceFreeSoap = fragranceFreeSoap;
     }
 
     public Boolean getSingleStall() {
@@ -137,11 +136,11 @@ public class Bathroom {
         this.singleStall = singleStall;
     }
 
-    public Building getBuilding() {
-        return building;
+    public Integer getBuildingId() {
+        return buildingId;
     }
 
-    public void setBuilding(Building building) {
-        this.building = building;
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
     }
 }

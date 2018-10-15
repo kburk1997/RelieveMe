@@ -1,30 +1,37 @@
 package com.droptables.relieveme.domain;
 
+import com.droptables.relieveme.domain.key.FloorKey;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "floor")
 public class Floor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long floorId;
 
-    private Integer buildingId;
-    private Integer floorNumber;
+    @EmbeddedId
+    private FloorKey floorKey;
 
-    public Integer getBuildingId() {
-        return buildingId;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumns({
+            @JoinColumn(name = "building_id", referencedColumnName = "building_id"),
+            @JoinColumn(name = "floor_number", referencedColumnName = "number")
+    })
+    private List<Bathroom> bathrooms;
+
+    public FloorKey getFloorKey() {
+        return floorKey;
     }
 
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
+    public void setFloorKey(FloorKey floorKey) {
+        this.floorKey = floorKey;
     }
 
-    public Integer getFloorNumber() {
-        return floorNumber;
+    public List<Bathroom> getBathrooms() {
+        return bathrooms;
     }
 
-    public void setFloorNumber(Integer floorNumber) {
-        this.floorNumber = floorNumber;
+    public void setBathrooms(List<Bathroom> bathrooms) {
+        this.bathrooms = bathrooms;
     }
 }

@@ -5,8 +5,6 @@ import com.droptables.relieveme.domain.key.BuildingNameKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface BuildingNameRepository extends JpaRepository<BuildingName, BuildingNameKey> {
 

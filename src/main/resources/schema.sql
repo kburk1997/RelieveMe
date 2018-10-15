@@ -54,6 +54,6 @@ CREATE TABLE bathroom (
   num_positive_rating INTEGER NOT NULL DEFAULT 0,
   maintenance_issue_num INTEGER NOT NULL DEFAULT 0,
   baby_changing_station BOOLEAN NOT NULL,
-  fragrance_free BOOLEAN,
+  fragrance_free_soap BOOLEAN,
   single_stall BOOLEAN
 );

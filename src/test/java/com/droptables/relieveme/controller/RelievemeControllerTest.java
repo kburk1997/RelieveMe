@@ -2,9 +2,11 @@ package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.Building;
 import com.droptables.relieveme.domain.FloorPlan;
+import com.droptables.relieveme.domain.Region;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
+import com.droptables.relieveme.service.RegionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
@@ -29,6 +32,9 @@ public class RelievemeControllerTest {
 
     @Mock
     private BuildingNameService buildingNameService;
+
+    @Mock
+    private RegionService regionService;
 
     @InjectMocks
     private RelievemeController relievemeController;
@@ -77,5 +83,11 @@ public class RelievemeControllerTest {
     @Test
     public void givenNonExistentBuildingNameReturnsNull() {
         assertNull(relievemeController.getBuilding("nothing is expected"));
+    }
+
+    @Test
+    public void getAllRegionsReturnsRegions() {
+        when(regionService.getAllRegions()).thenReturn(Collections.singletonList(new Region(65, "1")));
+        assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
     }
 }
