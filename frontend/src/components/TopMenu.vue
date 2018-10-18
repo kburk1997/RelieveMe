@@ -1,9 +1,23 @@
 <template>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <router-link class="navbar-item" :to="{name: 'HelloWorld'}">Home</router-link>
+<nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+  <div class="container">
+  <div class="navbar-brand">
+    <a class="navbar-item">RelieveMe</a>
+<router-link class="navbar-item" :to="{name: 'HelloWorld'}">Home</router-link>
   <router-link class="navbar-item" :to="{name: 'BuildingList'}">Buildings</router-link>
   <router-link class="navbar-item" :to="{name: 'Feedback'}">Report a problem</router-link>
-  <search-bar></search-bar>
+  <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</a>
+  </div>
+<div class="navbar-menu">
+  <div class="navbar-end">
+  <div class="navbar-item"><search-bar></search-bar></div>
+  </div>
+</div>
+</div>
 </nav>
 </template>
 

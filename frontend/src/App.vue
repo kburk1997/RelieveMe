@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <top-menu></top-menu>
-    <section>
+    <section class="section">
       <div class="container">
     <!--<img src="./assets/logo.png">-->
     <router-view/>
