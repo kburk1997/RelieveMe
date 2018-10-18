@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <img src="../assets/logo.png">
+    <p></p>
     <search-bar class="halfwidth"></search-bar>
   </div>
 </template>
@@ -21,7 +22,8 @@ export default {
   width: 70%;
   display: inline-block;
 }
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

@@ -151,6 +151,6 @@ export default {
 
 <style scoped>
 .left {
-  text-align: left
+  text-align: left;
 }
 </style>
