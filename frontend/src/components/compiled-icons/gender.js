@@ -1,7 +1,7 @@
 /* eslint-disable */
 var icon = require('vue-svgicon')
 icon.register({
-  'gender-neutral': {
+  'gender': {
     width: 512,
     height: 512,
     viewBox: '0 0 512 512',

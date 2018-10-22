@@ -1,14 +1,16 @@
 <template>
+<b-field>
   <b-autocomplete ref="autocomplete" id="search-bar"
     v-model="searchTerm"
     :data="filteredDataArray"
     placeholder="Search for a building"
     @select="option => selected = option"
-    icon="magnify"
+    icon="search"
     @keydown.native.enter.prevent="enterPressed()">
     <template slot="empty">No building found</template>
     <input type="submit" value="Submit">
   </b-autocomplete>
+  </b-field>
 </template>
 
 <script>

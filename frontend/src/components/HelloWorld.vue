@@ -21,7 +21,8 @@ export default {
   width: 70%;
   display: inline-block;
 }
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
