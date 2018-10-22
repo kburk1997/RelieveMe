@@ -6,9 +6,10 @@ import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import Icon from 'vue-awesome/components/Icon'
-Vue.config.productionTip = false
-
+import * as svgicon from 'vue-svgicon'
+Vue.use(svgicon)
 Vue.component('v-icon', Icon)
+Vue.config.productionTip = false
 
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
