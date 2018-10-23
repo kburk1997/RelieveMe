@@ -4,7 +4,7 @@ import org.springframework.mail.SimpleMailMessage;
 
 import java.util.Objects;
 
-public class FeedbackEmail extends SimpleMailMessage {
+public class FeedbackEmail extends Email {
 
     /**
      * Email for Feedback/Other categories
@@ -18,19 +18,9 @@ public class FeedbackEmail extends SimpleMailMessage {
         super.setFrom(from);
         super.setTo(to);
         super.setSubject(createSubject(category, subject));
-        super.setText(createBody(category, subject, body));
-    }
-
-    /**
-     * Creates the body of the email from the feedback email body template.
-     * @param subject non-null, user-inputted subject of the email
-     * @param body non-null, user-inputted body of the email
-     * @return filled in feedback email body template
-     */
-    private String createBody(String category, String subject, String body) {
         FeedbackEmailBodyTemplate feedbackEmailBodyTemplate = new FeedbackEmailBodyTemplate();
         feedbackEmailBodyTemplate.fillTemplate(super.getFrom(), category, subject, body);
-        return feedbackEmailBodyTemplate.getBody();
+        super.setText(feedbackEmailBodyTemplate);
     }
 
     /**
