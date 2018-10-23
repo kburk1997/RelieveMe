@@ -13,7 +13,6 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
     "generate-icons": "vsvg -s ./src/assets/svg-icons -t ./src/components/compiled-icons"
-
   },
   "dependencies": {
     "axios": "^0.18.0",

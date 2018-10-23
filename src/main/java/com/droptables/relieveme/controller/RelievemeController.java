@@ -1,6 +1,7 @@
 package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.*;
+import com.droptables.relieveme.email.EmailService;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
@@ -20,14 +21,17 @@ public class RelievemeController {
     private FloorPlanService floorPlanService;
     private BuildingNameService buildingNameService;
     private RegionService regionService;
+    private EmailService emailService;
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService, RegionService regionService) {
+                               BuildingNameService buildingNameService, RegionService regionService,
+                               EmailService emailService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
         this.regionService = regionService;
+        this.emailService = emailService;
     }
 
     /**
@@ -86,8 +90,9 @@ public class RelievemeController {
         return buildingService.getAllBuildings();
     }
 
-    @PostMapping("/submit")
-    public String submitFeedback(@RequestBody Feedback feedback) {
-        return "Received your feedback!";
+    @PostMapping("/submitFeedback")
+    public void submitFeedback(@RequestBody Feedback feedback) {
+        emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
+                feedback.getDescription());
     }
 }

@@ -1,8 +1,10 @@
 package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.Building;
+import com.droptables.relieveme.domain.Feedback;
 import com.droptables.relieveme.domain.FloorPlan;
 import com.droptables.relieveme.domain.Region;
+import com.droptables.relieveme.email.EmailService;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -35,6 +38,9 @@ public class RelievemeControllerTest {
 
     @Mock
     private RegionService regionService;
+
+    @Mock
+    private EmailService emailService;
 
     @InjectMocks
     private RelievemeController relievemeController;
@@ -89,5 +95,12 @@ public class RelievemeControllerTest {
     public void getAllRegionsReturnsRegions() {
         when(regionService.getAllRegions()).thenReturn(Collections.singletonList(new Region(65, "1")));
         assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
+    }
+
+    @Test
+    public void givenFeedbackThenCallEmailService() {
+        Feedback feedback = new Feedback("email", "cat", "sub", "bod");
+        relievemeController.submitFeedback(feedback);
+        verify(emailService).sendFeedbackEmail("email", "cat", "sub", "bod");
     }
 }
