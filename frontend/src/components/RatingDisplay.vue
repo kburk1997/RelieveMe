@@ -1,11 +1,11 @@
 <template>
 <div class="rating-display">
     <button @click="upvote">
-        <svgicon class="happy-poo" icon="happy-poo" width="30" height="30" focusable="false" original></svgicon>
+        <svgicon class="happy-poo" icon="happy-poo" width="20" height="20" focusable="false" original></svgicon>
             <b> {{ upvotes }} </b>
     </button>
     <button @click="downvote">
-        <svgicon class="sad-poo" icon="sad-poo" width="30" height="30" focusable="false" original></svgicon>
+        <svgicon class="sad-poo" icon="sad-poo" width="20" height="20" focusable="false" original></svgicon>
             <b> {{ downvotes }} </b>
     </button>
 </div>

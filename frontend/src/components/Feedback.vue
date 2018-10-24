@@ -70,7 +70,7 @@ export default {
     submit: function () {
       this.isLoading = true
       setTimeout(() => {
-          this.isLoading = false
+        this.isLoading = false
       }, 10 * 1000)
       axios
         .post('/api/submitFeedback', this.getPostBody())
