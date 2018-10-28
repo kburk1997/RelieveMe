@@ -17,7 +17,7 @@
             </div>
             <div class="card-content">
                 <div class="content">
-                    Bathrooms
+                    <bathroom-panel></bathroom-panel>
                 </div>
             </div>
         </b-collapse>
@@ -39,7 +39,7 @@
         </div>
         <div class="card-content">
           <div class="content">
-            Bathrooms
+            <bathroom-panel></bathroom-panel>
           </div>
         </div>
       </b-collapse>
@@ -50,9 +50,12 @@
 
 <script>
 import axios from 'axios'
-
+import BathroomPanel from './BathroomPanel.vue'
 export default {
   name: 'Building',
+  components: {
+    BathroomPanel
+  },
   data () {
     return {
       name: '',

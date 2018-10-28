@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <img src="../assets/logo.png">
-    <p></p>
     <search-bar class="halfwidth"></search-bar>
   </div>
 </template>

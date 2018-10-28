@@ -35,7 +35,7 @@ export default new Router({
       path: '/feedback',
       name: 'Feedback',
       component: Feedback,
-      props: (route) => ({ preSelectedCategoryId: route.query.categoryId })
+      props: (route) => ({ preSelectedCategory: route.query.category })
     },
     {
       path: '/feedbackSubmitted/',

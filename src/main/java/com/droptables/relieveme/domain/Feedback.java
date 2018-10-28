@@ -3,9 +3,30 @@ package com.droptables.relieveme.domain;
 public class Feedback {
 
     private String email;
-    private Integer categoryId;
+    private String category;
     private String subject;
     private String description;
+
+    /**
+     * Default constructor for JSON parsing
+     */
+    public Feedback() {
+
+    }
+
+    /**
+     * Required parameters for Feedback
+     * @param email user email
+     * @param category category of Feedback
+     * @param subject user-inputted subject
+     * @param description user-inputted feedback details
+     */
+    public Feedback(String email, String category, String subject, String description) {
+        this.email = email;
+        this.category = category;
+        this.subject = subject;
+        this.description = description;
+    }
 
     public String getEmail() {
         return email;
@@ -15,12 +36,12 @@ public class Feedback {
         this.email = email;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSubject() {
