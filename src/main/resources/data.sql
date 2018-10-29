@@ -71,17 +71,19 @@ INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411
 
 /* gender_type: male = 0, female = 1, gender-neutral = 2 */
 /* RPI Union */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (2, 1, 0, false, 'Next to games room', false, false, null, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (2, 1, 1, false, 'Next to Rathskeller and microwave', false, false, null, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (2, 1, 2, false, 'In Mother''s', false, false, null, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (2, 2, 1, false, 'Mock Bathroom 2nd Floor', false, false, null, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (2, 3, 2, true, 'Mock Bathroom 3rd Floor with all shelves, accessible, menstrual disposal, product type, and changing stations', true, true, 1, true);
+/* 2 true and 3 false for ongoing_bathroom_issue */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (2, 1, 0, false, 'Next to games room', false, false, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (2, 1, 1, false, 'Next to Rathskeller and microwave', false, false, null, false, true);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (2, 1, 2, false, 'In Mother''s', false, false, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (2, 2, 1, false, 'Mock Bathroom 2nd Floor', false, false, null, false, true);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (2, 3, 2, true, 'Mock Bathroom 3rd Floor with all shelves, accessible, menstrual disposal, product type, and changing stations', true, true, 1, true, false);
 
 /* Houston Field House */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station)
-VALUES (1, 3, 1, true, 'Mock wheelchair accessible only bathroom', false, false, null, false);
+/* 1 true */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (1, 3, 1, true, 'Mock wheelchair accessible only bathroom', false, false, null, false, true);

@@ -21,6 +21,8 @@ public class Bathroom {
     private Boolean babyChangingStation;
     private Boolean fragranceFreeSoap;
     private Boolean singleStall;
+    private Boolean ongoingBathroomIssue;
+
     @Column(name = "building_id")
     private Integer buildingId;
 
@@ -134,6 +136,12 @@ public class Bathroom {
 
     public void setSingleStall(Boolean singleStall) {
         this.singleStall = singleStall;
+    }
+
+    public Boolean getOngoingBathroomIssue() { return ongoingBathroomIssue; }
+
+    public void setOngoingBathroomIssue(Boolean ongoingBathroomIssue) {
+        this.ongoingBathroomIssue = ongoingBathroomIssue;
     }
 
     public Integer getBuildingId() {
