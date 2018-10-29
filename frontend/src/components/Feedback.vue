@@ -5,12 +5,12 @@
       <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
 
       <b-field horizontal label ="Category">
-        <b-select id="category" v-model="selectedCategoryId">
+        <b-select id="category" v-model="selectedCategory">
         <option
           v-for="category in categories"
-          :key="category.id"
-          :value="category.id">
-            {{category.text}}
+          :key="category"
+          :value="category">
+            {{category}}
         </option>
       </b-select>
       </b-field>
@@ -27,6 +27,7 @@
     <b-field horizontal>
       <p class="control">
         <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
+        <b-loading is-full-page="true" :active.sync="isLoading" can-cancel="false"></b-loading>
       </p>
     </b-field>
   </form>
@@ -39,40 +40,40 @@ import axios from 'axios'
 export default {
   name: 'Feedback',
   props: {
-    preSelectedCategoryId: {
+    preSelectedCategory: {
       type: String,
-      default: '3'
+      default: 'Other'
     }
   },
   data () {
     return {
-      selectedCategoryId: this.preSelectedCategoryId,
+      selectedCategory: this.preSelectedCategory,
       email: null,
       subject: null,
       description: null,
-      categories: []
+      categories: [],
+      isLoading: false
     }
   },
   methods: {
     getCategoriesList: function () {
-      this.categories = [
-        {id: 0, text: 'Feedback'},
-        {id: 1, text: 'Maintenance issue'},
-        {id: 2, text: 'Report inaccurate data'},
-        {id: 3, text: 'Other'}
-      ]
+      this.categories = ['Feedback', 'Other']
     },
     getPostBody: function () {
       return {
         email: this.email,
-        categoryId: this.selectedCategoryId,
+        category: this.selectedCategory,
         subject: this.subject,
         description: this.description
       }
     },
     submit: function () {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, 10 * 1000)
       axios
-        .post('/api/submit', this.getPostBody())
+        .post('/api/submitFeedback', this.getPostBody())
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })
