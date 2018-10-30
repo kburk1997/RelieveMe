@@ -17,7 +17,11 @@
             </div>
             <div class="card-content">
                 <div class="content">
-                    <bathroom-panel></bathroom-panel>
+                    <bathroom-panel
+                      v-for="bathroom in floor.bathrooms"
+                      :key="bathroom.bathroomId"
+                      v-bind="bathroom"
+                    ></bathroom-panel>
                 </div>
             </div>
         </b-collapse>
@@ -51,10 +55,11 @@
 <script>
 import axios from 'axios'
 import BathroomPanel from './BathroomPanel.vue'
+
 export default {
   name: 'Building',
   components: {
-    BathroomPanel
+    'bathroom-panel': BathroomPanel
   },
   data () {
     return {
@@ -74,6 +79,7 @@ export default {
     makeFloor: function (floor) {
       var newFloor = {
         number: floor.floorKey.number,
+        bathrooms: floor.bathrooms,
         isOpen: false
       }
       return newFloor
@@ -93,5 +99,5 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 </style>
