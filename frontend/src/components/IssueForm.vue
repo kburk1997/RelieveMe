@@ -1,28 +1,31 @@
 <template>
-<div id="feedback" >
+<div id="issue-form" >
   <h1 class="title is-2">Send an email</h1>
-  <form id="feedback-form" align="left">
-      <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
+  <form id="issue" align="left">
+    <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
 
-      <b-field horizontal label ="Category">
-        <b-select id="category" v-model="selectedCategory">
+    <b-field horizontal label ="Category">
+      <b-select id="category" v-model="selectedCategory">
         <option
           v-for="category in categories"
           :key="category"
           :value="category">
-            {{category}}
+          {{category}}
         </option>
       </b-select>
-      </b-field>
+    </b-field>
 
-      <b-field horizontal label="Subject">
-        <b-input type="text" id="subject" v-model="subject"></b-input>
+    <b-field horizontal label="Bathroom ID">
+      <b-input type="text" id="bathroomId" v-model="bathroomId" disabled></b-input>
+    </b-field>
 
-      </b-field>
+    <b-field horizontal label="Subject">
+      <b-input type="text" id="subject" v-model="subject"></b-input>
+    </b-field>
 
-      <b-field horizontal label ="Description">
+    <b-field horizontal label ="Description">
       <b-input type="textarea" id="description" rows="10" cols ="70" v-model="description"></b-input>
-      </b-field>
+    </b-field>
 
     <b-field horizontal>
       <p class="control">
@@ -38,18 +41,19 @@
 import axios from 'axios'
 
 export default {
-  name: 'Feedback',
+  name: 'IssueForm',
   props: {
-    preSelectedCategory: {
-      type: String,
-      default: 'Other'
+    givenBathroomId: {
+      type: Number,
+      default: -1
     }
   },
   data () {
     return {
-      selectedCategory: this.preSelectedCategory,
+      selectedCategory: null,
       email: null,
       subject: null,
+      bathroomId: this.givenBathroomId,
       description: null,
       categories: [],
       isLoading: false
@@ -57,12 +61,13 @@ export default {
   },
   methods: {
     getCategoriesList: function () {
-      this.categories = ['Feedback', 'Other']
+      this.categories = ['Maintenance Issue', 'Inaccurate Data']
     },
     getPostBody: function () {
       return {
         email: this.email,
         category: this.selectedCategory,
+        bathroomId: this.bathroomId,
         subject: this.subject,
         description: this.description
       }
@@ -73,7 +78,7 @@ export default {
         this.isLoading = false
       }, 10 * 1000)
       axios
-        .post('/api/submitFeedback', this.getPostBody())
+        .post('/api/submitIssue', this.getPostBody())
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })
@@ -86,4 +91,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

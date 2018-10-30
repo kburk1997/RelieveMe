@@ -4,7 +4,7 @@ public class IssueEmailBodyTemplate extends EmailBodyTemplate {
 
     private static final String TEMPLATE = "User email: %s\n" +
             "Category: %s\n" +
-            "Bathroom id: %s\n" +
+            "Bathroom ID: %s\n" +
             "Issue: %s\n" +
             "Description: %s\n";
 

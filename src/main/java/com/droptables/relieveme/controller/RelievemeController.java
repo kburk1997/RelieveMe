@@ -95,4 +95,10 @@ public class RelievemeController {
         emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
                 feedback.getDescription());
     }
+
+    @PostMapping("/submitIssue")
+    public void submitIssue(@RequestBody Issue issue) {
+        emailService.sendIssueEmail(issue.getEmail(), issue.getCategory(), issue.getBathroomId(), issue.getSubject(),
+                issue.getDescription());
+    }
 }
