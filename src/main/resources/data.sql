@@ -87,5 +87,5 @@ VALUES (2, 3, 2, true, 'Mock Bathroom 3rd Floor with all shelves, accessible, me
 /* Houston Field House */
 /* 1 true */
 /* default 0 for num_negative_rating and num_positive_rating */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
 VALUES (1, 3, 1, true, 'Mock wheelchair accessible only bathroom', false, false, null, false, true);

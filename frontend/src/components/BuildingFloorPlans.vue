@@ -4,7 +4,7 @@
 
     <div v-for="plan in plans" v-bind:key="plan.floorPlanKey.floorNumber">
       <h2 class="subtitle is-3">
-        Floor {{plan.floorPlanKey.floorNumber}}  <a v-bind:href="plan.link">link </a>
+        <a v-bind:href="plan.link">Floor {{plan.floorPlanKey.floorNumber}} </a>
       </h2>
     </div>
   </div>
