@@ -6,6 +6,7 @@ import Building from '@/components/Building'
 import BuildingFloorPlans from '@/components/BuildingFloorPlans'
 import Feedback from '@/components/Feedback'
 import FeedbackSubmitted from '@/components/FeedbackSubmitted'
+import IssueForm from '@/components/IssueForm'
 
 Vue.use(Router)
 
@@ -38,7 +39,13 @@ export default new Router({
       props: (route) => ({ preSelectedCategory: route.query.category })
     },
     {
-      path: '/feedbackSubmitted/',
+      path: '/issueForm',
+      name: 'IssueForm',
+      component: IssueForm,
+      props: true
+    },
+    {
+      path: '/feedbackSubmitted',
       name: 'FeedbackSubmitted',
       component: FeedbackSubmitted
     }
