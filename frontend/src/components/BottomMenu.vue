@@ -29,7 +29,7 @@ export default {
 .bottommenu {
   background-color: #fafafa;
   padding: 1%;
-  position:fixed;
+  position: relative;
   width: 100%;
   bottom: 0;
 }

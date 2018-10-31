@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <top-menu></top-menu>
-    <section class="section">
-      <div class="container">
-    <!--<img src="./assets/logo.png">-->
-    <router-view/>
+    <div id="main">
+      <top-menu></top-menu>
+      <section class="section">
+        <div class="container">
+          <!--<img src="./assets/logo.png">-->
+          <router-view/>
+        </div>
+      </section>
     </div>
-    </section>
     <bottom-menu></bottom-menu>
   </div>
 </template>

@@ -26,12 +26,23 @@
           <svgicon icon="wheelchair" width="26" height="22" original></svgicon>
         </b-tooltip>
       </div>
+      <div v-if="menstrualDisposal" class="flex-item">
+        <b-tooltip label="Menstrual disposal available">
+          <svgicon icon="bin" width="26" height="22" original></svgicon>
+        </b-tooltip>
+      </div>
       <div v-if="menstrualProductType" class="flex-item">
         <b-tooltip label="Tampons available">
           <svgicon v-if="menstrualProductType==0" icon="tampon" width="26" height="22" original></svgicon>
         </b-tooltip>
         <b-tooltip label="Sanitary pads available">
           <svgicon v-if="menstrualProductType==1" icon="sanitary-pad" width="26" height="22" original></svgicon>
+        </b-tooltip>
+      </div>
+      <div v-if="shelves" class="flex-item">
+        <b-tooltip label="Storage space available">
+          <svgicon icon="hanger" width="26" height="22" original></svgicon>
+          <svgicon icon="shelf" width="26" height="22" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="babyChangingStation" class="flex-item">
