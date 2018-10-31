@@ -56,7 +56,7 @@
         </b-tooltip>
       </div>
   </div>
-  <rating-display></rating-display>
+  <rating-display v-bind:numPositiveRating="numPositiveRating" v-bind:numNegativeRating="numNegativeRating"></rating-display>
   <button class="report-problem">
     <i class="fas fa-exclamation-triangle"></i>
     <router-link :to="{name: 'Feedback'}">Report a problem</router-link>
