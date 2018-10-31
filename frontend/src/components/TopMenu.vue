@@ -2,7 +2,7 @@
 <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
   <div class="container">
   <div class="navbar-brand">
-    <a class="navbar-item">RelieveMe</a>
+    <a class="navbar-item">RelieveMe Logo</a>
 <router-link class="navbar-item" :to="{name: 'HelloWorld'}">Home</router-link>
   <router-link class="navbar-item" :to="{name: 'BuildingList'}">Buildings</router-link>
   <router-link class="navbar-item" :to="{name: 'Feedback'}">Report a problem</router-link>
