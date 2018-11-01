@@ -9,21 +9,21 @@ INSERT INTO regions (name) VALUES ('Main Campus');
 /* BUILDING DATA */
 /*---------------*/
 /* ADD BUILDINGS TO THE END SO AS TO PRESERVE BUILDING IDs */
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Houston Field House', 1);
+INSERT INTO building (proper_name, region_id) VALUES ('Houston Field House MOCK', 1);
 INSERT INTO building (proper_name, region_id) VALUES ('Rensselaer Union', 2);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Mueller Center', 2);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Commons Dining Hall', 2);
+INSERT INTO building (proper_name, region_id) VALUES ('Mueller Center MOCK', 2);
+INSERT INTO building (proper_name, region_id) VALUES ('Commons Dining Hall MOCK', 2);
 INSERT INTO building (proper_name, region_id) VALUES ('Amos Eaton', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Walker Laboratory', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Russell Sage Laboratory', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Russell Sage Dining Hall', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('MOCK Ricketts Building', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Walker Laboratory MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Laboratory MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Dining Hall MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building MOCK', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Lally Hall', 3);
 
 /*--------------------*/
 /* BUILDING NAME DATA */
 /*--------------------*/
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Houston Field House', 1);
+INSERT INTO building_name (name, building_id) VALUES ('Houston Field House MOCK', 1);
 INSERT INTO building_name (name, building_id) VALUES ('Houston Field House', 1);
 
 INSERT INTO building_name (name, building_id) VALUES ('Rensselaer Union', 2);
@@ -31,31 +31,31 @@ INSERT INTO building_name (name, building_id) VALUES ('Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('Student Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('RPI Union', 2);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Mueller Center', 3);
+INSERT INTO building_name (name, building_id) VALUES ('Mueller Center MOCK', 3);
 INSERT INTO building_name (name, building_id) VALUES ('Mueller Center', 3);
 INSERT INTO building_name (name, building_id) VALUES ('Mueller', 3);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Commons Dining Hall', 4);
+INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall MOCK', 4);
 INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall', 4);
 INSERT INTO building_name (name, building_id) VALUES ('Commons', 4);
 
 INSERT INTO building_name (name, building_id) VALUES ('Amos Eaton', 5);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Walker Laboratory', 6);
+INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory MOCK', 6);
 INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory', 6);
 INSERT INTO building_name (name, building_id) VALUES ('Walker Lab', 6);
 INSERT INTO building_name (name, building_id) VALUES ('Walker', 6);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Russell Sage Laboratory', 7);
+INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Laboratory MOCK', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Laboratory', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Laboratory', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Lab', 7);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Russell Sage Dining Hall', 8);
+INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Dining Hall MOCK', 8);
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Dining Hall', 8);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Dining Hall', 8);
 
-INSERT INTO building_name (name, building_id) VALUES ('MOCK Ricketts Building', 9);
+INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building MOCK', 9);
 INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building', 9);
 INSERT INTO building_name (name, building_id) VALUES ('Ricketts', 9);
 
