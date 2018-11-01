@@ -40,9 +40,13 @@
         </b-tooltip>
       </div>
       <div v-if="shelves" class="flex-item">
-        <b-tooltip label="Storage space available">
-          <svgicon icon="hanger" width="26" height="22" original></svgicon>
+        <b-tooltip label="Shelves">
           <svgicon icon="shelf" width="26" height="22" original></svgicon>
+        </b-tooltip>
+      </div>
+      <div v-if="hooks" class="flex-item">
+        <b-tooltip label="Hooks">
+          <svgicon icon="hanger" width="26" height="22" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="babyChangingStation" class="flex-item">
@@ -105,6 +109,10 @@ export default {
       default: false
     },
     shelves: {
+      type: Boolean,
+      default: false
+    },
+    hooks: {
       type: Boolean,
       default: false
     },
