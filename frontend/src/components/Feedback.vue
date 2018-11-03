@@ -34,6 +34,7 @@
         </vue-recaptcha>
     </b-field>
     <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
+    <p class="has-text-danger" v-if="serverError">A server error occurred. Please try again later.</p>
     <b-field horizontal>
       <p class="control">
         <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
@@ -67,7 +68,8 @@ export default {
       captchaResponse: null,
       // g-recaptcha-response: null,
       isLoading: false,
-      captchaError: false
+      captchaError: false,
+      serverError: false
     }
   },
   methods: {
@@ -76,13 +78,13 @@ export default {
     },
     getPostBody: function () {
       let postBody = {
+        captcha: this.captchaResponse,
         email: this.email,
         category: this.selectedCategory,
         subject: this.subject,
         description: this.description
         // n: this.g-recaptcha-response
       }
-      postBody['g-recaptcha-response'] = this.captchaResponse
       return postBody
     },
     submit: function () {
@@ -102,6 +104,11 @@ export default {
           console.log(response)
           // check for error
           this.$router.push('/feedbackSubmitted')
+        })
+        .catch((err) => {
+          this.serverError = true
+          console.error(err)
+          this.resetCaptcha()
         })
     },
     onCaptchaVerified: function (response) {

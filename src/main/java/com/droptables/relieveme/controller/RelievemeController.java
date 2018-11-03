@@ -7,14 +7,20 @@ import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
 import com.droptables.relieveme.service.RegionService;
 import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
+import com.github.mkopylec.recaptcha.validation.ValidationResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.BasicJsonParser;
+import org.springframework.boot.json.JsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +38,8 @@ public class RelievemeController {
     @Autowired
     private RecaptchaValidator recaptchaValidator;
 
+    private JsonParser jsonParser;
+
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
             BuildingNameService buildingNameService, RegionService regionService, EmailService emailService) {
@@ -40,6 +48,7 @@ public class RelievemeController {
         this.buildingNameService = buildingNameService;
         this.regionService = regionService;
         this.emailService = emailService;
+        this.jsonParser = new BasicJsonParser();
     }
 
     /**
@@ -102,20 +111,24 @@ public class RelievemeController {
 
     @PostMapping("/submitFeedback")
     public ResponseEntity submitFeedback(HttpServletRequest request) {
-        // check captcha first
-        // if (recaptchaValidator.validate(request).isSuccess()) {
-        System.out.println(request.getParameterNames());
-        System.out.println(request.getParameter("email"));
-        System.out.println(request.getParameter("category"));
-        System.out.println(request.getParameter("subject"));
-        System.out.println(request.getParameter("description"));
-        this.submitFeedback(new Feedback(request.getParameter("email"), request.getParameter("category"),
-                request.getParameter("subject"), request.getParameter("description")));
 
-        return new ResponseEntity<>(HttpStatus.OK);
-        // } else {
-        // return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        // }
+        // get remote address
+        String ipAddress = request.getRemoteAddr();
+
+        String s = this.extractPostRequestBody(request);
+        System.out.println(s);
+
+        // convert to JSON
+        Map<String, Object> reqBody = jsonParser.parseMap(s);
+
+        ValidationResult captchaResult = recaptchaValidator.validate((String) reqBody.get("captcha"), ipAddress);
+        if (captchaResult.isSuccess()) {
+            this.submitFeedback(new Feedback((String) reqBody.get("email"), (String) reqBody.get("category"),
+                    (String) reqBody.get("subject"), (String) reqBody.get("description")));
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
     }
 
     @PostMapping("/submitIssue")
@@ -127,6 +140,19 @@ public class RelievemeController {
     private void submitFeedback(Feedback feedback) {
         emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
                 feedback.getDescription());
+    }
+
+    private static String extractPostRequestBody(HttpServletRequest request) {
+        if ("POST".equalsIgnoreCase(request.getMethod())) {
+            Scanner s = null;
+            try {
+                s = new Scanner(request.getInputStream(), "UTF-8").useDelimiter("\\A");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return s.hasNext() ? s.next() : "";
+        }
+        return "";
     }
 
 }
