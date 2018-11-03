@@ -137,7 +137,7 @@ public class RelievemeController {
                 issue.getDescription());
     }
 
-    private void submitFeedback(Feedback feedback) {
+    protected void submitFeedback(Feedback feedback) {
         emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
                 feedback.getDescription());
     }
