@@ -58,3 +58,6 @@ hs_err_pid*
 target/
 frontend/dist
 src/main/resources/public
+
+#Hide configuration
+src/main/resources/application.properties

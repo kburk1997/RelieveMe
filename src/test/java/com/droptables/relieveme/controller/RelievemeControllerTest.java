@@ -45,8 +45,8 @@ public class RelievemeControllerTest {
     @Test
     public void givenBuildingNameReturnsCorrespondingFloorPlans() {
         int expectedBuildingId = 1;
-        List<FloorPlan> expectedFloorPlans =
-                Arrays.asList(givenFloorPlan(expectedBuildingId, 3), givenFloorPlan(expectedBuildingId, 4));
+        List<FloorPlan> expectedFloorPlans = Arrays.asList(givenFloorPlan(expectedBuildingId, 3),
+                givenFloorPlan(expectedBuildingId, 4));
         Building expectedBuilding = givenBuilding(expectedBuildingId);
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(expectedBuilding);
