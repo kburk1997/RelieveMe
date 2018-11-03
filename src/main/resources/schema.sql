@@ -48,6 +48,7 @@ CREATE TABLE bathroom (
   wheelchair_accessible BOOLEAN NOT NULL,
   location_string VARCHAR(256) NOT NULL,
   shelves BOOLEAN NOT NULL,
+  hooks BOOLEAN NOT NULL DEFAULT false,
   menstrual_disposal BOOLEAN NOT NULL,
   menstrual_product_type INTEGER,
   num_negative_rating INTEGER NOT NULL DEFAULT 0,
@@ -55,5 +56,6 @@ CREATE TABLE bathroom (
   maintenance_issue_num INTEGER NOT NULL DEFAULT 0,
   baby_changing_station BOOLEAN NOT NULL,
   fragrance_free_soap BOOLEAN,
-  single_stall BOOLEAN
+  single_stall BOOLEAN,
+  ongoing_bathroom_issue BOOLEAN NOT NULL
 );

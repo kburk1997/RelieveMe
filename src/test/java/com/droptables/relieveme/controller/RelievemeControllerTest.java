@@ -1,9 +1,6 @@
 package com.droptables.relieveme.controller;
 
-import com.droptables.relieveme.domain.Building;
-import com.droptables.relieveme.domain.Feedback;
-import com.droptables.relieveme.domain.FloorPlan;
-import com.droptables.relieveme.domain.Region;
+import com.droptables.relieveme.domain.*;
 import com.droptables.relieveme.email.EmailService;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
@@ -97,10 +94,17 @@ public class RelievemeControllerTest {
         assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
     }
 
-    /*
-     * @Test public void givenFeedbackThenCallEmailService() { Feedback feedback =
-     * new Feedback("email", "cat", "sub", "bod");
-     * relievemeController.submitFeedback(feedback);
-     * verify(emailService).sendFeedbackEmail("email", "cat",
-     */
+    @Test
+    public void givenFeedbackThenCallEmailService() {
+        Feedback feedback = new Feedback("email", "cat", "sub", "bod");
+        relievemeController.submitFeedback(feedback);
+        verify(emailService).sendFeedbackEmail("email", "cat", "sub", "bod");
+    }
+
+    @Test
+    public void givenIssueThenCallEmailService() {
+        Issue issue = new Issue("from", "issue", 0, "cats roosting in bathroom", "THERE ARE CATS");
+        relievemeController.submitIssue(issue);
+        verify(emailService).sendIssueEmail("from", "issue", 0, "cats roosting in bathroom","THERE ARE CATS");
+    }
 }

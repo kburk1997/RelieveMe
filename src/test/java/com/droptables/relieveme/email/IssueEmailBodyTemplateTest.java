@@ -12,7 +12,7 @@ public class IssueEmailBodyTemplateTest {
         issueEmailBodyTemplate.fillTemplate("email", "cat", "1", "sub", "desc");
         assertEquals("User email: email\n" +
                 "Category: cat\n" +
-                "Bathroom id: 1\n" +
+                "Bathroom ID: 1\n" +
                 "Issue: sub\n" +
                 "Description: desc\n", issueEmailBodyTemplate.getBody());
     }

@@ -1,6 +1,9 @@
 package com.droptables.relieveme.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "bathroom")
@@ -13,6 +16,7 @@ public class Bathroom {
     private Boolean wheelchairAccessible;
     private String locationString;
     private Boolean shelves;
+    private Boolean hooks;
     private Boolean menstrualDisposal;
     private Integer menstrualProductType;
     private Integer numNegativeRating;
@@ -21,6 +25,8 @@ public class Bathroom {
     private Boolean babyChangingStation;
     private Boolean fragranceFreeSoap;
     private Boolean singleStall;
+    private Boolean ongoingBathroomIssue;
+
     @Column(name = "building_id")
     private Integer buildingId;
 
@@ -70,6 +76,14 @@ public class Bathroom {
 
     public void setShelves(Boolean shelves) {
         this.shelves = shelves;
+    }
+
+    public Boolean getHooks() {
+        return hooks;
+    }
+
+    public void setHooks(Boolean hooks) {
+        this.hooks = hooks;
     }
 
     public Boolean getMenstrualDisposal() {
@@ -134,6 +148,14 @@ public class Bathroom {
 
     public void setSingleStall(Boolean singleStall) {
         this.singleStall = singleStall;
+    }
+
+    public Boolean getOngoingBathroomIssue() {
+        return ongoingBathroomIssue;
+    }
+
+    public void setOngoingBathroomIssue(Boolean ongoingBathroomIssue) {
+        this.ongoingBathroomIssue = ongoingBathroomIssue;
     }
 
     public Integer getBuildingId() {

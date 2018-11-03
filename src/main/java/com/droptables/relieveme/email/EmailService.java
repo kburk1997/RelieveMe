@@ -25,9 +25,24 @@ public class EmailService {
      * @param subject   non-null user-inputted subject
      * @param body      non-null user-inputted body
      */
-    public void sendFeedbackEmail(String userEmail, String category, String subject, String body) {
-        FeedbackEmail feedbackEmail = sendFeedbackEmailToDevelopers(userEmail, category, subject, body);
-        sendConfirmationEmail(userEmail, feedbackEmail);
+    public void sendIssueEmail(String userEmail, String category, Integer bathroomId, String subject, String body) {
+        IssueEmail issueEmail = sendIssueEmailToDevelopers(userEmail, category, bathroomId, subject, body);
+        sendConfirmationEmail(userEmail, issueEmail);
+    }
+
+    /**
+     * Send feedback email to the developers
+     * @param userEmail non-null user email
+     * @param category non-null category
+     * @param subject non-null user-inputted subject line
+     * @param body non-null user-inputted description
+     * @return the feedback email sent
+     */
+    private IssueEmail sendIssueEmailToDevelopers(String userEmail, String category, Integer bathroomId,
+                                                     String subject, String body) {
+        IssueEmail issueEmailToDevelopers = new IssueEmail(userEmail, DEVELOPER_EMAIL, category, bathroomId, subject,body);
+        emailSender.send(issueEmailToDevelopers);
+        return issueEmailToDevelopers;
     }
 
     /**
@@ -39,6 +54,18 @@ public class EmailService {
     private void sendConfirmationEmail(String toEmail, Email email) {
         ConfirmationEmail confirmationEmail = new ConfirmationEmail(DEVELOPER_EMAIL, toEmail, email);
         emailSender.send(confirmationEmail);
+    }
+
+    /**
+     * Send feedback email to the user and to the developers
+     * @param userEmail non-null user email
+     * @param category non-null category of the email to append to the subject
+     * @param subject non-null user-inputted subject
+     * @param body non-null user-inputted body
+     */
+    public void sendFeedbackEmail(String userEmail, String category, String subject, String body) {
+        FeedbackEmail feedbackEmail = sendFeedbackEmailToDevelopers(userEmail, category, subject, body);
+        sendConfirmationEmail(userEmail, feedbackEmail);
     }
 
     /**

@@ -37,7 +37,7 @@
     <b-field horizontal>
       <p class="control">
         <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
-        <b-loading is-full-page="true" :active.sync="isLoading" can-cancel="false"></b-loading>
+        <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
       </p>
     </b-field>
   </form>

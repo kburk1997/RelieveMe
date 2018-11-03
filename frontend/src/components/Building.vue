@@ -4,7 +4,7 @@
     <router-link :to="{name: 'BuildingFloorPlans'}">Floor Plans</router-link>
 
     <div v-for="floor in floors" v-bind:key="floor.number">
-      <b-collapse class="card" :open.sync="floor.isOpen" >
+      <b-collapse v-if="floor.bathrooms.length > 0" class="card" :open.sync="floor.isOpen" >
             <div slot="trigger" class="card-header is-primary">
                 <p class="card-header-title">
                     Floor {{floor.number}}
@@ -17,7 +17,11 @@
             </div>
             <div class="card-content">
                 <div class="content">
-                    <bathroom-panel></bathroom-panel>
+                    <bathroom-panel
+                      v-for="bathroom in floor.bathrooms"
+                      :key="bathroom.bathroomId"
+                      v-bind="bathroom"
+                    ></bathroom-panel>
                 </div>
             </div>
         </b-collapse>
@@ -25,7 +29,7 @@
       </div>
 
     <!-- TODO: remove below in final product. ONLY FOR EASE OF FRONTEND TESTING -->
-    <div v-for="floor in [{number: 9000, isOpen: false}]" v-bind:key="floor.number">
+    <!--<div v-for="floor in [{number: 9000, isOpen: false}]" v-bind:key="floor.number">
       <b-collapse class="card" :open.sync="floor.isOpen" >
         <div slot="trigger" class="card-header is-primary">
           <p class="card-header-title">
@@ -43,7 +47,7 @@
           </div>
         </div>
       </b-collapse>
-    </div>
+    </div>-->
     <!-- TODO: remove this section above me in final product -->
   </div>
 </template>
@@ -51,10 +55,11 @@
 <script>
 import axios from 'axios'
 import BathroomPanel from './BathroomPanel.vue'
+
 export default {
   name: 'Building',
   components: {
-    BathroomPanel
+    'bathroom-panel': BathroomPanel
   },
   data () {
     return {
@@ -74,6 +79,7 @@ export default {
     makeFloor: function (floor) {
       var newFloor = {
         number: floor.floorKey.number,
+        bathrooms: floor.bathrooms,
         isOpen: false
       }
       return newFloor
@@ -93,5 +99,5 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 </style>

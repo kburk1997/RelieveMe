@@ -35,7 +35,7 @@
                default-sort="name"
       >
         <template slot-scope="filteredBuildings">
-          <b-table-column field="name" label ="Name" sortable>
+          <b-table-column field="properName" label ="Name" sortable>
             <router-link :to="{name: 'Building', params:{name: filteredBuildings.row.properName}}">
               {{filteredBuildings.row.properName}}
             </router-link>
@@ -63,7 +63,7 @@ export default {
       },
       allBuildings: [],
       columns: [{
-        field: 'name',
+        field: 'properName',
         label: 'Name'
       },
       {
