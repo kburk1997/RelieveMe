@@ -48,8 +48,8 @@ public class RelievemeControllerTest {
     @Test
     public void givenBuildingNameReturnsCorrespondingFloorPlans() {
         int expectedBuildingId = 1;
-        List<FloorPlan> expectedFloorPlans =
-                Arrays.asList(givenFloorPlan(expectedBuildingId, 3), givenFloorPlan(expectedBuildingId, 4));
+        List<FloorPlan> expectedFloorPlans = Arrays.asList(givenFloorPlan(expectedBuildingId, 3),
+                givenFloorPlan(expectedBuildingId, 4));
         Building expectedBuilding = givenBuilding(expectedBuildingId);
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(expectedBuilding);
@@ -97,10 +97,10 @@ public class RelievemeControllerTest {
         assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
     }
 
-    @Test
-    public void givenFeedbackThenCallEmailService() {
-        Feedback feedback = new Feedback("email", "cat", "sub", "bod");
-        relievemeController.submitFeedback(feedback);
-        verify(emailService).sendFeedbackEmail("email", "cat", "sub", "bod");
-    }
+    /*
+     * @Test public void givenFeedbackThenCallEmailService() { Feedback feedback =
+     * new Feedback("email", "cat", "sub", "bod");
+     * relievemeController.submitFeedback(feedback);
+     * verify(emailService).sendFeedbackEmail("email", "cat",
+     */
 }

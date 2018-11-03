@@ -24,6 +24,16 @@
       <b-input type="textarea" id="description" rows="10" cols ="70" v-model="description"></b-input>
       </b-field>
 
+<b-field horizontal>
+  <vue-recaptcha
+            ref="recaptcha"
+            @verify="onCaptchaVerified"
+            @expired="resetCaptcha"
+            size="checkbox"
+            sitekey="6LeVdXcUAAAAAPN7-fFOOLDkA3Enis0Xx7yDd4Iz">
+        </vue-recaptcha>
+    </b-field>
+    <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
     <b-field horizontal>
       <p class="control">
         <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
@@ -36,6 +46,7 @@
 
 <script>
 import axios from 'axios'
+import VueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: 'Feedback',
@@ -45,6 +56,7 @@ export default {
       default: 'Other'
     }
   },
+  components: {VueRecaptcha},
   data () {
     return {
       selectedCategory: this.preSelectedCategory,
@@ -52,7 +64,10 @@ export default {
       subject: null,
       description: null,
       categories: [],
-      isLoading: false
+      captchaResponse: null,
+      // g-recaptcha-response: null,
+      isLoading: false,
+      captchaError: false
     }
   },
   methods: {
@@ -60,23 +75,40 @@ export default {
       this.categories = ['Feedback', 'Other']
     },
     getPostBody: function () {
-      return {
+      let postBody = {
         email: this.email,
         category: this.selectedCategory,
         subject: this.subject,
         description: this.description
+        // n: this.g-recaptcha-response
       }
+      postBody['g-recaptcha-response'] = this.captchaResponse
+      return postBody
     },
     submit: function () {
+      console.log(this.getPostBody())
+      if (this.captchaResponse == null) {
+        this.captchaError = true
+        return
+      }
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
       }, 10 * 1000)
+
       axios
         .post('/api/submitFeedback', this.getPostBody())
         .then((response) => {
+          console.log(response)
+          // check for error
           this.$router.push('/feedbackSubmitted')
         })
+    },
+    onCaptchaVerified: function (response) {
+      this.captchaResponse = response
+    },
+    resetCaptcha: function () {
+      this.captchaResponse = null
     }
   },
   mounted: function () {
