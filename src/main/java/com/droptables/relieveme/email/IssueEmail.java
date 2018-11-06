@@ -14,7 +14,7 @@ public class IssueEmail extends Email {
     public IssueEmail(String from, String to, String category, Integer bathroomId, String subject, String body) {
         super.setFrom(from);
         super.setTo(to);
-        super.setSubject(createSubject(category, subject));
+        super.setSubject(createSubject(category, bathroomId, subject));
         IssueEmailBodyTemplate issueEmailBodyTemplate = new IssueEmailBodyTemplate();
         issueEmailBodyTemplate.fillTemplate(super.getFrom(), category, bathroomId.toString(), subject, body);
         super.setText(issueEmailBodyTemplate);
@@ -23,10 +23,11 @@ public class IssueEmail extends Email {
     /**
      * Create the subject of the email
      * @param category non-null category of the email
+     * @param bathroomId non-null id of the afflicted bathroom
      * @param subject non-null subject of the email
      * @return "[category] subject"
      */
-    private String createSubject(String category, String subject) {
-        return String.format("[%s] %s", category, subject);
+    private String createSubject(String category, Integer bathroomId, String subject) {
+        return String.format("[Bathroom %d] [%s] %s", bathroomId, category, subject);
     }
 }

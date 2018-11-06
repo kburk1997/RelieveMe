@@ -10,7 +10,7 @@ public class IssueEmailTest {
     @Test
     public void givenAllFieldsThenSetsFields() {
         IssueEmail feedbackEmail = new IssueEmail("f", "t", "i", 129, "bathroom has reptiles", "REPTILES");
-        assertEquals("[i] bathroom has reptiles", feedbackEmail.getSubject());
+        assertEquals("[Bathroom 129] [i] bathroom has reptiles", feedbackEmail.getSubject());
         assertEquals("f", feedbackEmail.getFrom());
         assertEquals("t", Objects.requireNonNull(feedbackEmail.getTo())[0]);
         assertEquals("User email: f\n" +
