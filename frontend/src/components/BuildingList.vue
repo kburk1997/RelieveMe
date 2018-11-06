@@ -111,9 +111,8 @@ export default {
     filterBuildingsByRestroomAccessibility: function (building) {
       // return all given buildings if no accessibility filter is selected;
       // or return all buildings that contain bathrooms with the chosen attributes
-      for (var index = 0; index < this.filters.selectedAccessibilities.length; index++) {
-        console.log(this.filters.selectedAccessibilities[index])
-        if (!this.buildingContainsAccessibility(building, this.filters.selectedAccessibilities[index])) {
+      for (var filterInd = 0; filterInd < this.filters.selectedAccessibilities.length; filterInd++) {
+        if (!this.buildingContainsAccessibility(building, this.filters.selectedAccessibilities[filterInd])) {
           return false
         }
       }
