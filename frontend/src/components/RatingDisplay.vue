@@ -1,6 +1,8 @@
 <template>
 <div class="rating-display">
-    <button class="button is-primary" v-on:click="upvote()" :disabled="voted">
+  <b>{{ calculateRating(numPositiveRating, numPositiveRating + numNegativeRating).toFixed(0) }}% Positive</b>
+  <br>
+  <button class="button is-primary" v-on:click="upvote()" :disabled="voted">
       <b-loading :is-full-page="false" :active.sync="upvoteIsLoading" :can-cancel="false"></b-loading>
       <svgicon class="happy-poo" icon="happy-poo" width="20" height="20" focusable="false" original></svgicon>
             <b> {{ numPositiveRating }} </b>
@@ -42,6 +44,9 @@ export default {
     }
   },
   methods: {
+    calculateRating: function (positive, total) {
+      return positive / total * 100
+    },
     upvote: function () {
       this.upvoteIsLoading = true
       axios
