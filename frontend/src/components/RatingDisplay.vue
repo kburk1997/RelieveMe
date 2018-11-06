@@ -45,6 +45,9 @@ export default {
   },
   methods: {
     calculateRating: function (positive, total) {
+      if (total === 0) {
+        return 0
+      }
       return positive / total * 100
     },
     upvote: function () {
