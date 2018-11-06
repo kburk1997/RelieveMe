@@ -15,10 +15,10 @@
                     </b-icon>
                 </a>
             </div>
-            <div class="card-content">
+            <div class="card-content tab-content">
                 <div class="content">
                     <bathroom-panel
-                      v-for="bathroom in floor.bathrooms"
+                      v-for="bathroom in sortedBathroomsList(floor.bathrooms)"
                       :key="bathroom.bathroomId"
                       v-bind="bathroom"
                     ></bathroom-panel>
@@ -86,6 +86,9 @@ export default {
     },
     addFloor: function (floor) {
       this.floors.push(this.makeFloor(floor))
+    },
+    sortedBathroomsList: function (bathrooms) {
+      return bathrooms.slice().sort(function (a, b) { return a.bathroomId - b.bathroomId })
     }
   },
   watch: {
@@ -100,4 +103,7 @@ export default {
 </script>
 
 <style scoped>
+  .tab-content {
+    background-color: #eafaf5;
+  }
 </style>

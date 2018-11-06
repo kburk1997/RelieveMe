@@ -2,10 +2,7 @@ package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.*;
 import com.droptables.relieveme.email.EmailService;
-import com.droptables.relieveme.service.BuildingNameService;
-import com.droptables.relieveme.service.BuildingService;
-import com.droptables.relieveme.service.FloorPlanService;
-import com.droptables.relieveme.service.RegionService;
+import com.droptables.relieveme.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -38,6 +35,9 @@ public class RelievemeControllerTest {
 
     @Mock
     private EmailService emailService;
+
+    @Mock
+    private BathroomService bathroomService;
 
     @InjectMocks
     private RelievemeController relievemeController;
@@ -106,5 +106,17 @@ public class RelievemeControllerTest {
         Issue issue = new Issue("from", "issue", 0, "cats roosting in bathroom", "THERE ARE CATS");
         relievemeController.submitIssue(issue);
         verify(emailService).sendIssueEmail("from", "issue", 0, "cats roosting in bathroom","THERE ARE CATS");
+    }
+
+    @Test
+    public void givenBathroomIdAndPositiveRatingIncreaseThenIncreaseBathroomPositiveRating() {
+        relievemeController.increaseBathroomPositiveRating(14);
+        verify(bathroomService).incrementNumPositiveRating(14);
+    }
+
+    @Test
+    public void givenBathroomIdAndNegativeRatingIncreaseThenIncreaseBathroomNegativeRating() {
+        relievemeController.increaseBathroomNegativeRating(14);
+        verify(bathroomService).incrementNumNegativeRating(14);
     }
 }

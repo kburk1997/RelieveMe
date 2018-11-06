@@ -2,10 +2,7 @@ package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.*;
 import com.droptables.relieveme.email.EmailService;
-import com.droptables.relieveme.service.BuildingNameService;
-import com.droptables.relieveme.service.BuildingService;
-import com.droptables.relieveme.service.FloorPlanService;
-import com.droptables.relieveme.service.RegionService;
+import com.droptables.relieveme.service.*;
 import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
 import com.github.mkopylec.recaptcha.validation.ValidationResult;
 
@@ -29,26 +26,30 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api")
 public class RelievemeController {
 
-    private BuildingService buildingService;
-    private FloorPlanService floorPlanService;
-    private BuildingNameService buildingNameService;
-    private RegionService regionService;
-    private EmailService emailService;
+    private final BuildingService buildingService;
+    private final FloorPlanService floorPlanService;
+    private final BuildingNameService buildingNameService;
+    private final RegionService regionService;
+    private final EmailService emailService;
+    private final BathroomService bathroomService;
 
-    @Autowired
-    private RecaptchaValidator recaptchaValidator;
+    private final RecaptchaValidator recaptchaValidator;
 
     private JsonParser jsonParser;
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-            BuildingNameService buildingNameService, RegionService regionService, EmailService emailService) {
+                               BuildingNameService buildingNameService, RegionService regionService,
+                               EmailService emailService, BathroomService bathroomService,
+                               RecaptchaValidator recaptchaValidator) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
         this.regionService = regionService;
         this.emailService = emailService;
         this.jsonParser = new BasicJsonParser();
+        this.bathroomService = bathroomService;
+        this.recaptchaValidator = recaptchaValidator;
     }
 
     /**
@@ -104,11 +105,20 @@ public class RelievemeController {
         return floorPlanService.getFloorPlansForBuildingId(targetBuilding.getBuildingId());
     }
 
+    /**
+     * @return a list of all buildings
+     */
     @GetMapping("/buildings")
     public List<Building> getAllBuildings() {
         return buildingService.getAllBuildings();
     }
 
+    /**
+     * Receives feedback from the user and sends a feedback email to both the user and the developers.
+     * A captcha is used to determine if a request is a spam request.
+     * @param request feedback post request
+     * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha fails.
+     */
     @PostMapping("/submitFeedback")
     public ResponseEntity submitFeedback(HttpServletRequest request) {
 
@@ -137,11 +147,38 @@ public class RelievemeController {
                 issue.getDescription());
     }
 
+    /**
+     * Increases the positive rating for a bathroom.
+     * @param bathroomId non-null identifier of a bathroom
+     */
+    @PostMapping("/bathroom/{bathroomId}/increasePositiveRating")
+    public void increaseBathroomPositiveRating(@PathVariable Integer bathroomId) {
+        bathroomService.incrementNumPositiveRating(bathroomId);
+    }
+
+    /**
+     * Increases the negative rating for a bathroom.
+     * @param bathroomId non-null identifier of a bathroom
+     */
+    @PostMapping("/bathroom/{bathroomId}/increaseNegativeRating")
+    public void increaseBathroomNegativeRating(@PathVariable Integer bathroomId) {
+        bathroomService.incrementNumNegativeRating(bathroomId);
+    }
+
+    /**
+     * Take feedback and send an email to the user who submitted the feedback and the developers.
+     * @param feedback non-null feedback information
+     */
     protected void submitFeedback(Feedback feedback) {
         emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
                 feedback.getDescription());
     }
 
+    /**
+     * Extracts the contents of an HttpServlet POST request.
+     * @param request POST request to parse
+     * @return the body of a POST request if it exists; empty string if there is no body
+     */
     private static String extractPostRequestBody(HttpServletRequest request) {
         if ("POST".equalsIgnoreCase(request.getMethod())) {
             Scanner s = null;

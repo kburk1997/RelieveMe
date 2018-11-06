@@ -17,7 +17,6 @@
 
       <b-field horizontal label="Subject">
         <b-input type="text" id="subject" v-model="subject"></b-input>
-
       </b-field>
 
       <b-field horizontal label ="Description">
