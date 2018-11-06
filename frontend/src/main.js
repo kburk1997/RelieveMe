@@ -8,6 +8,8 @@ import Buefy from 'buefy'
 import 'vue-svgicon/dist/polyfill'
 import Icon from 'vue-awesome/components/Icon'
 import * as svgicon from 'vue-svgicon'
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
 Vue.use(svgicon)
 Vue.component('v-icon', Icon)
 Vue.config.productionTip = false

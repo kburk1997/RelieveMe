@@ -2,7 +2,16 @@
 <div id="feedback" >
   <h1 class="title is-2">Send an email</h1>
   <form id="feedback-form" align="left">
-      <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
+    <b-field horizontal
+               label ="Email"
+               :type="errors.has('email') ? 'is-danger' : email === null ? '' : 'is-success'">
+        <b-input type="text"
+                 id="email"
+                 name="email"
+                 v-model="email"
+                 v-validate="'required|email'"
+        ></b-input>
+      </b-field>
 
       <b-field horizontal label ="Category">
         <b-select id="category" v-model="selectedCategory">
@@ -15,16 +24,26 @@
       </b-select>
       </b-field>
 
-      <b-field horizontal label="Subject">
-        <b-input type="text" id="subject" v-model="subject"></b-input>
+      <b-field horizontal
+               label="Subject"
+               :type="errors.has('subject') ? 'is-danger' : subject === null ? '' : 'is-success'">
+        <b-input name="subject" type="text" v-validate="'required|min:1'" id="subject" v-model="subject"></b-input>
       </b-field>
 
-      <b-field horizontal label ="Description">
-      <b-input type="textarea" id="description" rows="10" cols ="70" v-model="description"></b-input>
+      <b-field horizontal
+               label ="Description"
+               :type="errors.has('description') ? 'is-danger' : description === null ? '' : 'is-success'">
+      <b-input name="description"
+               type="textarea"
+               v-validate="'required|min:1'"
+               id="description"
+               rows="10"
+               cols ="70"
+               v-model="description"></b-input>
       </b-field>
 
-<b-field horizontal>
-  <vue-recaptcha
+    <b-field horizontal>
+        <vue-recaptcha
             ref="recaptcha"
             @verify="onCaptchaVerified"
             @expired="resetCaptcha"
@@ -34,9 +53,10 @@
     </b-field>
     <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
     <p class="has-text-danger" v-if="serverError">A server error occurred. Please try again later.</p>
+    <p class="has-text-danger" v-if="validationErrorPopup">Please complete all fields.</p>
     <b-field horizontal>
       <p class="control">
-        <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
+        <button class="button is-primary" @click.stop.prevent="validateBeforeSubmit()">Submit</button>
         <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
       </p>
     </b-field>
@@ -53,7 +73,7 @@ export default {
   props: {
     preSelectedCategory: {
       type: String,
-      default: 'Other'
+      default: 'Feedback'
     }
   },
   components: {VueRecaptcha},
@@ -68,7 +88,8 @@ export default {
       // g-recaptcha-response: null,
       isLoading: false,
       captchaError: false,
-      serverError: false
+      serverError: false,
+      validationErrorPopup: false
     }
   },
   methods: {
@@ -85,6 +106,15 @@ export default {
         // n: this.g-recaptcha-response
       }
       return postBody
+    },
+    validateBeforeSubmit: function () {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.submit()
+        } else {
+          this.validationErrorPopup = true
+        }
+      })
     },
     submit: function () {
       console.log(this.getPostBody())
