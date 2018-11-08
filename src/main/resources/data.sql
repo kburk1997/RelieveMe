@@ -116,6 +116,7 @@ INSERT INTO building_name (name, building_id) VALUES ('JEC', 21);
 /* JROWL */
 INSERT INTO building_name (name, building_id) VALUES ('Jonsson-Rowland Science Center', 22);
 INSERT INTO building_name (name, building_id) VALUES ('J-ROWL', 22);
+
 /* Lally */
 INSERT INTO building_name (name, building_id) VALUES ('Lally Hall', 10);
 INSERT INTO building_name (name, building_id) VALUES ('Lally Building', 10);
@@ -182,6 +183,11 @@ INSERT INTO floor (number, building_id) VALUES (1, 5);
 INSERT INTO floor (number, building_id) VALUES (2, 5);
 INSERT INTO floor (number, building_id) VALUES (3, 5);
 INSERT INTO floor (number, building_id) VALUES (4, 5);
+/*JROWL */
+INSERT INTO floor (number, building_id) VALUES (0, 22);
+INSERT INTO floor (number, building_id) VALUES (1, 22);
+INSERT INTO floor (number, building_id) VALUES (2, 22);
+INSERT INTO floor (number, building_id) VALUES (3, 22);
 /* Lally */
 INSERT INTO floor (number, building_id) VALUES (0, 10);
 INSERT INTO floor (number, building_id) VALUES (1, 10);
@@ -220,7 +226,7 @@ INSERT INTO floor (number, building_id) VALUES (3, 1);
 /*-----------------*/
 /* FLOOR PLAN DATA */
 /*-----------------*/
-/* basement (floor 0) and rooftop are not added into floor plan because students cannot get there */
+/* basement (floor 0) and rooftop, and other floors not accessible to students are not listed */
 
 /* Houston Field House */
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/Houston%20Field%20House%20100%20Level.pdf', 1, 1);
@@ -245,6 +251,12 @@ INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/AmosEaton200.pdf', 5, 2);
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/AmosEaton300.pdf', 5, 3);
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/AmosEaton400.pdf', 5, 4);
+
+/* J-Rowl */
+INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/JonssonRowlandBmt.pdf', 22, 0); 
+INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/JonssonRowland1.pdf', 22, 1); 
+INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/JonssonRowland2.pdf', 22, 2); 
+INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/JonssonRowland3.pdf', 22, 3); 
 
 /* Lally */
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/LallyHall000.pdf', 10, 0);
@@ -287,42 +299,7 @@ INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411
 /*---------------*/
 /* gender_type: male = 0, female = 1, gender-neutral = 2 */
 /* menstrual product type: tampon = 0, pad = 1 */
-
-/*----------------------*/
-/* Amos Eaton bathrooms */
-/*----------------------*/
-/* Floor 1 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 1, 0, false, 'Down right-hand stairway and next to AE123', false, false, null, false, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 1, 2, true, 'Down right-hand stairway and next to AE123', false, false, null, false, false);
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 1, 1, false, 'Next to AE103', true, true, null, false, false);
-
-/* Floor 2 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 2, 0, false, 'Next to AE204', false, false, null, false, false);
-
-/* Floor 3 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 3, 1, false, 'Next to housekeeping', true, true, null, false, false);
-
-/* Floor 4 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (5, 4, 0, false, 'In dead end corridor to right of lounge', false, false, null, false, false);
-
-/*-----------------*/
-/* Lally bathrooms */
-/*-----------------*/
-/* Floor 0 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (10, 0, 0, false, 'Left from stairs, next to environmental specialist door', false, false, null, false, false);
-
-/* Floor 2 */
-INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES (10, 2, 1, false, 'In corridor next to Lally 210 and environmentalist specialist door', false, true, null, false, false);
-
-/*-----------*/
+*-----------*/
 /* RPI Union */
 /*-----------*/
 /* 2 true and 3 false for ongoing_bathroom_issue */
@@ -335,13 +312,11 @@ INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessi
 VALUES (2, 1, 1, true, 'Next to Ben and Jerry''s and Rathskeller''s', true, true, 1, false, true, 3, 4);
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES (2, 1, 2, false, 'In Mother''s', false, false, null, false, false, 3, 42);
-
 /* Floor 2 */
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES (2, 2, 0, false, 'Next to McNeil room and in corner facing Public Safety', false, false, null, false, true, 100, 99);
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES (2, 2, 1, false, 'Next to McNeil room and in corner facing Public Safety', true, true, 0, true, false, 12, 34);
-
 /* Floor 3 */
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES (2, 3, 0, false, 'Next to Clubhouse Pub', false, false, null, false, true, 100, 99);
@@ -349,7 +324,60 @@ INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessi
 VALUES (2, 3, 1, false, 'Next to Clubhouse Pub', true, true, true, 1, false, false, 12, 34);
 
 /*-----------*/
-/* VCC  */
+/*----------------------*/
+/* Amos Eaton bathrooms */
+/*----------------------*/
+/* Floor 1 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 1, 0, false, 'Down right-hand stairway and next to AE123', false, false, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 1, 2, true, 'Down right-hand stairway and next to AE123', false, false, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 1, 1, false, 'Next to AE103', true, true, null, false, false);
+/* Floor 2 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 2, 0, false, 'Next to AE204', false, false, null, false, false);
+/* Floor 3 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 3, 1, false, 'Next to housekeeping', true, true, null, false, false);
+/* Floor 4 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (5, 4, 0, false, 'In dead end corridor to right of lounge', false, false, null, false, false);
+
+/*-----------------*/
+/* JRowl bathrooms */
+/*-----------------*/
+/* Roof and penthouse omitted because students cannot go there */
+/* Floor 0 (Basement) */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 0, 0, true, 'across from elevator next to  custodial closet', false, false, null, false, false);
+/* Floor 1 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 1, 1, true, 'Room 1C43, near Physics Lounge', false, true, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 1, 0, true, 'Room 1C47, next to custodial closet', false, false, null, false, false);
+/* Floor 2 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 2, 0, true, 'Room 2C47, next to custodial closet', false, false, null, false, false);
+/* Floor 3 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 3, 1, true, 'Room 3C43, across from electrical room', false, true, null, false, false);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (22, 3, 0, true, 'Room 3C47, next to custodial closet', false, false, null, false, false);
+
+/*-----------------*/
+/* Lally bathrooms */
+/*-----------------*/
+/* Floor 0 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (10, 0, 0, false, 'Left from stairs, next to environmental specialist door', false, false, null, false, false);
+
+/* Floor 2 */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
+VALUES (10, 2, 1, false, 'In corridor next to Lally 210 and environmentalist specialist door', false, true, null, false, false);
+
+/
+/* VCC  	 */
 /*-----------*/
 /* default 0 for num_positive_rating and num_negative_rating  */
 /* made some assumptions for men's bathroom data */
