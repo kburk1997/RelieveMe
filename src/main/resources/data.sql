@@ -10,65 +10,162 @@ INSERT INTO regions (name) VALUES ('Main Campus');
 /*---------------*/
 /* ADD BUILDINGS TO THE END SO AS TO PRESERVE BUILDING IDs */
 INSERT INTO building (proper_name, region_id) VALUES ('Houston Field House MOCK', 1);
+
+INSERT INTO building (proper_name, region_id) VALUES ('Admissions', 2);
+INSERT INTO building (proper_name, region_id) VALUES ('Alumni Sports & Recreation Center', 2);
+INSERT INTO building (proper_name, region_id) VALUES ('Mueller Center', 2);
+INSERT INTO building (proper_name, region_id) VALUES ('Public Safety', 2);
 INSERT INTO building (proper_name, region_id) VALUES ('Rensselaer Union', 2);
+
+
+/* TODO: remove mock data after real data is gathered */
 INSERT INTO building (proper_name, region_id) VALUES ('Mueller Center MOCK', 2);
 INSERT INTO building (proper_name, region_id) VALUES ('Commons Dining Hall MOCK', 2);
+
+INSERT INTO building (proper_name, region_id) VALUES ('Academy Hall', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Amos Eaton', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('Walker Laboratory MOCK', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Laboratory MOCK', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Dining Hall MOCK', 3);
-INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Carnegie Building', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Center for Biotechnology and Interdisciplinary Studies', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Curtis R. Priem Experimental Media and Performing Arts Center', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Darrin Communcations Center', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Folsom Library', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Greene Building', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Jonsson Engineering Center', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Jonsson-Rowland Science Center', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Lally Hall', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Low Center for Industrial Innovation', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Pittsburg Building', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Playhouse', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Dining Hall', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Laboratory', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Troy Building', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Voorhees Computing Center', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Walker Laboratory', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('West Hall', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('87 Gymnasium', 3);
+
+/* TODO: remove mock data after real data is gathered */
+INSERT INTO building (proper_name, region_id) VALUES ('Walker Laboratory MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Dining Hall MOCK', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building MOCK', 3)
+
 
 /*--------------------*/
 /* BUILDING NAME DATA */
 /*--------------------*/
+
+/* ------------ECAV --------------- * /
+/* Houston Field House */
 INSERT INTO building_name (name, building_id) VALUES ('Houston Field House MOCK', 1);
 INSERT INTO building_name (name, building_id) VALUES ('Houston Field House', 1);
 
+
+/* ------------Freshman Hill --------------- */
+/* Admissions */
+INSERT INTO building_name (name, building_id) VALUES ('Admissions', 12);
+INSERT INTO building_name (name, building_id) VALUES ('Rensselaer Admissions', 12);
+/* Armory */
+INSERT INTO building_name (name, building_id) VALUES ('Alumni Sports & Recreation Center', 13);
+INSERT INTO building_name (name, building_id) VALUES ('AS+RC', 13);
+INSERT INTO building_name (name, building_id) VALUES ('Armory', 13);
+/* Commons */
+INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall MOCK', 4);
+INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall', 4);
+INSERT INTO building_name (name, building_id) VALUES ('Commons', 4);
+/* Mueller */
+INSERT INTO building_name (name, building_id) VALUES ('Mueller Center MOCK', 3);
+INSERT INTO building_name (name, building_id) VALUES ('Mueller Center', 3);
+INSERT INTO building_name (name, building_id) VALUES ('Mueller', 3);
+/* Public Safety */
+INSERT INTO building_name (name, building_id) VALUES ('Public Safety', 14);
+INSERT INTO building_name (name, building_id) VALUES ('Pub Safe', 14);
+/* Union */
 INSERT INTO building_name (name, building_id) VALUES ('Rensselaer Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('Student Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('RPI Union', 2);
 
-INSERT INTO building_name (name, building_id) VALUES ('Mueller Center MOCK', 3);
-INSERT INTO building_name (name, building_id) VALUES ('Mueller Center', 3);
-INSERT INTO building_name (name, building_id) VALUES ('Mueller', 3);
+/* ------------Academic --------------- * /
 
-INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall MOCK', 4);
-INSERT INTO building_name (name, building_id) VALUES ('Commons Dining Hall', 4);
-INSERT INTO building_name (name, building_id) VALUES ('Commons', 4);
-
+/* Academy Hall */
+INSERT INTO building_name (name, building_id) VALUES ('Academy Hall', 14);
+INSERT INTO building_name (name, building_id) VALUES ('Academy', 14);
+/* Amos Eaton */
 INSERT INTO building_name (name, building_id) VALUES ('Amos Eaton', 5);
-
-INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory MOCK', 6);
-INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory', 6);
-INSERT INTO building_name (name, building_id) VALUES ('Walker Lab', 6);
-INSERT INTO building_name (name, building_id) VALUES ('Walker', 6);
-
+INSERT INTO building_name (name, building_id) VALUES ('Eaton', 5);
+/* Carnegie Building */
+INSERT INTO building_name (name, building_id) VALUES ('Carnegie Building', 15);
+INSERT INTO building_name (name, building_id) VALUES ('Carnegie', 15);
+/* CBIS */
+INSERT INTO building_name (name, building_id) VALUES ('Center for Biotechnology and Interdisciplinary Studies', 16);
+INSERT INTO building_name (name, building_id) VALUES ('CBIS', 16);
+/* EMPAC */
+INSERT INTO building_name (name, building_id) VALUES ('Curtis R. Priem Experimental Media & Performing Arts Center', 17);
+INSERT INTO building_name (name, building_id) VALUES ('EMPAC', 17);
+/* DCC */
+INSERT INTO building_name (name, building_id) VALUES ('Darrin Communications Center', 18);
+INSERT INTO building_name (name, building_id) VALUES ('Darrin', 18);
+INSERT INTO building_name (name, building_id) VALUES ('DCC', 18);
+/*Library */
+INSERT INTO building_name (name, building_id) VALUES ('Folsom Library', 19);
+INSERT INTO building_name (name, building_id) VALUES ('Library', 19);
+/* Greene */
+INSERT INTO building_name (name, building_id) VALUES ('Greene Building', 20);
+INSERT INTO building_name (name, building_id) VALUES ('Greene', 20);
+/* JEC */
+INSERT INTO building_name (name, building_id) VALUES ('Jonsson Engineering Center', 21);
+INSERT INTO building_name (name, building_id) VALUES ('JEC', 21);
+/* JROWL */
+INSERT INTO building_name (name, building_id) VALUES ('Jonsson-Rowland Science Center', 22);
+INSERT INTO building_name (name, building_id) VALUES ('J-ROWL', 22);
+/* Lally */
+INSERT INTO building_name (name, building_id) VALUES ('Lally Hall', 10);
+INSERT INTO building_name (name, building_id) VALUES ('Lally Building', 10);
+INSERT INTO building_name (name, building_id) VALUES ('Lally', 10);
+/* CII */
+INSERT INTO building_name (name, building_id) VALUES ('Low Center for Industrial Innovation', 23);
+INSERT INTO building_name (name, building_id) VALUES ('Low', 23);
+INSERT INTO building_name (name, building_id) VALUES ('CII', 23);
+/* Pittsburg */
+INSERT INTO building_name (name, building_id) VALUES ('Pittsburgh Building', 24);
+INSERT INTO building_name (name, building_id) VALUES ('Lally School of Management',24);
+INSERT INTO building_name (name, building_id) VALUES ('Pittsburgh', 24);
+/* Playhouse */
+INSERT INTO building_name (name, building_id) VALUES ('Playhouse', 25);
+INSERT INTO building_name (name, building_id) VALUES ('RPI Playhouse', 25);
+/* Ricketts */
+INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building MOCK', 9);
+INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building', 9);
+INSERT INTO building_name (name, building_id) VALUES ('Ricketts', 9);
+/* Russell Sage Lab */
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Laboratory MOCK', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Laboratory', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Laboratory', 7);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Lab', 7);
-
+/* Russell Sage DH */
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Dining Hall MOCK', 8);
 INSERT INTO building_name (name, building_id) VALUES ('Russell Sage Dining Hall', 8);
 INSERT INTO building_name (name, building_id) VALUES ('Sage Dining Hall', 8);
-
-INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building MOCK', 9);
-INSERT INTO building_name (name, building_id) VALUES ('Ricketts Building', 9);
-INSERT INTO building_name (name, building_id) VALUES ('Ricketts', 9);
-
-INSERT INTO building_name (name, building_id) VALUES ('Lally Hall', 10);
-INSERT INTO building_name (name, building_id) VALUES ('Lally Building', 10);
-INSERT INTO building_name (name, building_id) VALUES ('Lally', 10);
-
+INSERT INTO building_name (name, building_id) VALUES ('RSDH', 8);
+/* Troy Building */
+INSERT INTO building_name (name, building_id) VALUES ('Troy Building', 26);
+INSERT INTO building_name (name, building_id) VALUES ('Troy', 26);
+/* VCC */
 INSERT INTO building_name (name, building_id) VALUES ('Voorhees Computing Center', 11);
 INSERT INTO building_name (name, building_id) VALUES ('Voorhees', 11);
 INSERT INTO building_name (name, building_id) VALUES ('VCC', 11);
-
-
+/* Walker */
+INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory MOCK', 6);
+INSERT INTO building_name (name, building_id) VALUES ('Walker Laboratory', 6);
+INSERT INTO building_name (name, building_id) VALUES ('Walker Lab', 6);
+INSERT INTO building_name (name, building_id) VALUES ('Walker', 6);
+/* West Hall */
+INSERT INTO building_name (name, building_id) VALUES ('West Hall', 27);
+INSERT INTO building_name (name, building_id) VALUES ('West', 27);
+/* 87 Gym */
+INSERT INTO building_name (name, building_id) VALUES ('87 Gymnasium', 28);
+INSERT INTO building_name (name, building_id) VALUES ('87 Gym', 28);
 
 /*------------*/
 /* FLOOR DATA */
