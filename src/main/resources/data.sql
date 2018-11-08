@@ -227,7 +227,7 @@ INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessi
 VALUES (2, 3, 1, false, 'Next to Clubhouse Pub', true, true, true, 1, false, false, 12, 34);
 
 /*-----------*/
-/* RPI Union */
+/* VCC  */
 /*-----------*/
 /* default 0 for num_positive_rating and num_negative_rating  */
 /* made some assumptions for men's bathroom data */
