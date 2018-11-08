@@ -19,6 +19,7 @@ INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Laboratory M
 INSERT INTO building (proper_name, region_id) VALUES ('Russell Sage Dining Hall MOCK', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building MOCK', 3);
 INSERT INTO building (proper_name, region_id) VALUES ('Lally Hall', 3);
+INSERT INTO building (proper_name, region_id) VALUES ('Voorhees Computing Center', 3);
 
 /*--------------------*/
 /* BUILDING NAME DATA */
@@ -63,6 +64,11 @@ INSERT INTO building_name (name, building_id) VALUES ('Lally Hall', 10);
 INSERT INTO building_name (name, building_id) VALUES ('Lally Building', 10);
 INSERT INTO building_name (name, building_id) VALUES ('Lally', 10);
 
+INSERT INTO building_name (name, building_id) VALUES ('Voorhees Computing Center', 11);
+INSERT INTO building_name (name, building_id) VALUES ('Voorhees', 11);
+INSERT INTO building_name (name, building_id) VALUES ('VCC', 11);
+
+
 
 /*------------*/
 /* FLOOR DATA */
@@ -83,6 +89,11 @@ INSERT INTO floor (number, building_id) VALUES (0, 10);
 INSERT INTO floor (number, building_id) VALUES (1, 10);
 INSERT INTO floor (number, building_id) VALUES (2, 10);
 INSERT INTO floor (number, building_id) VALUES (3, 10);
+
+/* VCC  (Note: floor 1 is actually the basement, floor 2 is main level, floor 3 is upper floor) */
+INSERT INTO floor (number, building_id) VALUES (1, 11);
+INSERT INTO floor (number, building_id) VALUES (2, 11);
+INSERT INTO floor (number, building_id) VALUES (3, 11);
 
 /* BELOW IS MOCK DATA */
 /* Houston Field House */
@@ -116,6 +127,12 @@ INSERT INTO floor_plan (link, building_id, floor_number)
 VALUES ('http://zim2411.info/floorplans/LallyHall200.pdf', 10, 2);
 INSERT INTO floor_plan (link, building_id, floor_number)
 VALUES ('http://zim2411.info/floorplans/LallyHall300.pdf', 10, 3);
+
+/* VCC */
+INSERT INTO floor_plan (link, building_id, floor_number)
+VALUES ('http://zim2411.info/floorplans/Voorhees1.pdf', 11, 1);
+VALUES ('http://zim2411.info/floorplans/Voorhees2.pdf', 11, 2);
+VALUES ('http://zim2411.info/floorplans/Voorhees3.pdf', 11, 3);
 
 /* basement (floor 0) and rooftop are not added into floor plan because students cannot get there */
 INSERT INTO floor_plan (link, building_id, floor_number) VALUES ('http://zim2411.info/floorplans/Houston%20Field%20House%20100%20Level.pdf', 1, 1);
@@ -208,6 +225,28 @@ INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessi
 VALUES (2, 3, 0, false, 'Next to Clubhouse Pub', false, false, null, false, true, 100, 99);
 INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES (2, 3, 1, false, 'Next to Clubhouse Pub', true, true, true, 1, false, false, 12, 34);
+
+/*-----------*/
+/* RPI Union */
+/*-----------*/
+/* default 0 for num_positive_rating and num_negative_rating  */
+/* made some assumptions for men's bathroom data */
+
+/* Floor 1 (basement level)*/
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES (11, 1, 2, false, 'basement Room 111A', false, false, null, false, false, 0, 0);
+
+/* Floor 2  (main level) */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES (11, 2, 1, true, 'Across from help desk (Rm. 203)', true, true, null, false, false, 0, 0);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES (11, 2, 0, true, 'Across from help desk (Rm. 204)', true, false, null, false, false, 0, 0);
+
+/* Floor 3 (upper level) */
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES (11, 3, 1, true, 'Next to elevator (Rm. 302)', true, true, null, false, false, 0, 0);
+INSERT INTO bathroom (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES (11, 3, 0, true, 'Next to front staircase (Rm. 324)', true, false, null, false, false, 0, 0);
 
 /* BELOW IS MOCK DATA */
 /* Houston Field House */
