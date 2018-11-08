@@ -59,8 +59,6 @@ INSERT INTO building (proper_name, region_id) VALUES ('Ricketts Building MOCK', 
 /* Houston Field House */
 INSERT INTO building_name (name, building_id) VALUES ('Houston Field House MOCK', 1);
 INSERT INTO building_name (name, building_id) VALUES ('Houston Field House', 1);
-
-
 /* ------------Freshman Hill --------------- */
 /* Admissions */
 INSERT INTO building_name (name, building_id) VALUES ('Admissions', 12);
@@ -87,7 +85,6 @@ INSERT INTO building_name (name, building_id) VALUES ('Student Union', 2);
 INSERT INTO building_name (name, building_id) VALUES ('RPI Union', 2);
 
 /* ------------Academic --------------- * /
-
 /* Academy Hall */
 INSERT INTO building_name (name, building_id) VALUES ('Academy Hall', 14);
 INSERT INTO building_name (name, building_id) VALUES ('Academy', 14);
@@ -170,27 +167,51 @@ INSERT INTO building_name (name, building_id) VALUES ('87 Gym', 28);
 /*------------*/
 /* FLOOR DATA */
 /*------------*/
+/* Commons */
+INSERT INTO floor (number, building_id) VALUES (1, 4);
+INSERT INTO floor (number, building_id) VALUES (2, 4);
 /* RPI Union */
 INSERT INTO floor (number, building_id) VALUES (1, 2);
 INSERT INTO floor (number, building_id) VALUES (2, 2);
 INSERT INTO floor (number, building_id) VALUES (3, 2);
-
+/* Mueller */
+INSERT INTO floor (number, building_id) VALUES (1, 3);
+INSERT INTO floor (number, building_id) VALUES (2, 3);
 /* Amos Eaton */
 INSERT INTO floor (number, building_id) VALUES (1, 5);
 INSERT INTO floor (number, building_id) VALUES (2, 5);
 INSERT INTO floor (number, building_id) VALUES (3, 5);
 INSERT INTO floor (number, building_id) VALUES (4, 5);
-
 /* Lally */
 INSERT INTO floor (number, building_id) VALUES (0, 10);
 INSERT INTO floor (number, building_id) VALUES (1, 10);
 INSERT INTO floor (number, building_id) VALUES (2, 10);
 INSERT INTO floor (number, building_id) VALUES (3, 10);
-
-/* VCC  (Note: floor 1 is actually the basement, floor 2 is main level, floor 3 is upper floor) */
+/* Ricketts */
+INSERT INTO floor (number, building_id) VALUES (1, 9);
+INSERT INTO floor (number, building_id) VALUES (2, 9);
+INSERT INTO floor (number, building_id) VALUES (3, 9);
+INSERT INTO floor (number, building_id) VALUES (4, 9);
+INSERT INTO floor (number, building_id) VALUES (5, 9);
+/* Sage Lab */
+INSERT INTO floor (number, building_id) VALUES (1, 7);
+INSERT INTO floor (number, building_id) VALUES (2, 7);
+INSERT INTO floor (number, building_id) VALUES (3, 7);
+INSERT INTO floor (number, building_id) VALUES (4, 7);
+INSERT INTO floor (number, building_id) VALUES (5, 7);
+/* Sage DH */
+INSERT INTO floor (number, building_id) VALUES (1, 8);
+/* VCC */
 INSERT INTO floor (number, building_id) VALUES (1, 11);
 INSERT INTO floor (number, building_id) VALUES (2, 11);
 INSERT INTO floor (number, building_id) VALUES (3, 11);
+/* Walker */
+INSERT INTO floor (number, building_id) VALUES (1, 6);
+INSERT INTO floor (number, building_id) VALUES (2, 6);
+INSERT INTO floor (number, building_id) VALUES (3, 6);
+INSERT INTO floor (number, building_id) VALUES (4, 6);
+INSERT INTO floor (number, building_id) VALUES (5, 6);
+INSERT INTO floor (number, building_id) VALUES (6, 6);
 
 /* BELOW IS MOCK DATA */
 /* Houston Field House */
