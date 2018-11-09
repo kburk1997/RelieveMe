@@ -38,6 +38,17 @@
                name="description"></b-input>
     </b-field>
 
+  <b-field horizontal>
+        <vue-recaptcha
+            ref="recaptcha"
+            @verify="onCaptchaVerified"
+            @expired="resetCaptcha"
+            size="checkbox"
+            sitekey="6LeVdXcUAAAAAPN7-fFOOLDkA3Enis0Xx7yDd4Iz">
+        </vue-recaptcha>
+    </b-field>
+    <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
+    <p class="has-text-danger" v-if="serverError">A server error occurred. Please try again later.</p>
     <p class="has-text-danger" v-if="validationErrorPopup">Please complete all fields.</p>
 
     <b-field horizontal>
@@ -52,6 +63,7 @@
 
 <script>
 import axios from 'axios'
+import VueRecaptcha from 'vue-recaptcha'
 
 export default {
   name: 'IssueForm',
@@ -61,12 +73,15 @@ export default {
       default: -1
     }
   },
+  components: {VueRecaptcha},
+
   data () {
     return {
       selectedCategory: 'Maintenance Issue',
       email: null,
       subject: null,
       bathroomId: this.givenBathroomId,
+      captchaResponse: null,
       description: null,
       categories: [],
       isLoading: false,
@@ -80,6 +95,7 @@ export default {
     },
     getPostBody: function () {
       return {
+        captcha: this.captchaResponse,
         email: this.email,
         category: this.selectedCategory,
         bathroomId: this.bathroomId,
@@ -97,6 +113,10 @@ export default {
       })
     },
     submit: function () {
+      if (this.captchaResponse == null) {
+        this.captchaError = true
+        return
+      }
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
@@ -106,6 +126,12 @@ export default {
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })
+    },
+    onCaptchaVerified: function (response) {
+      this.captchaResponse = response
+    },
+    resetCaptcha: function () {
+      this.captchaResponse = null
     }
   },
   mounted: function () {
@@ -115,5 +141,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
