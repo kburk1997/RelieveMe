@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BathroomService {
+
     private BathroomRepository bathroomRepository;
 
     /**
@@ -16,6 +17,22 @@ public class BathroomService {
     @Autowired
     public BathroomService(BathroomRepository bathroomRepository) {
         this.bathroomRepository = bathroomRepository;
+    }
+
+    /**
+     * Increments the positive rating of the bathroom in the database with given id.
+     * @param bathroomId non-null bathroom identifier
+     */
+    public void incrementNumPositiveRating(Integer bathroomId) {
+        bathroomRepository.incrementNumPositiveRating(bathroomId);
+    }
+
+    /**
+     * Increments the negative rating of the bathroom in the database with given id.
+     * @param bathroomId non-null bathroom identifier
+     */
+    public void incrementNumNegativeRating(Integer bathroomId) {
+        bathroomRepository.incrementNumNegativeRating(bathroomId);
     }
 
 //    /**

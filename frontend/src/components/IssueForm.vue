@@ -2,7 +2,9 @@
 <div id="issue-form" >
   <h1 class="title is-2">Send an email</h1>
   <form id="issue" align="left">
-    <b-field horizontal label ="Email"><b-input type="text" id="email" v-model="email"></b-input></b-field>
+    <b-field horizontal label ="Email" :type="errors.has('email') ? 'is-danger' : email === null ? '' : 'is-success'">
+      <b-input type="text" id="email" name="email" v-model="email" v-validate="'required|email'"></b-input>
+    </b-field>
 
     <b-field horizontal label ="Category">
       <b-select id="category" v-model="selectedCategory">
@@ -19,17 +21,28 @@
       <b-input type="text" id="bathroomId" v-model="bathroomId" disabled></b-input>
     </b-field>
 
-    <b-field horizontal label="Subject">
-      <b-input type="text" id="subject" v-model="subject"></b-input>
+    <b-field horizontal label="Subject"
+             :type="errors.has('subject') ? 'is-danger' : subject === null ? '' : 'is-success'">
+      <b-input name="subject" type="text" v-validate="'required|min:1'" id="subject" v-model="subject"></b-input>
     </b-field>
 
-    <b-field horizontal label ="Description">
-      <b-input type="textarea" id="description" rows="10" cols ="70" v-model="description"></b-input>
+    <b-field horizontal
+             label ="Description"
+             :type="errors.has('description') ? 'is-danger' : description === null ? '' : 'is-success'">
+      <b-input type="textarea"
+               id="description"
+               rows="10"
+               cols ="70"
+               v-model="description"
+               v-validate="'required|min:1'"
+               name="description"></b-input>
     </b-field>
+
+    <p class="has-text-danger" v-if="validationErrorPopup">Please complete all fields.</p>
 
     <b-field horizontal>
       <p class="control">
-        <button class="button is-primary" @click.stop.prevent="submit()">Submit</button>
+        <button class="button is-primary" @click.stop.prevent="validateBeforeSubmit()">Submit</button>
         <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
       </p>
     </b-field>
@@ -50,13 +63,15 @@ export default {
   },
   data () {
     return {
-      selectedCategory: null,
+      selectedCategory: 'Maintenance Issue',
       email: null,
       subject: null,
       bathroomId: this.givenBathroomId,
       description: null,
       categories: [],
-      isLoading: false
+      isLoading: false,
+      validationError: false,
+      validationErrorPopup: false
     }
   },
   methods: {
@@ -71,6 +86,15 @@ export default {
         subject: this.subject,
         description: this.description
       }
+    },
+    validateBeforeSubmit: function () {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.submit()
+        } else {
+          this.validationErrorPopup = true
+        }
+      })
     },
     submit: function () {
       this.isLoading = true

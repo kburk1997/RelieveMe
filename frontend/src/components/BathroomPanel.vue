@@ -1,21 +1,22 @@
 <template>
-<div class="bathroom-info">
+<div class="box bathroom-info">
   <div class="flex">
-    <h3 class="bathroom-location">{{locationString}}</h3>
-    <div class="gender-offset"></div>
+    <div class="gender-offset">
+      <h3 class="bathroom-location">{{locationString}}</h3>
+    </div>
     <div class="flex-item" v-if="genderType==0">
       <b-tooltip label="Men's bathroom">
-        <svgicon icon="man" width="40" height="40" original></svgicon>
+        <svgicon icon="man" width="60" height="60" original></svgicon>
       </b-tooltip>
     </div>
     <div class="flex-item" v-if="genderType==1">
       <b-tooltip label="Women's bathroom">
-        <svgicon icon="woman" width="40" height="40" original></svgicon>
+        <svgicon icon="woman" width="60" height="60" original></svgicon>
       </b-tooltip>
     </div>
     <div class="flex-item" v-if="genderType==2">
       <b-tooltip label="Gender-neutral bathroom">
-        <svgicon icon="gender" width="40" height="40" original></svgicon>
+        <svgicon icon="gender" width="60" height="60" original></svgicon>
       </b-tooltip>
     </div>
   </div>
@@ -71,11 +72,18 @@
         </b-tooltip>
       </div>
   </div>
-  <rating-display v-bind:numPositiveRating="numPositiveRating" v-bind:numNegativeRating="numNegativeRating"></rating-display>
-  <button class="report-problem">
-    <i class="fas fa-exclamation-triangle"></i>
-    <router-link :to="{name: 'IssueForm', params: {givenBathroomId: this.bathroomId}}">Report a problem</router-link>
-  </button>
+  <rating-display
+      v-bind:origNumPositiveRating="numPositiveRating"
+      v-bind:origNumNegativeRating="numNegativeRating"
+      v-bind:bathroom-id="bathroomId"></rating-display>
+  <div>
+    <button class="button is-danger report-problem-button">
+      <b-icon class="fas fa-exclamation-triangle"></b-icon>
+      <router-link class="report-problem-text" :to="{name: 'IssueForm', params: {givenBathroomId: this.bathroomId}}">
+        Report a problem
+      </router-link>
+    </button>
+  </div>
 </div>
 </template>
 
@@ -160,7 +168,7 @@ export default {
     text-align: left;
   }
   .bathroom-info {
-    padding-bottom: 2%;
+    padding-bottom: 5%;
     padding-top: 2%;
     padding-left: 15%;
     padding-right: 15%;
@@ -169,13 +177,19 @@ export default {
     display: flex;
   }
   .gender-offset {
-    width: 100%
+    width: 100%;
   }
   .amenities-offset {
     width: 2%;
   }
-  .flex-item{
+  .flex-item {
     flex-grow: 0;
+  }
+  .report-problem-text {
+    color: #ffffff;
+  }
+  .report-problem-button {
+    float: right;
   }
 
 </style>
