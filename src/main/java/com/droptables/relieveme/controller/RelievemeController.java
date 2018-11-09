@@ -39,9 +39,8 @@ public class RelievemeController {
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService, RegionService regionService,
-                               EmailService emailService, BathroomService bathroomService,
-                               RecaptchaValidator recaptchaValidator) {
+            BuildingNameService buildingNameService, RegionService regionService, EmailService emailService,
+            BathroomService bathroomService, RecaptchaValidator recaptchaValidator) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
@@ -114,10 +113,13 @@ public class RelievemeController {
     }
 
     /**
-     * Receives feedback from the user and sends a feedback email to both the user and the developers.
-     * A captcha is used to determine if a request is a spam request.
+     * Receives feedback from the user and sends a feedback email to both the user
+     * and the developers. A captcha is used to determine if a request is a spam
+     * request.
+     * 
      * @param request feedback post request
-     * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha fails.
+     * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
+     *         fails.
      */
     @PostMapping("/submitFeedback")
     public ResponseEntity submitFeedback(HttpServletRequest request) {
@@ -126,7 +128,6 @@ public class RelievemeController {
         String ipAddress = request.getRemoteAddr();
 
         String s = this.extractPostRequestBody(request);
-        System.out.println(s);
 
         // convert to JSON
         Map<String, Object> reqBody = jsonParser.parseMap(s);
@@ -142,13 +143,35 @@ public class RelievemeController {
     }
 
     @PostMapping("/submitIssue")
-    public void submitIssue(@RequestBody Issue issue) {
+    public ResponseEntity submitIssue(HttpServletRequest request) {
+
+        // get remote address
+        String ipAddress = request.getRemoteAddr();
+
+        String s = this.extractPostRequestBody(request);
+
+        // convert to JSON
+        Map<String, Object> reqBody = jsonParser.parseMap(s);
+
+        ValidationResult captchaResult = recaptchaValidator.validate((String) reqBody.get("captcha"), ipAddress);
+        if (captchaResult.isSuccess()) {
+            this.submitIssue(new Issue((String) reqBody.get("email"), (String) reqBody.get("category"),
+                    (Integer) reqBody.get("bathroomId"), (String) reqBody.get("subject"),
+                    (String) reqBody.get("description")));
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    }
+
+    protected void submitIssue(Issue issue) {
         emailService.sendIssueEmail(issue.getEmail(), issue.getCategory(), issue.getBathroomId(), issue.getSubject(),
                 issue.getDescription());
     }
 
     /**
      * Increases the positive rating for a bathroom.
+     * 
      * @param bathroomId non-null identifier of a bathroom
      */
     @PostMapping("/bathroom/{bathroomId}/increasePositiveRating")
@@ -158,6 +181,7 @@ public class RelievemeController {
 
     /**
      * Increases the negative rating for a bathroom.
+     * 
      * @param bathroomId non-null identifier of a bathroom
      */
     @PostMapping("/bathroom/{bathroomId}/increaseNegativeRating")
@@ -166,7 +190,9 @@ public class RelievemeController {
     }
 
     /**
-     * Take feedback and send an email to the user who submitted the feedback and the developers.
+     * Take feedback and send an email to the user who submitted the feedback and
+     * the developers.
+     * 
      * @param feedback non-null feedback information
      */
     protected void submitFeedback(Feedback feedback) {
@@ -176,8 +202,10 @@ public class RelievemeController {
 
     /**
      * Extracts the contents of an HttpServlet POST request.
+     * 
      * @param request POST request to parse
-     * @return the body of a POST request if it exists; empty string if there is no body
+     * @return the body of a POST request if it exists; empty string if there is no
+     *         body
      */
     private static String extractPostRequestBody(HttpServletRequest request) {
         if ("POST".equalsIgnoreCase(request.getMethod())) {
