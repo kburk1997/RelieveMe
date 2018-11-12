@@ -8,9 +8,10 @@ CREATE TABLE regions (
 /* all buildings on campus along with its corresponding region */
 DROP TABLE IF EXISTS building;
 CREATE TABLE building (
-  building_id SERIAL PRIMARY KEY,
+  building_id INTEGER NOT NULL,
   proper_name VARCHAR(256) NOT NULL,
-  region_id INTEGER NOT NULL
+  region_id INTEGER NOT NULL,
+  PRIMARY KEY (building_id)
 );
 
 /* all names for a building; the corresponding building is specified by building_id */

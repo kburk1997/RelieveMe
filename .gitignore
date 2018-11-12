@@ -61,7 +61,3 @@ src/main/resources/public
 
 #Hide configuration
 src/main/resources/application.properties
-
-# Hide package files
-/frontend/package-lock.json
-/frontend/package.json
