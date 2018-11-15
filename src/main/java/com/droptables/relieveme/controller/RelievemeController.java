@@ -165,7 +165,7 @@ public class RelievemeController {
         ValidationResult captchaResult = recaptchaValidator.validate((String) reqBody.get("captcha"), ipAddress);
         if (captchaResult.isSuccess()) {
             this.submitIssue(new Issue((String) reqBody.get("email"), (String) reqBody.get("category"),
-                    (Integer) reqBody.get("bathroomId"), (String) reqBody.get("subject"),
+                    ((Long) reqBody.get("bathroomId")).intValue(), (String) reqBody.get("subject"),
                     (String) reqBody.get("description")));
             return new ResponseEntity<>(HttpStatus.OK);
         }

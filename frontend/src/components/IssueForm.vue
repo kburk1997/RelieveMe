@@ -126,6 +126,11 @@ export default {
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })
+        .catch((err) => {
+          this.serverError = true
+          console.error(err)
+          this.resetCaptcha()
+        })
     },
     onCaptchaVerified: function (response) {
       this.captchaResponse = response

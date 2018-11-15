@@ -37,7 +37,7 @@ public interface BathroomRepository extends JpaRepository<Bathroom, Long> {
      */
     @Transactional
     @Modifying
-    @Query("UPDATE Bathroom SET ongoing_bathroom_issue = true WHERE bathroomid = ?1")
+    @Query("UPDATE Bathroom SET ongoing_bathroom_issue = true WHERE bathroomId = ?1")
     void setOngoingBathroomIssueToTrue(int bathroomId);
 
 //    /**
