@@ -1,9 +1,7 @@
 package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.Building;
-import com.droptables.relieveme.domain.Feedback;
 import com.droptables.relieveme.domain.FloorPlan;
-import com.droptables.relieveme.email.EmailService;
 import com.droptables.relieveme.service.BathroomService;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
@@ -19,7 +17,6 @@ import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,9 +30,6 @@ public class RelievemeControllerTest {
 
     @Mock
     private BuildingNameService buildingNameService;
-
-    @Mock
-    private BathroomService bathroomService;
 
     @InjectMocks
     private RelievemeController relievemeController;
@@ -85,17 +79,4 @@ public class RelievemeControllerTest {
     public void givenNonExistentBuildingNameReturnsNull() {
         assertNull(relievemeController.getBuilding("nothing is expected"));
     }
-
-    @Test
-    public void givenBathroomIdAndPositiveRatingIncreaseThenIncreaseBathroomPositiveRating() {
-        relievemeController.increaseBathroomPositiveRating(14);
-        verify(bathroomService).incrementNumPositiveRating(14);
-    }
-
-    @Test
-    public void givenBathroomIdAndNegativeRatingIncreaseThenIncreaseBathroomNegativeRating() {
-        relievemeController.increaseBathroomNegativeRating(14);
-        verify(bathroomService).incrementNumNegativeRating(14);
-    }
-
 }

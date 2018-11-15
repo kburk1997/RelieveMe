@@ -1,24 +1,19 @@
 package com.droptables.relieveme.controller;
 
-import com.droptables.relieveme.converter.HttpServletRequestToJsonConverter;
-import com.droptables.relieveme.domain.*;
-import com.droptables.relieveme.email.EmailService;
-import com.droptables.relieveme.service.BathroomService;
+import com.droptables.relieveme.domain.Building;
+import com.droptables.relieveme.domain.BuildingName;
+import com.droptables.relieveme.domain.FloorPlan;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
-import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
-import com.github.mkopylec.recaptcha.validation.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,16 +23,13 @@ public class RelievemeController {
     private final BuildingService buildingService;
     private final FloorPlanService floorPlanService;
     private final BuildingNameService buildingNameService;
-    private final BathroomService bathroomService;
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService,
-                               BathroomService bathroomService) {
+                               BuildingNameService buildingNameService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
-        this.bathroomService = bathroomService;
     }
 
     /**
@@ -91,25 +83,5 @@ public class RelievemeController {
     @GetMapping("/buildings")
     public List<Building> getAllBuildings() {
         return buildingService.getAllBuildings();
-    }
-
-    /**
-     * Increases the positive rating for a bathroom.
-     *
-     * @param bathroomId non-null identifier of a bathroom
-     */
-    @PostMapping("/bathroom/{bathroomId}/increasePositiveRating")
-    public void increaseBathroomPositiveRating(@PathVariable Integer bathroomId) {
-        bathroomService.incrementNumPositiveRating(bathroomId);
-    }
-
-    /**
-     * Increases the negative rating for a bathroom.
-     *
-     * @param bathroomId non-null identifier of a bathroom
-     */
-    @PostMapping("/bathroom/{bathroomId}/increaseNegativeRating")
-    public void increaseBathroomNegativeRating(@PathVariable Integer bathroomId) {
-        bathroomService.incrementNumNegativeRating(bathroomId);
     }
 }
