@@ -142,6 +142,15 @@ public class RelievemeController {
 
     }
 
+    /**
+     * Receives an issue report from the user and sends an issue email to both the user
+     * and the developers. A captcha is used to determine if a request is a spam
+     * request.
+     *
+     * @param request feedback post request
+     * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
+     *         fails.
+     */
     @PostMapping("/submitIssue")
     public ResponseEntity submitIssue(HttpServletRequest request) {
 
@@ -164,9 +173,16 @@ public class RelievemeController {
 
     }
 
+    /**
+     * Take an issue report and sends an email to the user who submitted the issue and
+     * the developers. Also updates maintenance issue flag on the afflicted bathroom.
+     *
+     * @param issue non-null issue information
+     */
     protected void submitIssue(Issue issue) {
         emailService.sendIssueEmail(issue.getEmail(), issue.getCategory(), issue.getBathroomId(), issue.getSubject(),
                 issue.getDescription());
+        bathroomService.setOngoingBathroomIssueToTrue(issue.getBathroomId());
     }
 
     /**

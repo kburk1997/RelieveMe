@@ -119,4 +119,11 @@ public class RelievemeControllerTest {
         relievemeController.increaseBathroomNegativeRating(14);
         verify(bathroomService).incrementNumNegativeRating(14);
     }
+
+    @Test
+    public void givenIssueThenUpdateBathroom() {
+        Issue issue = new Issue("from", "issue", 642, "birds roosting in bathroom", "THERE ARE BIRDS");
+        relievemeController.submitIssue(issue);
+        verify(bathroomService).setOngoingBathroomIssueToTrue(642);
+    }
 }
