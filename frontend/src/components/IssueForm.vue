@@ -17,7 +17,7 @@
       </b-select>
     </b-field>
 
-    <b-field v-if="templateSelectToggle" horizontal label ="Issue Template">
+    <b-field v-if="templateSelectToggle" horizontal label ="Common Issues">
       <b-select id="issue-template" v-model="selectedTemplate" @input="templateSelect()">
         <option
           v-for="template in templates"
@@ -107,12 +107,18 @@ export default {
   },
   methods: {
     getTemplateList: function () {
-      return ['None', 'Toilet Paper Shortage']
+      return ['None', 'Toilet Paper Shortage', 'Soap Shortage']
     },
     getToiletPaperShortageTemplate: function () {
       return {
         subject: 'Toilet paper shortage/no toilet paper',
-        description: 'There is a shortage of/no toilet paper in one of the stalls in this bathroom.'
+        description: 'There is a shortage of/no toilet paper in this bathroom.'
+      }
+    },
+    getSoapShortageTemplate: function () {
+      return {
+        subject: 'Soap shortage/no soap',
+        description: 'There is a shortage of/no soap in this bathroom.'
       }
     },
     setTemplate: function (subject, description) {
@@ -122,12 +128,16 @@ export default {
     clearTemplate: function () {
       this.setTemplate(null, null)
     },
+    setTemplateFromTemplateObject: function (template) {
+      this.setTemplate(template.subject, template.description)
+    },
     templateSelect: function () {
       if (this.selectedTemplate.valueOf() === 'None'.valueOf()) {
         this.clearTemplate()
       } else if (this.selectedTemplate.valueOf() === 'Toilet Paper Shortage'.valueOf()) {
-        var template = this.getToiletPaperShortageTemplate()
-        this.setTemplate(template.subject, template.description)
+        this.setTemplateFromTemplateObject(this.getToiletPaperShortageTemplate())
+      } else if (this.selectedTemplate.valueOf() === 'Soap Shortage'.valueOf()) {
+        this.setTemplateFromTemplateObject(this.getSoapShortageTemplate())
       }
     },
     categorySelect: function () {
