@@ -35,9 +35,6 @@ public class RelievemeControllerTest {
     private BuildingNameService buildingNameService;
 
     @Mock
-    private EmailService emailService;
-
-    @Mock
     private BathroomService bathroomService;
 
     @InjectMocks
@@ -87,13 +84,6 @@ public class RelievemeControllerTest {
     @Test
     public void givenNonExistentBuildingNameReturnsNull() {
         assertNull(relievemeController.getBuilding("nothing is expected"));
-    }
-
-    @Test
-    public void givenFeedbackThenCallEmailService() {
-        Feedback feedback = new Feedback("email", "cat", "sub", "bod");
-        relievemeController.submitFeedback(feedback);
-        verify(emailService).sendFeedbackEmail("email", "cat", "sub", "bod");
     }
 
     @Test

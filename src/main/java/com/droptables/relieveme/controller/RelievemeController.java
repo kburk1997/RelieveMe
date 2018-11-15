@@ -28,21 +28,16 @@ public class RelievemeController {
     private final BuildingService buildingService;
     private final FloorPlanService floorPlanService;
     private final BuildingNameService buildingNameService;
-    private final EmailService emailService;
     private final BathroomService bathroomService;
-
-    private final RecaptchaValidator recaptchaValidator;
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService, EmailService emailService,
-                               BathroomService bathroomService, RecaptchaValidator recaptchaValidator) {
+                               BuildingNameService buildingNameService,
+                               BathroomService bathroomService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
-        this.emailService = emailService;
         this.bathroomService = bathroomService;
-        this.recaptchaValidator = recaptchaValidator;
     }
 
     /**
@@ -99,30 +94,6 @@ public class RelievemeController {
     }
 
     /**
-     * Receives feedback from the user and sends a feedback email to both the user
-     * and the developers. A captcha is used to determine if a request is a spam
-     * request.
-     *
-     * @param request feedback post request
-     * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
-     * fails.
-     */
-    @PostMapping("/submitFeedback")
-    public ResponseEntity submitFeedback(HttpServletRequest request) throws IOException {
-// get remote address
-        String ipAddress = request.getRemoteAddr();
-        // convert to JSON
-        Map<String, Object> reqBody = HttpServletRequestToJsonConverter.convertPostRequestToJson(request);
-        ValidationResult captchaResult = recaptchaValidator.validate((String) reqBody.get("captcha"), ipAddress);
-        if (captchaResult.isSuccess()) {
-            this.submitFeedback(new Feedback((String) reqBody.get("email"), (String) reqBody.get("category"),
-                    (String) reqBody.get("subject"), (String) reqBody.get("description")));
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
-    /**
      * Increases the positive rating for a bathroom.
      *
      * @param bathroomId non-null identifier of a bathroom
@@ -140,16 +111,5 @@ public class RelievemeController {
     @PostMapping("/bathroom/{bathroomId}/increaseNegativeRating")
     public void increaseBathroomNegativeRating(@PathVariable Integer bathroomId) {
         bathroomService.incrementNumNegativeRating(bathroomId);
-    }
-
-    /**
-     * Take feedback and send an email to the user who submitted the feedback and
-     * the developers.
-     *
-     * @param feedback non-null feedback information
-     */
-    protected void submitFeedback(Feedback feedback) {
-        emailService.sendFeedbackEmail(feedback.getEmail(), feedback.getCategory(), feedback.getSubject(),
-                feedback.getDescription());
     }
 }
