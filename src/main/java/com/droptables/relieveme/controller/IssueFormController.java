@@ -1,14 +1,12 @@
 package com.droptables.relieveme.controller;
 
+import com.droptables.relieveme.converter.HttpServletRequestToJsonConverter;
 import com.droptables.relieveme.domain.Issue;
 import com.droptables.relieveme.email.EmailService;
 import com.droptables.relieveme.service.BathroomService;
-import com.droptables.relieveme.service.BuildingService;
 import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
 import com.github.mkopylec.recaptcha.validation.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.BasicJsonParser;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Scanner;
 
 @RestController
 @RequestMapping("${rest-controller-prefix}/issueForm")
@@ -27,7 +24,6 @@ public class IssueFormController {
     private final EmailService emailService;
     private final BathroomService bathroomService;
     private final RecaptchaValidator recaptchaValidator;
-    private static final JsonParser jsonParser = new BasicJsonParser();
 
     @Autowired
     public IssueFormController(EmailService emailService, BathroomService bathroomService,
@@ -44,18 +40,14 @@ public class IssueFormController {
      *
      * @param request feedback post request
      * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
-     *         fails.
+     * fails.
      */
     @PostMapping("/submitIssue")
-    public ResponseEntity submitIssue(HttpServletRequest request) {
-
+    public ResponseEntity submitIssue(HttpServletRequest request) throws IOException {
         // get remote address
         String ipAddress = request.getRemoteAddr();
-
-        String s = this.extractPostRequestBody(request);
-
         // convert to JSON
-        Map<String, Object> reqBody = jsonParser.parseMap(s);
+        Map<String, Object> reqBody = HttpServletRequestToJsonConverter.convertPostRequestToJson(request);
 
         ValidationResult captchaResult = recaptchaValidator.validate((String) reqBody.get("captcha"), ipAddress);
         if (captchaResult.isSuccess()) {
@@ -77,25 +69,5 @@ public class IssueFormController {
         emailService.sendIssueEmail(issue.getEmail(), issue.getCategory(), issue.getBathroomId(), issue.getSubject(),
                 issue.getDescription());
         bathroomService.setOngoingBathroomIssueToTrue(issue.getBathroomId());
-    }
-
-    /**
-     * Extracts the contents of an HttpServlet POST request.
-     *
-     * @param request POST request to parse
-     * @return the body of a POST request if it exists; empty string if there is no
-     *         body
-     */
-    private static String extractPostRequestBody(HttpServletRequest request) {
-        if ("POST".equalsIgnoreCase(request.getMethod())) {
-            Scanner s = null;
-            try {
-                s = new Scanner(request.getInputStream(), "UTF-8").useDelimiter("\\A");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return s.hasNext() ? s.next() : "";
-        }
-        return "";
     }
 }

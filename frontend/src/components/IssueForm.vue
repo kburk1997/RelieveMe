@@ -179,7 +179,7 @@ export default {
         this.isLoading = false
       }, 10 * 1000)
       axios
-        .post('/api/submitIssue', this.getPostBody())
+        .post('/api/issueForm/submitIssue', this.getPostBody())
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
         })

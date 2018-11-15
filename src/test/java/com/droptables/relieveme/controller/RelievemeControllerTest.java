@@ -1,8 +1,13 @@
 package com.droptables.relieveme.controller;
 
-import com.droptables.relieveme.domain.*;
+import com.droptables.relieveme.domain.Building;
+import com.droptables.relieveme.domain.Feedback;
+import com.droptables.relieveme.domain.FloorPlan;
 import com.droptables.relieveme.email.EmailService;
-import com.droptables.relieveme.service.*;
+import com.droptables.relieveme.service.BathroomService;
+import com.droptables.relieveme.service.BuildingNameService;
+import com.droptables.relieveme.service.BuildingService;
+import com.droptables.relieveme.service.FloorPlanService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
@@ -93,13 +97,6 @@ public class RelievemeControllerTest {
     }
 
     @Test
-    public void givenIssueThenCallEmailService() {
-        Issue issue = new Issue("from", "issue", 0, "cats roosting in bathroom", "THERE ARE CATS");
-        relievemeController.submitIssue(issue);
-        verify(emailService).sendIssueEmail("from", "issue", 0, "cats roosting in bathroom","THERE ARE CATS");
-    }
-
-    @Test
     public void givenBathroomIdAndPositiveRatingIncreaseThenIncreaseBathroomPositiveRating() {
         relievemeController.increaseBathroomPositiveRating(14);
         verify(bathroomService).incrementNumPositiveRating(14);
@@ -111,10 +108,4 @@ public class RelievemeControllerTest {
         verify(bathroomService).incrementNumNegativeRating(14);
     }
 
-    @Test
-    public void givenIssueThenUpdateBathroom() {
-        Issue issue = new Issue("from", "issue", 642, "birds roosting in bathroom", "THERE ARE BIRDS");
-        relievemeController.submitIssue(issue);
-        verify(bathroomService).setOngoingBathroomIssueToTrue(642);
-    }
 }
