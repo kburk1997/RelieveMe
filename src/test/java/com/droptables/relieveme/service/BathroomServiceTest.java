@@ -30,4 +30,10 @@ public class BathroomServiceTest {
         bathroomService.incrementNumNegativeRating(12);
         verify(bathroomRepository).incrementNumNegativeRating(12);
     }
+
+    @Test
+    public void givenBathroomIdWhenOngoingBathroomIssueThenCallBathroomRepository() {
+        bathroomService.setOngoingBathroomIssueToTrue(1);
+        verify(bathroomRepository).setOngoingBathroomIssueToTrue(1);
+    }
 }

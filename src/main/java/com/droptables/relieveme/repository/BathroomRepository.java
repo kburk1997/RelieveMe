@@ -31,6 +31,15 @@ public interface BathroomRepository extends JpaRepository<Bathroom, Long> {
     @Query("UPDATE Bathroom SET num_negative_rating = num_negative_rating + 1 WHERE bathroomId = ?1")
     void incrementNumNegativeRating(int bathroomId);
 
+    /**
+     * Sets the maintenance issue flag to true of the bathroom in the database with given id.
+     * @param bathroomId bathroom identifier
+     */
+    @Transactional
+    @Modifying
+    @Query("UPDATE Bathroom SET ongoing_bathroom_issue = true WHERE bathroomid = ?1")
+    void setOngoingBathroomIssueToTrue(int bathroomId);
+
 //    /**
 //     * Returns a list of bathrooms from bathroom where building_id column matches the given buildingId.
 //     * Spring parses the method name as a SQL query.

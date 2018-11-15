@@ -35,6 +35,14 @@ public class BathroomService {
         bathroomRepository.incrementNumNegativeRating(bathroomId);
     }
 
+    /**
+     * Sets the maintenance issue flag of the bathroom in the database with given id to true.
+     * @param bathroomId non-null bathroom identifier
+     */
+    public void setOngoingBathroomIssueToTrue(Integer bathroomId) {
+        bathroomRepository.setOngoingBathroomIssueToTrue(bathroomId);
+    }
+
 //    /**
 //     * Calls the bathroomRepository to access the bathroom table to get the bathrooms corresponding to a building.
 //     *
