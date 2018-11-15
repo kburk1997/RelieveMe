@@ -7,12 +7,23 @@
     </b-field>
 
     <b-field horizontal label ="Category">
-      <b-select id="category" v-model="selectedCategory">
+      <b-select id="category" v-model="selectedCategory" @input="categorySelect()">
         <option
           v-for="category in categories"
           :key="category"
           :value="category">
           {{category}}
+        </option>
+      </b-select>
+    </b-field>
+
+    <b-field v-if="templateSelectToggle" horizontal label ="Issue Template">
+      <b-select id="issue-template" v-model="selectedTemplate" @input="templateSelect()">
+        <option
+          v-for="template in templates"
+          :key="template"
+          :value="template">
+          {{template}}
         </option>
       </b-select>
     </b-field>
@@ -86,10 +97,46 @@ export default {
       categories: [],
       isLoading: false,
       validationError: false,
-      validationErrorPopup: false
+      validationErrorPopup: false,
+      captchaError: false,
+      serverError: false,
+      templateSelectToggle: true,
+      selectedTemplate: 'None',
+      templates: []
     }
   },
   methods: {
+    getTemplateList: function () {
+      return ['None', 'Toilet Paper Shortage']
+    },
+    getToiletPaperShortageTemplate: function () {
+      return {
+        subject: 'Toilet paper shortage/no toilet paper',
+        description: 'There is a shortage of/no toilet paper in one of the stalls in this bathroom.'
+      }
+    },
+    setTemplate: function (subject, description) {
+      this.subject = subject
+      this.description = description
+    },
+    clearTemplate: function () {
+      this.setTemplate(null, null)
+    },
+    templateSelect: function () {
+      if (this.selectedTemplate.valueOf() === 'None'.valueOf()) {
+        this.clearTemplate()
+      } else if (this.selectedTemplate.valueOf() === 'Toilet Paper Shortage'.valueOf()) {
+        var template = this.getToiletPaperShortageTemplate()
+        this.setTemplate(template.subject, template.description)
+      }
+    },
+    categorySelect: function () {
+      if (this.selectedCategory.valueOf() === 'Maintenance Issue'.valueOf()) {
+        this.templateSelectToggle = true
+      } else {
+        this.templateSelectToggle = false
+      }
+    },
     getCategoriesList: function () {
       this.categories = ['Maintenance Issue', 'Inaccurate Data']
     },
@@ -141,6 +188,7 @@ export default {
   },
   mounted: function () {
     this.getCategoriesList()
+    this.templates = this.getTemplateList()
   }
 }
 </script>
