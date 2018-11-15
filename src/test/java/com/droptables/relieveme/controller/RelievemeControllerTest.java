@@ -31,9 +31,6 @@ public class RelievemeControllerTest {
     private BuildingNameService buildingNameService;
 
     @Mock
-    private RegionService regionService;
-
-    @Mock
     private EmailService emailService;
 
     @Mock
@@ -86,12 +83,6 @@ public class RelievemeControllerTest {
     @Test
     public void givenNonExistentBuildingNameReturnsNull() {
         assertNull(relievemeController.getBuilding("nothing is expected"));
-    }
-
-    @Test
-    public void getAllRegionsReturnsRegions() {
-        when(regionService.getAllRegions()).thenReturn(Collections.singletonList(new Region(65, "1")));
-        assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
     }
 
     @Test

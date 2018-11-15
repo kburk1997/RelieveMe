@@ -23,13 +23,12 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("${rest-controller-prefix}")
 public class RelievemeController {
 
     private final BuildingService buildingService;
     private final FloorPlanService floorPlanService;
     private final BuildingNameService buildingNameService;
-    private final RegionService regionService;
     private final EmailService emailService;
     private final BathroomService bathroomService;
 
@@ -39,26 +38,16 @@ public class RelievemeController {
 
     @Autowired
     public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-            BuildingNameService buildingNameService, RegionService regionService, EmailService emailService,
+            BuildingNameService buildingNameService, EmailService emailService,
             BathroomService bathroomService, RecaptchaValidator recaptchaValidator) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
-        this.regionService = regionService;
         this.emailService = emailService;
         this.jsonParser = new BasicJsonParser();
         this.bathroomService = bathroomService;
         this.recaptchaValidator = recaptchaValidator;
     }
-
-    /**
-     * @return a list of all regions. Empty list if there are none.
-     */
-    @GetMapping("/regions")
-    public List<Region> getAllRegions() {
-        return regionService.getAllRegions();
-    }
-
     /**
      * @return a list of names nicknames and official names for a building. Returns
      *         empty list if there are none.
