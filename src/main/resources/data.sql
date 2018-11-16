@@ -354,11 +354,11 @@ VALUES
 INSERT INTO building_name
     (name, building_id)
 VALUES
-    ('Playhouse', 25);
+    ('Playhouse', 21);
 INSERT INTO building_name
     (name, building_id)
 VALUES
-    ('RPI Playhouse', 25);
+    ('RPI Playhouse', 21);
 /* Ricketts */
 INSERT INTO building_name
     (name, building_id)

@@ -2,7 +2,6 @@ package com.droptables.relieveme.controller;
 
 import com.droptables.relieveme.domain.Building;
 import com.droptables.relieveme.domain.FloorPlan;
-import com.droptables.relieveme.service.BathroomService;
 import com.droptables.relieveme.service.BuildingNameService;
 import com.droptables.relieveme.service.BuildingService;
 import com.droptables.relieveme.service.FloorPlanService;
@@ -20,7 +19,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RelievemeControllerTest {
+public class BuildingControllerTest {
 
     @Mock
     private BuildingService buildingService;
@@ -32,7 +31,7 @@ public class RelievemeControllerTest {
     private BuildingNameService buildingNameService;
 
     @InjectMocks
-    private RelievemeController relievemeController;
+    private BuildingController buildingController;
 
     @Test
     public void givenBuildingNameReturnsCorrespondingFloorPlans() {
@@ -43,7 +42,7 @@ public class RelievemeControllerTest {
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(expectedBuilding);
         when(floorPlanService.getFloorPlansForBuildingId(expectedBuildingId)).thenReturn(expectedFloorPlans);
-        List<FloorPlan> result = relievemeController.getFloorPlans(buildingName);
+        List<FloorPlan> result = buildingController.getFloorPlans(buildingName);
         assertEquals((Integer) 4, result.get(1).getFloorPlanKey().getFloorNumber());
     }
 
@@ -51,19 +50,19 @@ public class RelievemeControllerTest {
     public void givenBuildingNameWithNoFloorPlansReturnsEmptyList() {
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(givenBuilding(2));
-        assertTrue(relievemeController.getFloorPlans(buildingName).isEmpty());
+        assertTrue(buildingController.getFloorPlans(buildingName).isEmpty());
     }
 
     @Test
     public void givenNonExistentBuildingNameReturnsEmptyList() {
-        assertTrue(relievemeController.getFloorPlans("blob").isEmpty());
+        assertTrue(buildingController.getFloorPlans("blob").isEmpty());
     }
 
     @Test
     public void givenNonEmptyBuildingNamesThenReturnAllBuildingNames() {
         when(buildingNameService.getAllBuildingNames()).thenReturn(
                 Arrays.asList(givenExpectedBuildingName("notExpected", 1), givenExpectedBuildingName("expected", 100)));
-        assertEquals("expected", relievemeController.getAllBuildingNames().get(1));
+        assertEquals("expected", buildingController.getAllBuildingNames().get(1));
     }
 
     @Test
@@ -72,11 +71,11 @@ public class RelievemeControllerTest {
         Building expBuilding = new Building();
         when(buildingService.getBuildingWithId(100)).thenReturn(expBuilding);
         expBuilding.setBuildingId(100);
-        assertEquals((Integer) 100, relievemeController.getBuilding("POop").getBuildingId());
+        assertEquals((Integer) 100, buildingController.getBuilding("POop").getBuildingId());
     }
 
     @Test
     public void givenNonExistentBuildingNameReturnsNull() {
-        assertNull(relievemeController.getBuilding("nothing is expected"));
+        assertNull(buildingController.getBuilding("nothing is expected"));
     }
 }

@@ -23,7 +23,7 @@ export default {
   methods: {
     getFloorPlans: function () {
       axios
-        .get('/api/' + this.$route.params.name + '/floorplans')
+        .get('/api/buildings/' + this.$route.params.name + '/floorplans')
         .then(response => {
           this.plans = response.data
         })

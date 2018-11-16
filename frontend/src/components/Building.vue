@@ -80,7 +80,7 @@ export default {
   methods: {
     getBuilding: function () {
       axios
-        .get('/api/' + this.$route.params.name)
+        .get('/api/buildings/' + this.$route.params.name)
         .then(response => {
           this.floors = []
           response.data.floors.forEach(this.addFloor)

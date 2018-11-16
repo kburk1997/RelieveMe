@@ -17,19 +17,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("${rest-controller-prefix}")
-public class RelievemeController {
+@RequestMapping("${rest-controller-prefix}/buildings")
+public class BuildingController {
 
     private final BuildingService buildingService;
     private final FloorPlanService floorPlanService;
     private final BuildingNameService buildingNameService;
 
     @Autowired
-    public RelievemeController(BuildingService buildingService, FloorPlanService floorPlanService,
-                               BuildingNameService buildingNameService) {
+    public BuildingController(BuildingService buildingService, FloorPlanService floorPlanService,
+                              BuildingNameService buildingNameService) {
         this.buildingService = buildingService;
         this.floorPlanService = floorPlanService;
         this.buildingNameService = buildingNameService;
+    }
+
+    /**
+     * @return a list of all buildings
+     */
+    @GetMapping("")
+    public List<Building> getAllBuildings() {
+        return buildingService.getAllBuildings();
     }
 
     /**
@@ -75,13 +83,5 @@ public class RelievemeController {
             return Collections.emptyList();
         }
         return floorPlanService.getFloorPlansForBuildingId(targetBuilding.getBuildingId());
-    }
-
-    /**
-     * @return a list of all buildings
-     */
-    @GetMapping("/buildings")
-    public List<Building> getAllBuildings() {
-        return buildingService.getAllBuildings();
     }
 }

@@ -45,7 +45,7 @@ export default {
     },
     getBuilding: function () {
       axios
-        .get('/api/' + this.searchTerm)
+        .get('/api/buildings/' + this.searchTerm)
         .then(response => {
           this.properSearch = response.data.properName
           this.$router.push('/buildings/' + this.properSearch)
@@ -53,7 +53,7 @@ export default {
     },
     getAllBuildings: function () {
       axios
-        .get(`/api/buildingNames`)
+        .get(`/api/buildings/buildingNames`)
         .then(response => { this.buildings = response.data })
     }
   },
