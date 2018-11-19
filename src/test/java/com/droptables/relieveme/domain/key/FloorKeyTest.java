@@ -9,7 +9,7 @@ public class FloorKeyTest {
 
     @Test
     public void givenDifferentObjectThenEqualsReturnsFalse() {
-        assertNotEquals(1, new FloorKey());
+        assertNotEquals(new FloorKey(), 1);
     }
 
     @Test

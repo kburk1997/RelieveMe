@@ -52,11 +52,11 @@ Open your browser to http://localhost:8081 (assuming you are already running the
    On Linux, replace `'English_United States.1252'` with `'en_US.UTF-8'`.
 
 6. Run our application.
-   - For now, test the database connection by going to:
+   - Test the database connection by going to:
      http://localhost:8080/api/buildings
      - Should see various buildings in JSON
 
 ### Editing Dummy Data
 
-`src/main/java/resources/data.sql` and `src/main/java/resources/schema.sql` contain SQL queries that are run by Spring
+`src/main/java/resources/sqldata/*.sql` and `src/main/java/resources/schema.sql` contain SQL queries that are run by Spring
 on boot and populate the database.

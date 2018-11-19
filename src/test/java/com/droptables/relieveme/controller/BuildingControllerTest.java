@@ -12,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +34,19 @@ public class BuildingControllerTest {
 
     @InjectMocks
     private BuildingController buildingController;
+
+    @Test
+    public void whenBuildingsExistReturnsListOfBuildings() {
+        when(buildingService.getAllBuildings()).thenReturn(Arrays.asList(givenBuilding(100), givenBuilding(12)));
+        assertThat(buildingController.getAllBuildings().get(0).getBuildingId(), is(100));
+        assertThat(buildingController.getAllBuildings().get(1).getBuildingId(), is(12));
+    }
+
+    @Test
+    public void whenNoBuildingsReturnsEmptyList() {
+        when(buildingService.getAllBuildings()).thenReturn(Collections.emptyList());
+        assertTrue(buildingController.getAllBuildings().isEmpty());
+    }
 
     @Test
     public void givenBuildingNameReturnsCorrespondingFloorPlans() {
