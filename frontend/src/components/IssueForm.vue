@@ -140,7 +140,7 @@ export default {
         'Unsanitary Conditions': this.getUnsanitaryTemplate(),
         'Toilet Out of Order': this.getBrokenItemTemplate('toilet'),
         'Sink Out of Order': this.getBrokenItemTemplate('sink'),
-        'Urinal Out of Order': this.getBrokenItemTemplate('urinal'),
+        'Urinal Out of Order': this.getBrokenItemTemplate('urinal')
       }
     },
     getTemplateList: function () {
