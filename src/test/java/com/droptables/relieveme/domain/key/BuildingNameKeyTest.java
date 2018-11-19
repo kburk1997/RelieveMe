@@ -9,7 +9,7 @@ public class BuildingNameKeyTest {
 
     @Test
     public void givenDifferentObjectThenEqualsReturnsFalse() {
-        assertNotEquals(1, new BuildingNameKey());
+        assertNotEquals(new BuildingNameKey(), 1);
     }
 
     @Test
