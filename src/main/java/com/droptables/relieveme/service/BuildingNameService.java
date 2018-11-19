@@ -22,16 +22,6 @@ public class BuildingNameService {
         this.buildingNameRepository = buildingNameRepository;
     }
 
-//    /**
-//     * returns building names in table building_name for a given building.
-//     *
-//     * @param buildingId - id of the building to find names for
-//     * @return a list of all buildings names in the building name table; empty list if there aren't any building names
-//     */
-//    public List<BuildingName> getByBuildingid(int buildingId) {
-//        return buildingNameRepository.findByBuildingNameKeyBuildingId(buildingId);
-//    }
-
     public List<BuildingName> getAllBuildingNames() {
         return buildingNameRepository.findAll();
     }

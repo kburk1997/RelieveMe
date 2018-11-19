@@ -8,15 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BuildingNameRepository extends JpaRepository<BuildingName, BuildingNameKey> {
 
-//    /**
-//     * Get all building names in table building_name for a given building.
-//     * Spring parses the method name as a SQL query.
-//     *
-//     * @param buildingId - id of the building to find names for
-//     * @return a list of all objects in table building_name where building_id.equals(buildingId).
-//     */
-//    List<BuildingName> findByBuildingNameKeyBuildingId(Integer buildingId);
-
     /**
      * Get the BuildingName in table building_name given a name.
      * Spring parses the method name as a SQL query.
