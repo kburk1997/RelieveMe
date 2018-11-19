@@ -106,20 +106,45 @@ export default {
     }
   },
   methods: {
+    getItemShortageTemplate: function (item) {
+      return {
+        subject: item.charAt(0).toUpperCase() + item.substr(1) + ' shortage/no ' + item,
+        description: 'There is a shortage of/no ' + item + ' in this bathroom.'
+      }
+    },
+    getGraffitiTemplate: function () {
+      return {
+        subject: 'Graffiti',
+        description: 'There is graffiti in this bathroom that needs removal.'
+      }
+    },
+    getUnsanitaryTemplate: function () {
+      return {
+        subject: 'Unsanitary Conditions',
+        description: 'This bathroom needs to be cleaned ASAP due to unsanitary conditions.'
+      }
+    },
+    getBrokenItemTemplate: function (item) {
+      return {
+        subject: item.charAt(0).toUpperCase() + item.substr(1) + ' Out of Order',
+        description: 'One or more of the ' + item + 's in this bathroom is out of order.'
+      }
+    },
+
+    getAllTemplates: function () {
+      return {
+        'None': this.clearTemplate(),
+        'Toilet Paper Shortage': this.getItemShortageTemplate('toilet paper'),
+        'Soap Shortage': this.getItemShortageTemplate('soap'),
+        'Graffiti': this.getGraffitiTemplate(),
+        'Unsanitary Conditions': this.getUnsanitaryTemplate(),
+        'Toilet Out of Order': this.getBrokenItemTemplate('toilet'),
+        'Sink Out of Order': this.getBrokenItemTemplate('sink'),
+        'Urinal Out of Order': this.getBrokenItemTemplate('urinal')
+      }
+    },
     getTemplateList: function () {
-      return ['None', 'Toilet Paper Shortage', 'Soap Shortage']
-    },
-    getToiletPaperShortageTemplate: function () {
-      return {
-        subject: 'Toilet paper shortage/no toilet paper',
-        description: 'There is a shortage of/no toilet paper in this bathroom.'
-      }
-    },
-    getSoapShortageTemplate: function () {
-      return {
-        subject: 'Soap shortage/no soap',
-        description: 'There is a shortage of/no soap in this bathroom.'
-      }
+      return Object.keys(this.getAllTemplates())
     },
     setTemplate: function (subject, description) {
       this.subject = subject
@@ -134,10 +159,8 @@ export default {
     templateSelect: function () {
       if (this.selectedTemplate.valueOf() === 'None'.valueOf()) {
         this.clearTemplate()
-      } else if (this.selectedTemplate.valueOf() === 'Toilet Paper Shortage'.valueOf()) {
-        this.setTemplateFromTemplateObject(this.getToiletPaperShortageTemplate())
-      } else if (this.selectedTemplate.valueOf() === 'Soap Shortage'.valueOf()) {
-        this.setTemplateFromTemplateObject(this.getSoapShortageTemplate())
+      } else {
+        this.setTemplateFromTemplateObject(this.getAllTemplates()[this.selectedTemplate.valueOf()])
       }
     },
     categorySelect: function () {
