@@ -58,5 +58,5 @@ Open your browser to http://localhost:8081 (assuming you are already running the
 
 ### Editing Dummy Data
 
-`src/main/java/resources/data.sql` and `src/main/java/resources/schema.sql` contain SQL queries that are run by Spring
+`src/main/java/resources/sqldata/*.sql` and `src/main/java/resources/schema.sql` contain SQL queries that are run by Spring
 on boot and populate the database.
