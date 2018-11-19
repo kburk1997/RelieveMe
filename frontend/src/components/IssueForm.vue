@@ -7,12 +7,23 @@
     </b-field>
 
     <b-field horizontal label ="Category">
-      <b-select id="category" v-model="selectedCategory">
+      <b-select id="category" v-model="selectedCategory" @input="categorySelect()">
         <option
           v-for="category in categories"
           :key="category"
           :value="category">
           {{category}}
+        </option>
+      </b-select>
+    </b-field>
+
+    <b-field v-if="templateSelectToggle" horizontal label ="Common Issues">
+      <b-select id="issue-template" v-model="selectedTemplate" @input="templateSelect()">
+        <option
+          v-for="template in templates"
+          :key="template"
+          :value="template">
+          {{template}}
         </option>
       </b-select>
     </b-field>
@@ -86,10 +97,56 @@ export default {
       categories: [],
       isLoading: false,
       validationError: false,
-      validationErrorPopup: false
+      validationErrorPopup: false,
+      captchaError: false,
+      serverError: false,
+      templateSelectToggle: true,
+      selectedTemplate: 'None',
+      templates: []
     }
   },
   methods: {
+    getTemplateList: function () {
+      return ['None', 'Toilet Paper Shortage', 'Soap Shortage']
+    },
+    getToiletPaperShortageTemplate: function () {
+      return {
+        subject: 'Toilet paper shortage/no toilet paper',
+        description: 'There is a shortage of/no toilet paper in this bathroom.'
+      }
+    },
+    getSoapShortageTemplate: function () {
+      return {
+        subject: 'Soap shortage/no soap',
+        description: 'There is a shortage of/no soap in this bathroom.'
+      }
+    },
+    setTemplate: function (subject, description) {
+      this.subject = subject
+      this.description = description
+    },
+    clearTemplate: function () {
+      this.setTemplate(null, null)
+    },
+    setTemplateFromTemplateObject: function (template) {
+      this.setTemplate(template.subject, template.description)
+    },
+    templateSelect: function () {
+      if (this.selectedTemplate.valueOf() === 'None'.valueOf()) {
+        this.clearTemplate()
+      } else if (this.selectedTemplate.valueOf() === 'Toilet Paper Shortage'.valueOf()) {
+        this.setTemplateFromTemplateObject(this.getToiletPaperShortageTemplate())
+      } else if (this.selectedTemplate.valueOf() === 'Soap Shortage'.valueOf()) {
+        this.setTemplateFromTemplateObject(this.getSoapShortageTemplate())
+      }
+    },
+    categorySelect: function () {
+      if (this.selectedCategory.valueOf() === 'Maintenance Issue'.valueOf()) {
+        this.templateSelectToggle = true
+      } else {
+        this.templateSelectToggle = false
+      }
+    },
     getCategoriesList: function () {
       this.categories = ['Maintenance Issue', 'Inaccurate Data']
     },
@@ -122,9 +179,14 @@ export default {
         this.isLoading = false
       }, 10 * 1000)
       axios
-        .post('/api/submitIssue', this.getPostBody())
+        .post('/api/issueForm/submitIssue', this.getPostBody())
         .then((response) => {
           this.$router.push('/feedbackSubmitted')
+        })
+        .catch((err) => {
+          this.serverError = true
+          console.error(err)
+          this.resetCaptcha()
         })
     },
     onCaptchaVerified: function (response) {
@@ -136,6 +198,7 @@ export default {
   },
   mounted: function () {
     this.getCategoriesList()
+    this.templates = this.getTemplateList()
   }
 }
 </script>

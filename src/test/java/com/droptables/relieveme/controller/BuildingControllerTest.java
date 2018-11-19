@@ -1,8 +1,10 @@
 package com.droptables.relieveme.controller;
 
-import com.droptables.relieveme.domain.*;
-import com.droptables.relieveme.email.EmailService;
-import com.droptables.relieveme.service.*;
+import com.droptables.relieveme.domain.Building;
+import com.droptables.relieveme.domain.FloorPlan;
+import com.droptables.relieveme.service.BuildingNameService;
+import com.droptables.relieveme.service.BuildingService;
+import com.droptables.relieveme.service.FloorPlanService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,16 +12,14 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.droptables.relieveme.TestUtils.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RelievemeControllerTest {
+public class BuildingControllerTest {
 
     @Mock
     private BuildingService buildingService;
@@ -30,17 +30,8 @@ public class RelievemeControllerTest {
     @Mock
     private BuildingNameService buildingNameService;
 
-    @Mock
-    private RegionService regionService;
-
-    @Mock
-    private EmailService emailService;
-
-    @Mock
-    private BathroomService bathroomService;
-
     @InjectMocks
-    private RelievemeController relievemeController;
+    private BuildingController buildingController;
 
     @Test
     public void givenBuildingNameReturnsCorrespondingFloorPlans() {
@@ -51,7 +42,7 @@ public class RelievemeControllerTest {
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(expectedBuilding);
         when(floorPlanService.getFloorPlansForBuildingId(expectedBuildingId)).thenReturn(expectedFloorPlans);
-        List<FloorPlan> result = relievemeController.getFloorPlans(buildingName);
+        List<FloorPlan> result = buildingController.getFloorPlans(buildingName);
         assertEquals((Integer) 4, result.get(1).getFloorPlanKey().getFloorNumber());
     }
 
@@ -59,19 +50,19 @@ public class RelievemeControllerTest {
     public void givenBuildingNameWithNoFloorPlansReturnsEmptyList() {
         String buildingName = "Poop";
         when(buildingService.getBuildingWithProperName(buildingName)).thenReturn(givenBuilding(2));
-        assertTrue(relievemeController.getFloorPlans(buildingName).isEmpty());
+        assertTrue(buildingController.getFloorPlans(buildingName).isEmpty());
     }
 
     @Test
     public void givenNonExistentBuildingNameReturnsEmptyList() {
-        assertTrue(relievemeController.getFloorPlans("blob").isEmpty());
+        assertTrue(buildingController.getFloorPlans("blob").isEmpty());
     }
 
     @Test
     public void givenNonEmptyBuildingNamesThenReturnAllBuildingNames() {
         when(buildingNameService.getAllBuildingNames()).thenReturn(
                 Arrays.asList(givenExpectedBuildingName("notExpected", 1), givenExpectedBuildingName("expected", 100)));
-        assertEquals("expected", relievemeController.getAllBuildingNames().get(1));
+        assertEquals("expected", buildingController.getAllBuildingNames().get(1));
     }
 
     @Test
@@ -80,43 +71,11 @@ public class RelievemeControllerTest {
         Building expBuilding = new Building();
         when(buildingService.getBuildingWithId(100)).thenReturn(expBuilding);
         expBuilding.setBuildingId(100);
-        assertEquals((Integer) 100, relievemeController.getBuilding("POop").getBuildingId());
+        assertEquals((Integer) 100, buildingController.getBuilding("POop").getBuildingId());
     }
 
     @Test
     public void givenNonExistentBuildingNameReturnsNull() {
-        assertNull(relievemeController.getBuilding("nothing is expected"));
-    }
-
-    @Test
-    public void getAllRegionsReturnsRegions() {
-        when(regionService.getAllRegions()).thenReturn(Collections.singletonList(new Region(65, "1")));
-        assertEquals((Integer) 65, relievemeController.getAllRegions().get(0).getRegionId());
-    }
-
-    @Test
-    public void givenFeedbackThenCallEmailService() {
-        Feedback feedback = new Feedback("email", "cat", "sub", "bod");
-        relievemeController.submitFeedback(feedback);
-        verify(emailService).sendFeedbackEmail("email", "cat", "sub", "bod");
-    }
-
-    @Test
-    public void givenIssueThenCallEmailService() {
-        Issue issue = new Issue("from", "issue", 0, "cats roosting in bathroom", "THERE ARE CATS");
-        relievemeController.submitIssue(issue);
-        verify(emailService).sendIssueEmail("from", "issue", 0, "cats roosting in bathroom","THERE ARE CATS");
-    }
-
-    @Test
-    public void givenBathroomIdAndPositiveRatingIncreaseThenIncreaseBathroomPositiveRating() {
-        relievemeController.increaseBathroomPositiveRating(14);
-        verify(bathroomService).incrementNumPositiveRating(14);
-    }
-
-    @Test
-    public void givenBathroomIdAndNegativeRatingIncreaseThenIncreaseBathroomNegativeRating() {
-        relievemeController.increaseBathroomNegativeRating(14);
-        verify(bathroomService).incrementNumNegativeRating(14);
+        assertNull(buildingController.getBuilding("nothing is expected"));
     }
 }

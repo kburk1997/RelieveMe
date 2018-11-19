@@ -128,7 +128,7 @@ export default {
       }, 10 * 1000)
 
       axios
-        .post('/api/submitFeedback', this.getPostBody())
+        .post('/api/feedbackForm/submitFeedback', this.getPostBody())
         .then((response) => {
           console.log(response)
           // check for error

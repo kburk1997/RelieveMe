@@ -1,5 +1,6 @@
 <template>
   <div id ="building">
+    <b-loading :is-full-page="false" :active.sync="isLoading" :can-cancel="false"></b-loading>
     <h1 class="title is-2">{{$route.params.name}}</h1>
     <router-link :to="{name: 'BuildingFloorPlans'}">Floor Plans</router-link>
     <b-tabs v-model="activeTab" @change="filterFloorsBySelectedTab()">
@@ -8,7 +9,8 @@
                   :label="tab"
       >
         <div v-for="floor in sortedFloorsList(filteredFloors)" v-bind:key="floor.number">
-          <b-collapse v-if="floor.bathrooms.length > 0" class="card" :open.sync="floor.isOpen" >
+          <b-collapse v-if="filterBathroomsBySelectedTab(floor.bathrooms).length > 0"
+                      class="card" :open.sync="floor.isOpen" >
             <div slot="trigger" class="card-header is-primary">
                 <p class="card-header-title">
                     Floor {{floor.number}}
@@ -22,7 +24,7 @@
             <div class="card-content tab-content">
                 <div class="content">
                     <bathroom-panel
-                      v-for="bathroom in sortedBathroomsList(floor.bathrooms)"
+                      v-for="bathroom in sortedBathroomsList(filterBathroomsBySelectedTab(floor.bathrooms))"
                       :key="bathroom.bathroomId"
                       v-bind="bathroom"
                     ></bathroom-panel>
@@ -32,27 +34,6 @@
         </div>
       </b-tab-item>
     </b-tabs>
-    <!-- TODO: remove below in final product. ONLY FOR EASE OF FRONTEND TESTING -->
-    <!--<div v-for="floor in [{number: 9000, isOpen: false}]" v-bind:key="floor.number">
-      <b-collapse class="card" :open.sync="floor.isOpen" >
-        <div slot="trigger" class="card-header is-primary">
-          <p class="card-header-title">
-            Floor {{floor.number}} TESTING This is just a hardcoded panel for ease of frontend testing through npm run dev.
-          </p>
-          <a class="card-header-icon">
-            <b-icon
-              :icon="floor.isOpen ? 'angle-down' : 'angle-right'">
-            </b-icon>
-          </a>
-        </div>
-        <div class="card-content">
-          <div class="content">
-            <bathroom-panel></bathroom-panel>
-          </div>
-        </div>
-      </b-collapse>
-    </div>-->
-    <!-- TODO: remove this section above me in final product -->
   </div>
 </template>
 
@@ -72,19 +53,28 @@ export default {
       genderNeutralType: 2,
       name: '',
       floors: [],
-      filteredFloors: [],
       tabs: ['All', 'Men\'s', 'Women\'s', 'Gender-Neutral'],
-      activeTab: 0
+      filteredFloors: [],
+      activeTab: 0,
+      isLoading: false
     }
   },
   methods: {
     getBuilding: function () {
+      this.isLoading = true
       axios
-        .get('/api/' + this.$route.params.name)
+        .get('/api/buildings/' + this.$route.params.name)
         .then(response => {
           this.floors = []
           response.data.floors.forEach(this.addFloor)
           this.filteredFloors = this.floors
+          this.isLoading = false
+        })
+        .catch((err) => {
+          this.floors = []
+          this.filteredFloors = []
+          console.error(err)
+          this.isLoading = false
         })
     },
     makeFloor: function (floor) {
@@ -107,6 +97,20 @@ export default {
       return bathrooms.slice().sort(function (bathroom1, bathroom2) {
         return bathroom1.bathroomId - bathroom2.bathroomId
       })
+    },
+    filterBathroomsBySelectedTab: function (bathrooms) {
+      if (this.activeTab === 0) {
+        return bathrooms
+      }
+      // if we select a tab, then show all bathrooms that correspond to that tab, or gender-neutral bathrooms
+      var filteredBathrooms = []
+      for (var bathroomInd = 0; bathroomInd < bathrooms.length; bathroomInd++) {
+        if (this.bathroomIsGender(bathrooms[bathroomInd], this.tabs[this.activeTab]) ||
+            this.bathroomIsGender(bathrooms[bathroomInd], 'Gender-Neutral')) {
+          filteredBathrooms.push(bathrooms[bathroomInd])
+        }
+      }
+      return filteredBathrooms
     },
     filterFloorsBySelectedTab: function () {
       this.filteredFloors = this.floors.filter(this.filterFloorsByGender, this)
