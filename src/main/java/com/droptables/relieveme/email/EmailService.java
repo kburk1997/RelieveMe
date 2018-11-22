@@ -23,6 +23,7 @@ public class EmailService {
      * 
      * @param userEmail non-null user email
      * @param category  non-null category of the email to append to the subject
+     * @param bathroomId non-null bathroom id
      * @param subject   non-null user-inputted subject
      * @param body      non-null user-inputted body
      */
@@ -35,6 +36,7 @@ public class EmailService {
      * Send feedback email to the developers
      * @param userEmail non-null user email
      * @param category non-null category
+     * @param bathroomId non-null bathroom id
      * @param subject non-null user-inputted subject line
      * @param body non-null user-inputted description
      * @return the feedback email sent

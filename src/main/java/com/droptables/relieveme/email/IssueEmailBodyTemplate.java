@@ -19,6 +19,7 @@ public class IssueEmailBodyTemplate extends EmailBodyTemplate {
      * Adds all fields to super.inputs
      * @param userEmail non-null email of the user
      * @param category non-null category of the email
+     * @param bathroomId non-null id of the affected bathroom
      * @param subject non-null
      * @param description non-null
      */
