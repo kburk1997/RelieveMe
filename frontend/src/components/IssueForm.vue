@@ -130,7 +130,6 @@ export default {
         description: 'One or more of the ' + item + 's in this bathroom is out of order.'
       }
     },
-
     getAllTemplates: function () {
       return {
         'None': this.clearTemplate(),
@@ -141,6 +140,7 @@ export default {
         'Toilet Out of Order': this.getBrokenItemTemplate('toilet'),
         'Sink Out of Order': this.getBrokenItemTemplate('sink'),
         'Urinal Out of Order': this.getBrokenItemTemplate('urinal')
+        'Menstrual Product Shortage': this.getBrokenItemTemplate('menstrual products')
       }
     },
     getTemplateList: function () {
