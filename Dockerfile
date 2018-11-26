@@ -4,4 +4,4 @@ VOLUME /tmp
 EXPOSE 8080
 ARG JAR_FILE=target/relieveme-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} relieveme.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/relieveme.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/relieveme.jar"]
