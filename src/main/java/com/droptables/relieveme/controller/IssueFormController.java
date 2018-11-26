@@ -27,20 +27,20 @@ public class IssueFormController {
 
     @Autowired
     public IssueFormController(EmailService emailService, BathroomService bathroomService,
-                               RecaptchaValidator recaptchaValidator) {
+            RecaptchaValidator recaptchaValidator) {
         this.emailService = emailService;
         this.bathroomService = bathroomService;
         this.recaptchaValidator = recaptchaValidator;
     }
 
     /**
-     * Receives an issue report from the user and sends an issue email to both the user
-     * and the developers. A captcha is used to determine if a request is a spam
-     * request.
+     * Receives an issue report from the user and sends an issue email to both the
+     * user and the developers. A captcha is used to determine if a request is a
+     * spam request.
      *
      * @param request feedback post request
      * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
-     * fails.
+     *         fails.
      * @throws IOException if the request can't be read
      */
     @PostMapping("/submitIssue")
@@ -61,8 +61,9 @@ public class IssueFormController {
     }
 
     /**
-     * Take an issue report and sends an email to the user who submitted the issue and
-     * the developers. Also updates maintenance issue flag on the afflicted bathroom.
+     * Take an issue report and sends an email to the user who submitted the issue
+     * and the developers. Also updates maintenance issue flag on the afflicted
+     * bathroom.
      *
      * @param issue non-null issue information
      */

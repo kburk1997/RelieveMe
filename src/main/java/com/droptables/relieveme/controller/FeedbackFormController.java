@@ -36,7 +36,7 @@ public class FeedbackFormController {
      *
      * @param request feedback post request
      * @return Http OK if the captcha succeeds. Http BAD REQUEST if the captcha
-     * fails.
+     *         fails.
      * @throws IOException if the request can't be read
      */
     @PostMapping("/submitFeedback")
