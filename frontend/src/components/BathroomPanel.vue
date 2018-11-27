@@ -79,7 +79,13 @@
   <div>
     <button class="button is-danger report-problem-button">
       <b-icon class="fas fa-exclamation-triangle"></b-icon>
-      <router-link class="report-problem-text" :to="{name: 'IssueForm', params: {givenBathroomId: this.bathroomId}}">
+      <router-link class="report-problem-text" :to="{
+          name: 'IssueForm',
+          params: {
+            givenBathroomId: this.bathroomId,
+            givenMenstrualProductType: this.menstrualProductType
+          }
+        }">
         Report a problem
       </router-link>
     </button>

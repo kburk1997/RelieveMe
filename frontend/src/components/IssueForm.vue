@@ -82,6 +82,10 @@ export default {
     givenBathroomId: {
       type: Number,
       default: -1
+    },
+    givenMenstrualProductType: {
+      type: Number,
+      default: -1
     }
   },
   components: {VueRecaptcha},
@@ -131,7 +135,7 @@ export default {
       }
     },
     getAllTemplates: function () {
-      return {
+      var templates = {
         'None': this.clearTemplate(),
         'Toilet Paper Shortage': this.getItemShortageTemplate('toilet paper'),
         'Soap Shortage': this.getItemShortageTemplate('soap'),
@@ -140,11 +144,17 @@ export default {
         'Toilet Out of Order': this.getBrokenItemTemplate('toilet'),
         'Sink Out of Order': this.getBrokenItemTemplate('sink'),
         'Urinal Out of Order': this.getBrokenItemTemplate('urinal')
-        'Menstrual Product Shortage': this.getBrokenItemTemplate('menstrual products')
       }
+      if (this.hasMenstrualProducts()) {
+        templates['Menstrual Product Shortage'] = this.getItemShortageTemplate('menstrual products')
+      }
+      return templates
     },
     getTemplateList: function () {
       return Object.keys(this.getAllTemplates())
+    },
+    hasMenstrualProducts: function () {
+      return this.givenMenstrualProductType !== null && Number(this.givenMenstrualProductType) !== -1
     },
     setTemplate: function (subject, description) {
       this.subject = subject
