@@ -55,7 +55,7 @@
             @verify="onCaptchaVerified"
             @expired="resetCaptcha"
             size="checkbox"
-            sitekey="6LeVdXcUAAAAAPN7-fFOOLDkA3Enis0Xx7yDd4Iz">
+            sitekey="6Lf4fH0UAAAAAGD0za3-huxlTd-sp2Ieg8PP4-Ti">
         </vue-recaptcha>
     </b-field>
     <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
@@ -80,6 +80,10 @@ export default {
   name: 'IssueForm',
   props: {
     givenBathroomId: {
+      type: Number,
+      default: -1
+    },
+    givenMenstrualProductType: {
       type: Number,
       default: -1
     }
@@ -130,9 +134,8 @@ export default {
         description: 'One or more of the ' + item + 's in this bathroom is out of order.'
       }
     },
-
     getAllTemplates: function () {
-      return {
+      var templates = {
         'None': this.clearTemplate(),
         'Toilet Paper Shortage': this.getItemShortageTemplate('toilet paper'),
         'Soap Shortage': this.getItemShortageTemplate('soap'),
@@ -142,9 +145,16 @@ export default {
         'Sink Out of Order': this.getBrokenItemTemplate('sink'),
         'Urinal Out of Order': this.getBrokenItemTemplate('urinal')
       }
+      if (this.hasMenstrualProducts()) {
+        templates['Menstrual Product Shortage'] = this.getItemShortageTemplate('menstrual products')
+      }
+      return templates
     },
     getTemplateList: function () {
       return Object.keys(this.getAllTemplates())
+    },
+    hasMenstrualProducts: function () {
+      return this.givenMenstrualProductType !== null && Number(this.givenMenstrualProductType) !== -1
     },
     setTemplate: function (subject, description) {
       this.subject = subject

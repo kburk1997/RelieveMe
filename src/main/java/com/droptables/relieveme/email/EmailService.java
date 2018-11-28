@@ -10,7 +10,8 @@ import java.util.Objects;
 @Service
 public class EmailService {
 
-    private static final String DEVELOPER_EMAIL = "relievemedeveloperemail@gmail.com";
+    @Value("${spring.mail.username}")
+    private String DEVELOPER_EMAIL;
     private final JavaMailSender emailSender;
 
     @Autowired
