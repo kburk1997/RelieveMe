@@ -455,34 +455,16 @@ INSERT INTO floor_plan
 VALUES
        ('http://zim2411.info/floorplans/WestHall400.pdf', 28, 4);
 
-/* West Hall */
-INSERT INTO floor_plan
-    (link, building_id, floor_number)
-VALUES
-       ('http://zim2411.info/floorplans/WestHall100.pdf', 28, 1);
-INSERT INTO floor_plan
-    (link, building_id, floor_number)
-VALUES
-       ('http://zim2411.info/floorplans/WestHall200.pdf', 28, 2);
-INSERT INTO floor_plan
-    (link, building_id, floor_number)
-VALUES
-       ('http://zim2411.info/floorplans/WestHall300.pdf', 28, 3);
-INSERT INTO floor_plan
-    (link, building_id, floor_number)
-VALUES
-       ('http://zim2411.info/floorplans/WestHall400.pdf', 28, 4);
-
 /* 87 Gymnasium */
 INSERT INTO floor_plan
     (link, building_id, floor_number)
 VALUES
-       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_1.pdf', 28, 1);
+       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_1.pdf', 29, 1);
 INSERT INTO floor_plan
     (link, building_id, floor_number)
 VALUES
-       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_2.pdf', 28, 2);
+       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_2.pdf', 29, 2);
 INSERT INTO floor_plan
     (link, building_id, floor_number)
 VALUES
-       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_3.pdf', 28, 3);
+       ('http://zim2411.info/floorplans/Copy%20of%20Gym87_3.pdf', 29, 3);
