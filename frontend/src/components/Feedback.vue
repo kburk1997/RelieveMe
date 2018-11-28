@@ -48,7 +48,7 @@
             @verify="onCaptchaVerified"
             @expired="resetCaptcha"
             size="checkbox"
-            sitekey="6LeVdXcUAAAAAPN7-fFOOLDkA3Enis0Xx7yDd4Iz">
+            sitekey="6Lf4fH0UAAAAAGD0za3-huxlTd-sp2Ieg8PP4-Ti">
         </vue-recaptcha>
     </b-field>
     <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
