@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class EmailServiceTest {
 
     @Before
     public void setUp() throws Exception {
-
+        ReflectionTestUtils.setField(emailService, "DEVELOPER_EMAIL", "relievemedeveloperemail@gmail.com");
     }
 
     @Test
