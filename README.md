@@ -64,3 +64,9 @@ on boot and populate the database.
 ## Production Environment
 
 A live demo of this product is in progress. Our Docker repository can be found at https://hub.docker.com/r/kburk1997/relieveme.
+
+## Uploading Dummy Data to Heroku
+Follow the instructions [here](https://stackoverflow.com/questions/37494463/heroku-pgpush-psql-fatal-password-authentication-failed-for-user) for Windows.
+Replace the username, password, database URL, database, etc. information from the pg_restore call with information from the Heroku database (look in Settings > Credentials in the database for that information).
+
+Read up on pushing and pulling to the database through Heroku [here](https://devcenter.heroku.com/articles/heroku-postgresql#pg-push-and-pg-pull).
