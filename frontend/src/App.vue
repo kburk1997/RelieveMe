@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
-    <div id="main">
+    <div class="app" id="app">
       <top-menu></top-menu>
-      <section class="section">
-        <div class="container">
-          <!--<img src="./assets/logo.png">-->
-          <router-view/>
-        </div>
-      </section>
+      <div class="wrapper" id="main">
+        <section class="section">
+          <div class="container">
+            <!--<img src="./assets/logo.png">-->
+            <router-view/>
+          </div>
+        </section>
+        <div class="push"></div>
+      </div>
+      <bottom-menu class="footer"></bottom-menu>
     </div>
-    <bottom-menu></bottom-menu>
-  </div>
 </template>
 
 <script>
@@ -94,4 +95,29 @@ $link-focus-border: $primary;
 
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.app {
+  height: 100%;
+  margin: 0;
+}
+
+</style>
+<style scoped>
+  .wrapper {
+    min-height: 100%;
+
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }
+  .footer {
+    height: 20%;
+  }
+  .push {
+    height: 50px;
+  }
 </style>
