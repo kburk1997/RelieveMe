@@ -6,17 +6,17 @@
     </div>
     <div class="flex-item" v-if="genderType==0">
       <b-tooltip label="Men's bathroom">
-        <svgicon icon="man" width="60" height="60" original></svgicon>
+        <svgicon icon="man" width="100" height="100" original></svgicon>
       </b-tooltip>
     </div>
     <div class="flex-item" v-if="genderType==1">
       <b-tooltip label="Women's bathroom">
-        <svgicon icon="woman" width="60" height="60" original></svgicon>
+        <svgicon icon="woman" width="100" height="100" original></svgicon>
       </b-tooltip>
     </div>
     <div class="flex-item" v-if="genderType==2">
       <b-tooltip label="Gender-neutral bathroom">
-        <svgicon icon="gender" width="60" height="60" original></svgicon>
+        <svgicon icon="gender" width="100" height="100" original></svgicon>
       </b-tooltip>
     </div>
   </div>
@@ -24,51 +24,52 @@
     <div class="amenities-offset"></div>
       <div v-if="wheelchairAccessible" class="flex-item">
         <b-tooltip label="Wheelchair-accessible">
-          <svgicon icon="wheelchair" width="26" height="22" original></svgicon>
+          <svgicon icon="wheelchair" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="menstrualDisposal" class="flex-item">
         <b-tooltip label="Menstrual disposal available">
-          <svgicon icon="bin" width="26" height="22" original></svgicon>
+          <svgicon icon="bin" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="menstrualProductType" class="flex-item">
         <b-tooltip label="Tampons available">
-          <svgicon v-if="menstrualProductType==0" icon="tampon" width="26" height="22" original></svgicon>
+          <svgicon v-if="menstrualProductType==0" icon="tampon" width="48" height="40" original></svgicon>
         </b-tooltip>
-        <b-tooltip label="Sanitary pads available">
-          <svgicon v-if="menstrualProductType==1" icon="sanitary-pad" width="26" height="22" original></svgicon>
+      </div>
+      <div v-if="menstrualProductType" class="flex-item">
+          <b-tooltip label="Sanitary pads available">
+          <svgicon v-if="menstrualProductType==1" icon="sanitary-pad" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="shelves" class="flex-item">
         <b-tooltip label="Shelves">
-          <svgicon icon="shelf" width="26" height="22" original></svgicon>
+          <svgicon icon="shelf" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="hooks" class="flex-item">
         <b-tooltip label="Hooks">
-          <svgicon icon="hanger" width="26" height="22" original></svgicon>
+          <svgicon icon="hanger" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="babyChangingStation" class="flex-item">
         <b-tooltip label="Baby-changing station">
-          <svgicon icon="baby-boy" width="26" height="22" original></svgicon>
+          <svgicon icon="baby-boy" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="ongoingBathroomIssue" class="flex-item">
         <b-tooltip label="Ongoing maintenance issue">
-          <svgicon icon="technics" width="26" height="22" original></svgicon>
-          <svgicon icon="warning" width="26" height="22" original></svgicon>
+          <svgicon icon="warning" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="singleStall" class="flex-item">
         <b-tooltip label="Single stall bathroom">
-          <svgicon icon="door" width="26" height="22" original></svgicon>
+          <svgicon icon="door" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="fragranceFreeSoap" class="flex-item">
         <b-tooltip label="Fragrance-free soap">
-          <svgicon icon="hands" width="26" height="22" original></svgicon>
+          <svgicon icon="hands" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
   </div>
@@ -92,8 +93,6 @@
   </div>
 </div>
 </template>
-
-<!-- TODO: remove this section above me in final product -->
 
 <script>
 import './compiled-icons'

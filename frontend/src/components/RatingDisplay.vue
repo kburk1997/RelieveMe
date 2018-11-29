@@ -1,6 +1,7 @@
 <template>
 <div class="rating-display">
-  <b>{{ calculateRating(numPositiveRating, numPositiveRating + numNegativeRating).toFixed(0) }}% Positive</b>
+  <b v-bind:class="{'positive-text': totalPercentage.toFixed(0) >= 50, 'negative-text': totalPercentage.toFixed(0) < 50}">
+    {{ totalPercentage.toFixed(0) }}% Positive</b>
   <br>
   <button class="button is-primary" v-on:click="upvote()" :disabled="voted">
       <b-loading :is-full-page="false" :active.sync="upvoteIsLoading" :can-cancel="false"></b-loading>
@@ -34,17 +35,18 @@ export default {
     }
   },
   data () {
-    // TODO: get num-positve and num-negative rating from backend database
     return {
       numNegativeRating: this.origNumNegativeRating,
       numPositiveRating: this.origNumPositiveRating,
       voted: false,
+      totalPercentage: this.calculateRating(this.origNumPositiveRating, this.origNumNegativeRating),
       upvoteIsLoading: false,
       downvoteIsLoading: false
     }
   },
   methods: {
-    calculateRating: function (positive, total) {
+    calculateRating: function (positive, negative) {
+      var total = positive + negative
       if (total === 0) {
         return 0
       }
@@ -57,7 +59,8 @@ export default {
         .then(response => {
           this.numPositiveRating++
           this.upvoteIsLoading = false
-        })
+          this.totalPercentage = this.calculateRating(this.numPositiveRating, this.numNegativeRating)
+    })
       this.voted = true
     },
     downvote: function () {
@@ -67,9 +70,19 @@ export default {
         .then(response => {
           this.numNegativeRating++
           this.downvoteIsLoading = false
+          this.totalPercentage = this.calculateRating(this.numPositiveRating, this.numNegativeRating)
         })
       this.voted = true
     }
   }
 }
 </script>
+
+<style scoped>
+  .positive-text {
+    color: #2f8c28
+  }
+  .negative-text {
+    color: #992323
+  }
+</style>

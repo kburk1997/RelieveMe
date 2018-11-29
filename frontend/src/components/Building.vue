@@ -12,11 +12,11 @@
           <div v-for="floor in sortedFloorsList(filteredFloors)" v-bind:key="floor.number">
             <b-collapse v-if="filterBathroomsBySelectedTab(floor.bathrooms).length > 0"
                         class="card" :open.sync="floor.isOpen" >
-              <div slot="trigger" class="card-header is-primary">
-                  <p class="card-header-title">
+              <div slot="trigger" v-bind:class="{'card-header': true, 'is-primary': true, 'highlighted-card': floor.isOpen}">
+                  <p v-bind:class="{'card-header-title': true, 'highlighted-card-title': floor.isOpen}">
                       Floor {{floor.number}}
                   </p>
-                  <a class="card-header-icon">
+                  <a v-bind:class="{'card-header-icon': true, 'highlighted-card-title': floor.isOpen}">
                       <b-icon
                           :icon="floor.isOpen ? 'angle-down' : 'angle-right'">
                       </b-icon>
@@ -162,5 +162,11 @@ export default {
 <style scoped>
   .tab-content {
     background-color: #eafaf5;
+  }
+  .highlighted-card {
+    background-color: #eaefee;
+  }
+  .highlighted-card-title {
+    color: #4e5957;
   }
 </style>
