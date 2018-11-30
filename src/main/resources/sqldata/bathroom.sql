@@ -2,7 +2,45 @@
 /* BATHROOM DATA */
 /*---------------*/
 /* gender_type: male = 0, female = 1, gender-neutral = 2 */
-/* menstrual product type: tampon = 0, pad = 1 */
+/* menstrual product type: tampon = 0, pad = 1, both = 2 */
+
+/*--------*/
+/* Armory */
+/*--------*/
+/* Floor 2 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (3, 2, 0, false, 'North wing, directly right of the entrance from the Mueller Center', false, false, false, null, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (3, 2, 0, true, 'North wing, on the right wall of the entrance from the Mueller Center', false, false, false, null, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (3, 2, 1, false, 'South wing, turn right from the entrance', true, true, false, null, false, false, 0, 0);
+
+/* Floor 3 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (3, 3, 2, false, 'In center part of building, above the entrance', true, true, false, null, false, false, 0, 0);
+
+
+/*----------------*/
+/* Mueller Center */
+/*----------------*/
+/* Floor 1 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (4, 1, 2, true, 'Past entrance and in corner before doors to the armory', false, false, true, 2, true, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (4, 1, 2, true, 'Past entrance and in corner before doors to the armory', false, false, true, 2, true, false, 0, 0);
+
 
 /*-----------*/
 /* RPI Union */
@@ -43,6 +81,20 @@ VALUES
        (6, 3, 1, false, 'Next to Clubhouse Pub', true, true, true, 1, false, false, 12, 34);
 
 
+/*---------*/
+/* Commons */
+/*---------*/
+/* Floor 1 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+        (7, 1, 0, true, 'In corridor past the entrance, next to postal pickup', false, false, false, null, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+        (7, 1, 1, true, 'In corridor past the entrance, next to postal pickup', false, true, true, null, false, false, 0, 0);
+
+
 /*----------------------*/
 /* Amos Eaton bathrooms */
 /*----------------------*/
@@ -74,6 +126,55 @@ INSERT INTO bathroom
     (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
 VALUES
        (9, 4, 0, false, 'In dead end corridor to right of lounge', false, false, null, false, false);
+
+
+/*------*/
+/* CBIS */
+/*------*/
+/* Floor 1 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 1, 1, true, 'Room 1362, in corridor to right of the Biotech Auditorium', false, false, true, 2, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 1, 0, true, 'Room 1363, in corridor to right of the Biotech Auditorium', false, false, false, null, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 1, 2, true, 'In corridor to right of the Biotech Auditorium', false, false, false, null, false, false, 0, 0);
+
+/* Floor 2 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 2, 1, true, 'Room 2306, in atrium, turn left from the elevators', false, false, true, 2, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 2, 0, true, 'Room 2308, in atrium, turn left from the elevators', false, false, false, 0, false, false, 0, 0);
+
+/* Floor 3 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 3, 1, true, 'Room 3306, above atrium, turn left from the elevators', false, false, true, 2, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 3, 0, true, 'Room 3308, above atrium, turn left from the elevators', false, false, false, 0, false, false, 0, 0);
+
+/* Floor 4 */
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 4, 1, true, 'Above atrium, turn left from the elevators', false, true, true, 2, false, false, 0, 0);
+INSERT INTO bathroom
+    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
+VALUES
+       (11, 4, 0, true, 'Above atrium, turn left from the elevators', false, false, false, 0, false, false, 0, 0);
+
 
 /*-----------------*/
 /* JRowl bathrooms */
@@ -108,6 +209,7 @@ INSERT INTO bathroom
 VALUES
        (17, 3, 0, true, 'Room 3C47, next to custodial closet', false, false, null, false, false);
 
+
 /*-----------------*/
 /* Lally bathrooms */
 /*-----------------*/
@@ -123,9 +225,10 @@ INSERT INTO bathroom
 VALUES
        (18, 2, 1, false, 'In corridor next to Lally 210 and environmentalist specialist door', false, true, null, false, false);
 
-/*---------*/
-/* VCC  	 */
-/*---------*/
+
+/*------*/
+/* VCC  */
+/*------*/
 /* default 0 for num_positive_rating and num_negative_rating  */
 /* made some assumptions for men's bathroom data */
 
@@ -154,6 +257,7 @@ INSERT INTO bathroom
     (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES
        (26, 3, 0, true, 'Next to front staircase (Rm. 324)', true, false, null, false, false, 0, 0);
+
 
 /*-------==--*/
 /* Sage Labs */

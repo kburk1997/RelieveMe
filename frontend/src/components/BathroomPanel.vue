@@ -34,12 +34,12 @@
       </div>
       <div v-if="menstrualProductType" class="flex-item">
         <b-tooltip label="Tampons available">
-          <svgicon v-if="menstrualProductType==0" icon="tampon" width="48" height="40" original></svgicon>
+          <svgicon v-if="menstrualProductType==0 || menstrualProductType==2" icon="tampon" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="menstrualProductType" class="flex-item">
           <b-tooltip label="Sanitary pads available">
-          <svgicon v-if="menstrualProductType==1" icon="sanitary-pad" width="48" height="40" original></svgicon>
+          <svgicon v-if="menstrualProductType==1 || menstrualProductType==2" icon="sanitary-pad" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
       <div v-if="shelves" class="flex-item">

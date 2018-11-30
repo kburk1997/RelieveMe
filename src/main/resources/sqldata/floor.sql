@@ -1,15 +1,30 @@
 /*------------*/
 /* FLOOR DATA */
 /*------------*/
-/* Commons */
+
+/* Armory */
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 7);
+       (1, 3);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 7);
+       (2, 3);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 3);
+
+/* Mueller */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 4);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 4);
 
 /* RPI Union */
 INSERT INTO floor
@@ -25,15 +40,15 @@ INSERT INTO floor
 VALUES
        (3, 6);
 
-/* Mueller */
+/* Commons */
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 4);
+       (1, 7);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 4);
+       (2, 7);
 
 /* Amos Eaton */
 INSERT INTO floor
@@ -52,6 +67,24 @@ INSERT INTO floor
     (number, building_id)
 VALUES
        (4, 9);
+
+/* CBIS */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 11);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 11);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 11);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 11);
 
 /*JROWL */
 INSERT INTO floor
