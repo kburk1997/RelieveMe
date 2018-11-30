@@ -29,18 +29,24 @@
       <h1 class="title is-2">All Buildings</h1>
       <b-table :data="filteredBuildings"
                :loading="loading"
-               paginated
-               per-page="10"
-               default-sort="name"
+               :paginated="true"
+               :hoverable="true"
+               :per-page="10"
+               default-sort="properName"
       >
-        <template slot-scope="filteredBuildings">
-          <b-table-column field="properName" label ="Name" sortable>
-            <router-link :to="{name: 'Building', params:{name: filteredBuildings.row.properName}}">
-              {{filteredBuildings.row.properName}}
+        <template slot-scope="props" slot="header">
+          <p>
+            {{props.column.label}}
+          </p>
+        </template>
+        <template slot-scope="props">
+          <b-table-column field="properName" label="Name" sortable>
+            <router-link :to="{name: 'Building', params:{name: props.row.properName}}">
+              {{props.row.properName}}
             </router-link>
           </b-table-column>
-          <b-table-column field="region.name" label ="Region" sortable>
-            {{filteredBuildings.row.region.name}}
+          <b-table-column field="region.name" label="Region" sortable>
+            {{props.row.region.name}}
           </b-table-column>
         </template>
       </b-table>
