@@ -57,7 +57,7 @@
           <svgicon icon="baby-boy" width="48" height="40" original></svgicon>
         </b-tooltip>
       </div>
-      <div v-if="ongoingBathroomIssue" class="flex-item">
+      <div v-if="ongoingBathroomIssueDynamic" class="flex-item">
         <b-tooltip label="Ongoing maintenance issue">
           <svgicon icon="warning" width="48" height="40" original></svgicon>
         </b-tooltip>
@@ -78,18 +78,16 @@
       v-bind:origNumNegativeRating="numNegativeRating"
       v-bind:bathroom-id="bathroomId"></rating-display>
   <div>
-    <button class="button is-danger report-problem-button">
-      <b-icon class="fas fa-exclamation-triangle"></b-icon>
-      <router-link class="report-problem-text" :to="{
-          name: 'IssueForm',
-          params: {
+    <button class="button is-danger report-problem-button"  @click="isComponentModalActive = true">
+      <b-icon style="margin-right: 5px;" class="fas fa-exclamation-triangle"></b-icon>
+      Report a problem
+    </button>
+    <b-modal :active.sync="isComponentModalActive" has-modal-card>
+      <issue-form @submission="flagMaintenanceIssue" v-bind="{
             givenBathroomId: this.bathroomId,
             givenMenstrualProductType: this.menstrualProductType
-          }
-        }">
-        Report a problem
-      </router-link>
-    </button>
+          }"></issue-form>
+    </b-modal>
   </div>
 </div>
 </template>
@@ -97,6 +95,7 @@
 <script>
 import './compiled-icons'
 import RatingDisplay from './RatingDisplay.vue'
+import IssueForm from './IssueForm'
 
 export default {
   name: 'BathroomPanel',
@@ -163,7 +162,19 @@ export default {
     }
   },
   components: {
+    IssueForm,
     'rating-display': RatingDisplay
+  },
+  data () {
+    return {
+      ongoingBathroomIssueDynamic: this.ongoingBathroomIssue,
+      isComponentModalActive: false
+    }
+  },
+  methods: {
+    flagMaintenanceIssue: function (maintenanceIssueFlag) {
+      this.ongoingBathroomIssueDynamic = true
+    }
   }
 }
 </script>

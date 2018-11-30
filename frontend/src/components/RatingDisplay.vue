@@ -60,7 +60,7 @@ export default {
           this.numPositiveRating++
           this.upvoteIsLoading = false
           this.totalPercentage = this.calculateRating(this.numPositiveRating, this.numNegativeRating)
-    })
+        })
       this.voted = true
     },
     downvote: function () {
