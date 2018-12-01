@@ -3,37 +3,46 @@
     <b-loading :is-full-page="false" :active.sync="isLoading" :can-cancel="false"></b-loading>
     <h1 class="title is-2">{{$route.params.name}}</h1>
     <router-link :to="{name: 'BuildingFloorPlans'}">Floor Plans</router-link>
-    <b-tabs v-model="activeTab" @change="filterFloorsBySelectedTab()">
-      <b-tab-item v-for="tab in tabs"
-                  :key="'tab' + tab"
-                  :label="tab"
-      >
-        <div v-for="floor in sortedFloorsList(filteredFloors)" v-bind:key="floor.number">
-          <b-collapse v-if="filterBathroomsBySelectedTab(floor.bathrooms).length > 0"
-                      class="card" :open.sync="floor.isOpen" >
-            <div slot="trigger" class="card-header is-primary">
-                <p class="card-header-title">
-                    Floor {{floor.number}}
-                </p>
-                <a class="card-header-icon">
-                    <b-icon
-                        :icon="floor.isOpen ? 'angle-down' : 'angle-right'">
-                    </b-icon>
-                </a>
-            </div>
-            <div class="card-content tab-content">
-                <div class="content">
-                    <bathroom-panel
-                      v-for="bathroom in sortedBathroomsList(filterBathroomsBySelectedTab(floor.bathrooms))"
-                      :key="bathroom.bathroomId"
-                      v-bind="bathroom"
-                    ></bathroom-panel>
-                </div>
-            </div>
-          </b-collapse>
-        </div>
-      </b-tab-item>
-    </b-tabs>
+    <div v-if="floors.length > 0">
+      <b-tabs v-model="activeTab" @change="filterFloorsBySelectedTab()">
+        <b-tab-item v-for="tab in tabs"
+                    :key="'tab' + tab"
+                    :label="tab"
+        >
+          <div v-for="floor in sortedFloorsList(filteredFloors)" v-bind:key="floor.number">
+            <b-collapse v-if="filterBathroomsBySelectedTab(floor.bathrooms).length > 0"
+                        class="card" :open.sync="floor.isOpen" >
+              <div slot="trigger" v-bind:class="{'card-header': true, 'is-primary': true, 'highlighted-card': floor.isOpen}">
+                  <p v-bind:class="{'card-header-title': true, 'highlighted-card-title': floor.isOpen}">
+                      Floor {{floor.number}}
+                  </p>
+                  <a v-bind:class="{'card-header-icon': true, 'highlighted-card-title': floor.isOpen}">
+                      <b-icon
+                          :icon="floor.isOpen ? 'angle-down' : 'angle-right'">
+                      </b-icon>
+                  </a>
+              </div>
+              <div class="card-content tab-content">
+                  <div class="content">
+                      <bathroom-panel
+                        v-for="bathroom in sortedBathroomsList(filterBathroomsBySelectedTab(floor.bathrooms))"
+                        :key="bathroom.bathroomId"
+                        v-bind="bathroom"
+                      ></bathroom-panel>
+                  </div>
+              </div>
+            </b-collapse>
+          </div>
+        </b-tab-item>
+      </b-tabs>
+    </div>
+    <div v-else>
+      <br>
+      <b-message type="is-info">
+        There is no bathroom data available.
+        Please click <router-link style="color: dodgerblue;" :to="{name: 'Feedback'}">here</router-link> to contribute information.
+      </b-message>
+    </div>
   </div>
 </template>
 
@@ -153,5 +162,11 @@ export default {
 <style scoped>
   .tab-content {
     background-color: #eafaf5;
+  }
+  .highlighted-card {
+    background-color: #eaefee;
+  }
+  .highlighted-card-title {
+    color: #4e5957;
   }
 </style>

@@ -1,80 +1,91 @@
 <template>
-<div id="issue-form" >
-  <h1 class="title is-2">Send an email</h1>
-  <form id="issue" align="left">
-    <b-field horizontal label ="Email" :type="errors.has('email') ? 'is-danger' : email === null ? '' : 'is-success'">
-      <b-input type="text" id="email" name="email" v-model="email" v-validate="'required|email'"></b-input>
-    </b-field>
+<form id="issue">
+  <div class="modal-card" style="width: auto" >
+    <header class="modal-card-head">
+      <p class="modal-card-title">Send an email</p>
+    </header>
+    <section class="modal-card-body">
+      <div v-if="!submitted" id="issue-form">
+        <b-field horizontal label ="Email" :type="errors.has('email') ? 'is-danger' : email === null ? '' : 'is-success'">
+          <b-input type="text" id="email" name="email" v-model="email" v-validate="'required|email'"></b-input>
+        </b-field>
 
-    <b-field horizontal label ="Category">
-      <b-select id="category" v-model="selectedCategory" @input="categorySelect()">
-        <option
-          v-for="category in categories"
-          :key="category"
-          :value="category">
-          {{category}}
-        </option>
-      </b-select>
-    </b-field>
+        <b-field horizontal label ="Category">
+          <b-select id="category" v-model="selectedCategory" @input="categorySelect()">
+            <option
+              v-for="category in categories"
+              :key="category"
+              :value="category">
+              {{category}}
+            </option>
+          </b-select>
+        </b-field>
 
-    <b-field v-if="templateSelectToggle" horizontal label ="Common Issues">
-      <b-select id="issue-template" v-model="selectedTemplate" @input="templateSelect()">
-        <option
-          v-for="template in templates"
-          :key="template"
-          :value="template">
-          {{template}}
-        </option>
-      </b-select>
-    </b-field>
+        <b-field v-if="templateSelectToggle" horizontal label ="Common Issues">
+          <b-select id="issue-template" v-model="selectedTemplate" @input="templateSelect()">
+            <option
+              v-for="template in templates"
+              :key="template"
+              :value="template">
+              {{template}}
+            </option>
+          </b-select>
+        </b-field>
 
-    <b-field horizontal label="Bathroom ID">
-      <b-input type="text" id="bathroomId" v-model="bathroomId" disabled></b-input>
-    </b-field>
+        <b-field horizontal label="Bathroom ID">
+          <b-input type="text" id="bathroomId" v-model="bathroomId" disabled></b-input>
+        </b-field>
 
-    <b-field horizontal label="Subject"
-             :type="errors.has('subject') ? 'is-danger' : subject === null ? '' : 'is-success'">
-      <b-input name="subject" type="text" v-validate="'required|min:1'" id="subject" v-model="subject"></b-input>
-    </b-field>
+        <b-field horizontal label="Subject"
+                 :type="errors.has('subject') ? 'is-danger' : subject === null ? '' : 'is-success'">
+          <b-input name="subject" type="text" v-validate="'required|min:1'" id="subject" v-model="subject"></b-input>
+        </b-field>
 
-    <b-field horizontal
-             label ="Description"
-             :type="errors.has('description') ? 'is-danger' : description === null ? '' : 'is-success'">
-      <b-input type="textarea"
-               id="description"
-               rows="10"
-               cols ="70"
-               v-model="description"
-               v-validate="'required|min:1'"
-               name="description"></b-input>
-    </b-field>
+        <b-field horizontal
+                 label ="Description"
+                 :type="errors.has('description') ? 'is-danger' : description === null ? '' : 'is-success'">
+          <b-input type="textarea"
+                   id="description"
+                   rows="10"
+                   cols ="70"
+                   v-model="description"
+                   v-validate="'required|min:1'"
+                   name="description"></b-input>
+        </b-field>
 
-  <b-field horizontal>
-        <vue-recaptcha
-            ref="recaptcha"
-            @verify="onCaptchaVerified"
-            @expired="resetCaptcha"
-            size="checkbox"
-            sitekey="6Lf4fH0UAAAAAGD0za3-huxlTd-sp2Ieg8PP4-Ti">
-        </vue-recaptcha>
-    </b-field>
-    <p class="has-text-danger" v-if="captchaError">Please complete the CAPTCHA.</p>
-    <p class="has-text-danger" v-if="serverError">A server error occurred. Please try again later.</p>
-    <p class="has-text-danger" v-if="validationErrorPopup">Please complete all fields.</p>
+        <b-field horizontal>
+              <vue-recaptcha
+                  ref="recaptcha"
+                  @verify="onCaptchaVerified"
+                  @expired="resetCaptcha"
+                  size="checkbox"
+                  sitekey="6Lf4fH0UAAAAAGD0za3-huxlTd-sp2Ieg8PP4-Ti">
+              </vue-recaptcha>
+        </b-field>
+        <p class="has-text-danger warning-message" v-if="captchaError">Please complete the CAPTCHA.</p>
+        <p class="has-text-danger warning-message" v-if="serverError">A server error occurred. Please try again later.</p>
+        <p class="has-text-danger warning-message" v-if="validationErrorPopup">Please complete all fields.</p>
+      </div>
+      <div v-else>
+        <section class="modal-card-body">
+          <feedback-submitted></feedback-submitted>
+        </section>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+        <button class="button" type="button" @click="$parent.close()">Close</button>
+        <button v-if="!submitted" class="button is-primary" @click.stop.prevent="validateBeforeSubmit()">Submit</button>
+    </footer>
+    <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
+  </div>
+</form>
 
-    <b-field horizontal>
-      <p class="control">
-        <button class="button is-primary" @click.stop.prevent="validateBeforeSubmit()">Submit</button>
-        <b-loading :is-full-page="true" :active.sync="isLoading" :can-cancel="false"></b-loading>
-      </p>
-    </b-field>
-  </form>
-</div>
 </template>
 
 <script>
 import axios from 'axios'
 import VueRecaptcha from 'vue-recaptcha'
+import FeedbackSubmitted from './FeedbackSubmitted'
 
 export default {
   name: 'IssueForm',
@@ -88,8 +99,7 @@ export default {
       default: -1
     }
   },
-  components: {VueRecaptcha},
-
+  components: {FeedbackSubmitted, VueRecaptcha},
   data () {
     return {
       selectedCategory: 'Maintenance Issue',
@@ -106,7 +116,8 @@ export default {
       serverError: false,
       templateSelectToggle: true,
       selectedTemplate: 'None',
-      templates: []
+      templates: [],
+      submitted: false
     }
   },
   methods: {
@@ -214,7 +225,10 @@ export default {
       axios
         .post('/api/issueForm/submitIssue', this.getPostBody())
         .then((response) => {
-          this.$router.push('/feedbackSubmitted')
+          this.submitted = true
+          this.isLoading = false
+          // send to parent components that issue has been submitted
+          this.$emit('submission', 'true')
         })
         .catch((err) => {
           this.serverError = true
@@ -237,4 +251,7 @@ export default {
 </script>
 
 <style scoped>
+  .warning-message {
+    text-align: left;
+  }
 </style>
