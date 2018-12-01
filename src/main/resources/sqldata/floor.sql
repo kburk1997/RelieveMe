@@ -86,6 +86,36 @@ INSERT INTO floor
 VALUES
        (4, 11);
 
+/* JEC */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (5, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (6, 16);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (7, 16);
+
 /*JROWL */
 INSERT INTO floor
     (number, building_id)
