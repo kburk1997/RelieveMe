@@ -14,8 +14,9 @@
         <div class="column" style="margin-bottom: 0px !important;"></div>
       </div>
       <h1 class="relieveme-title title is-1">RelieveMe</h1>
+      <h2 class="relieveme-subtitle subtitle is-3 is-mobile-4">campus bathrooms made easier</h2>
     </div>
-    <search-bar class="halfwidth"></search-bar>
+    <search-bar class="halfwidth" :size="'is-medium'"></search-bar>
   </div>
 </template>
 
@@ -54,19 +55,29 @@ a {
   color: #42b983;
 }
 .relieveme-title {
+  font-weight: 600;
   font-size: 60px;
   margin-bottom: 12px;
+}
+.relieveme-subtitle {
+  margin-bottom: 15px;
 }
 @media only screen and (min-width: 768) and (max-width: 1024px) {
   .relieveme-title {
     font-size: 52px;
-    margin-bottom: 11px;
   }
 }
 @media only screen and (max-width: 767px) {
   .relieveme-title {
     font-size: 45px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
+  }
+  .relieveme-subtitle {
+    font-size: 26px;
+    margin-bottom: 13px;
+  }
+  .halfwidth {
+    width: 85%;
   }
 }
 </style>

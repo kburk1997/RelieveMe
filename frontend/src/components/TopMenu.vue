@@ -16,7 +16,7 @@
       <div class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item">
-            <search-bar></search-bar>
+            <search-bar :size="''"></search-bar>
           </div>
         </div>
       </div>
