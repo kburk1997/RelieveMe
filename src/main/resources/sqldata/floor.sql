@@ -483,10 +483,3 @@ INSERT INTO floor
     (number, building_id)
 VALUES
       (3, 29);
-
-/* BELOW IS MOCK DATA */
-/* Houston Field House */
-INSERT INTO floor
-    (number, building_id)
-VALUES
-       (3, 1);

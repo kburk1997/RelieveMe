@@ -1052,15 +1052,3 @@ INSERT INTO bathroom
     (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, hooks, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue, num_negative_rating, num_positive_rating)
 VALUES
     (29, 2, 0, false, 'Across from men''s locker room', false, false, false, null, false, false, 0, 0);
-
-
-/*--------------------*/
-/* BELOW IS MOCK DATA */
-/*--------------------*/
-/* Houston Field House */
-/* 1 true */
-/* default 0 for num_negative_rating and num_positive_rating */
-INSERT INTO bathroom
-    (building_id, floor_number, gender_type, wheelchair_accessible, location_string, shelves, menstrual_disposal, menstrual_product_type, baby_changing_station, ongoing_bathroom_issue)
-VALUES
-    (1, 3, 1, true, 'Mock wheelchair accessible only bathroom', false, false, null, false, true);
