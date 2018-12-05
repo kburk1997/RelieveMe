@@ -50,6 +50,24 @@ INSERT INTO floor
 VALUES
        (2, 7);
 
+/* Academy Hall */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (1, 8);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (2, 8);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (3, 8);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (4, 8);
+
 /* Amos Eaton */
 INSERT INTO floor
     (number, building_id)
@@ -68,6 +86,24 @@ INSERT INTO floor
 VALUES
        (4, 9);
 
+/* Carnegie */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 10);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 10);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 10);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 10);
+
 /* CBIS */
 INSERT INTO floor
     (number, building_id)
@@ -85,6 +121,90 @@ INSERT INTO floor
     (number, building_id)
 VALUES
        (4, 11);
+
+/* EMPAC */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (5, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (6, 12);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (7, 12);
+
+/* DCC */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 13);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 13);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 13);
+
+/* Folsom Library */
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (1, 14);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (2, 14);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (3, 14);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (4, 14);
+
+/* Greene */
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (0, 15);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (1, 15);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (2, 15);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (3, 15);
+INSERT INTO floor
+  (number, building_id)
+VALUES
+    (4, 15);
 
 /* JEC */
 INSERT INTO floor
@@ -152,6 +272,66 @@ INSERT INTO floor
 VALUES
        (3, 18);
 
+/* CII */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (5, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (6, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (7, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (8, 19);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (9, 19);
+
+/* Pittsburgh */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 20);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 20);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 20);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 20);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (5, 20);
+
 /* Ricketts */
 INSERT INTO floor
     (number, building_id)
@@ -195,6 +375,28 @@ INSERT INTO floor
     (number, building_id)
 VALUES
        (5, 24);
+
+/* Troy Building */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (1, 25);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (2, 25);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (3, 25);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (4, 25);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+       (5, 25);
 
 /* Sage DH */
 INSERT INTO floor
@@ -241,6 +443,46 @@ INSERT INTO floor
     (number, building_id)
 VALUES
        (6, 27);
+
+/* West Hall */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (1, 28);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (2, 28);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (3, 28);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (4, 28);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (5, 28);
+
+/* 87 Gym */
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (0, 29);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (1, 29);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (2, 29);
+INSERT INTO floor
+    (number, building_id)
+VALUES
+      (3, 29);
 
 /* BELOW IS MOCK DATA */
 /* Houston Field House */
