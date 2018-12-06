@@ -54,19 +54,19 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (1, 8);
+    (1, 8);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (2, 8);
+    (2, 8);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (3, 8);
+    (3, 8);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (4, 8);
+    (4, 8);
 
 /* Amos Eaton */
 INSERT INTO floor
@@ -90,19 +90,19 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 10);
+    (1, 10);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 10);
+    (2, 10);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 10);
+    (3, 10);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (4, 10);
+    (4, 10);
 
 /* CBIS */
 INSERT INTO floor
@@ -126,83 +126,83 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 12);
+    (1, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 12);
+    (2, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 12);
+    (3, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (4, 12);
+    (4, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (5, 12);
+    (5, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (6, 12);
+    (6, 12);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (7, 12);
+    (7, 12);
 
 /* DCC */
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 13);
+    (1, 13);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 13);
+    (2, 13);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 13);
+    (3, 13);
 
 /* Folsom Library */
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (1, 14);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (2, 14);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (3, 14);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (4, 14);
 
 /* Greene */
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (0, 15);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (1, 15);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (2, 15);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (3, 15);
 INSERT INTO floor
-  (number, building_id)
+    (number, building_id)
 VALUES
     (4, 15);
 
@@ -276,61 +276,61 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 19);
+    (1, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 19);
+    (2, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 19);
+    (3, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (4, 19);
+    (4, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (5, 19);
+    (5, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (6, 19);
+    (6, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (7, 19);
+    (7, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (8, 19);
+    (8, 19);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (9, 19);
+    (9, 19);
 
 /* Pittsburgh */
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 20);
+    (1, 20);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 20);
+    (2, 20);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 20);
+    (3, 20);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (4, 20);
+    (4, 20);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (5, 20);
+    (5, 20);
 
 /* Ricketts */
 INSERT INTO floor
@@ -380,23 +380,23 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (1, 25);
+    (1, 25);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (2, 25);
+    (2, 25);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (3, 25);
+    (3, 25);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (4, 25);
+    (4, 25);
 INSERT INTO floor
     (number, building_id)
 VALUES
-       (5, 25);
+    (5, 25);
 
 /* Sage DH */
 INSERT INTO floor
@@ -448,42 +448,38 @@ VALUES
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (1, 28);
+    (1, 28);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (2, 28);
+    (2, 28);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (3, 28);
+    (3, 28);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (4, 28);
+    (4, 28);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (5, 28);
+    (5, 28);
 
 /* 87 Gym */
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (0, 29);
+    (0, 29);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (1, 29);
+    (1, 29);
 INSERT INTO floor
     (number, building_id)
 VALUES
-      (2, 29);
+    (2, 29);
 INSERT INTO floor
     (number, building_id)
 VALUES
-<<<<<<< HEAD
-    (3, 1);
-=======
-      (3, 29);
->>>>>>> 6b534d5f9ab0e7ddcb0c76dccb8247cb30ce2d63
+    (3, 29);
