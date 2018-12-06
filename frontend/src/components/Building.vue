@@ -126,7 +126,8 @@ export default {
     },
     filterFloorsByGender: function (floor) {
       return this.activeTab === 0 ||
-        this.floorContainsGender(floor, this.tabs[this.activeTab])
+        this.floorContainsGender(floor, this.tabs[this.activeTab]) ||
+        this.floorContainsGender(floor, 'Gender-Neutral')
     },
     floorContainsGender: function (floor, gender) {
       for (var bathroomInd = 0; bathroomInd < floor.bathrooms.length; bathroomInd++) {
