@@ -215,7 +215,7 @@ INSERT INTO building_name
 VALUES
        ('CII', 19);
 
-/* Pittsburgj */
+/* Pittsburgh */
 INSERT INTO building_name
     (name, building_id)
 VALUES
@@ -276,6 +276,11 @@ INSERT INTO building_name
     (name, building_id)
 VALUES
        ('RSDH', 23);
+INSERT INTO building_name
+    (name, building_id)
+VALUES
+      ('Sage Dining', 23);
+
 
 /* Troy Building */
 INSERT INTO building_name

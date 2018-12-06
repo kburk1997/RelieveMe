@@ -1,4 +1,4 @@
-<template slot="item" scope="props">
+<template slot="item">
   <b-field>
     <b-autocomplete
       ref="autocomplete"
@@ -18,70 +18,70 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "SearchBar",
+  name: 'SearchBar',
   props: {
     size: {
       type: String,
       required: false,
-      default: "is-medium"
+      default: 'is-medium'
     }
   },
-  data() {
+  data () {
     return {
       buildings: [],
-      properSearch: "",
-      searchTerm: "",
+      properSearch: '',
+      searchTerm: '',
       selected: null
-    };
+    }
   },
   methods: {
-    resetState: function() {
-      this.searchTerm = "";
-      this.selected = null;
+    resetState: function () {
+      this.searchTerm = ''
+      this.selected = null
     },
-    enterPressed: function() {
-      var autocompleteComponent = this.$refs.autocomplete;
+    enterPressed: function () {
+      var autocompleteComponent = this.$refs.autocomplete
       if (autocompleteComponent.hovered === null) {
         // make search request and clear & close the dropdown
-        this.getBuilding();
-        autocompleteComponent.isActive = false;
-        this.resetState();
+        this.getBuilding()
+        autocompleteComponent.isActive = false
+        this.resetState()
       } else {
         // user is hovering over an option, choose the option
-        autocompleteComponent.enterPressed();
+        autocompleteComponent.enterPressed()
       }
     },
-    getBuilding: function() {
-      axios.get("/api/buildings/" + this.searchTerm).then(response => {
-        this.properSearch = response.data.properName;
-        this.$router.push("/buildings/" + this.properSearch);
-      });
+    getBuilding: function () {
+      axios.get('/api/buildings/' + this.searchTerm).then(response => {
+        this.properSearch = response.data.properName
+        this.$router.push('/buildings/' + this.properSearch)
+      })
     },
-    getAllBuildings: function() {
+    getAllBuildings: function () {
       axios.get(`/api/buildings/buildingNames`).then(response => {
-        this.buildings = response.data;
-      });
+        this.buildings = response.data
+      })
     }
   },
   computed: {
-    filteredDataArray() {
+    filteredDataArray () {
       return this.buildings.filter(option => {
         return (
           option
             .toString()
             .toLowerCase()
             .indexOf(this.searchTerm.toLowerCase()) >= 0
-        );
-      });
+        )
+      })
     }
   },
-  created: function() {
-    this.getAllBuildings();
+  created: function () {
+    this.getAllBuildings()
   }
-};
+}
 </script>
 
 <style scoped>

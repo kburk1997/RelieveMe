@@ -58,11 +58,11 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "BuildingList",
-  data() {
+  name: 'BuildingList',
+  data () {
     return {
       genderNeutralType: 2, // gender-neutral restrooms in backend gender type == 2
       filters: {
@@ -72,60 +72,60 @@ export default {
       allBuildings: [],
       columns: [
         {
-          field: "properName",
-          label: "Name"
+          field: 'properName',
+          label: 'Name'
         },
         {
-          field: "region.name",
-          label: "Region"
+          field: 'region.name',
+          label: 'Region'
         }
       ],
       loading: false,
       regions: [],
       accessibilities: [
-        { id: 0, name: "Wheelchair accessible" },
-        { id: 1, name: "Gender-neutral" },
-        { id: 2, name: "Menstrual products available" },
-        { id: 3, name: "Baby changing station" }
+        { id: 0, name: 'Wheelchair accessible' },
+        { id: 1, name: 'Gender-neutral' },
+        { id: 2, name: 'Menstrual products available' },
+        { id: 3, name: 'Baby changing station' }
       ],
       filteredBuildings: []
-    };
+    }
   },
   methods: {
-    getAllBuildings: function() {
-      this.loading = true;
+    getAllBuildings: function () {
+      this.loading = true
       axios.get(`/api/buildings`).then(response => {
-        this.loading = false;
-        this.allBuildings = response.data;
-        this.filteredBuildings = this.allBuildings;
-      });
+        this.loading = false
+        this.allBuildings = response.data
+        this.filteredBuildings = this.allBuildings
+      })
     },
-    getAllRegions: function() {
-      axios.get("/api/regions").then(response => {
-        this.regions = this.regions.concat(response.data);
+    getAllRegions: function () {
+      axios.get('/api/regions').then(response => {
+        this.regions = this.regions.concat(response.data)
         // select all regions by default
-        this.filters.selectedRegions = this.regions.map(function(region) {
-          return region.regionId;
-        });
-      });
+        this.filters.selectedRegions = this.regions.map(function (region) {
+          return region.regionId
+        })
+      })
     },
-    calculateFilters: function() {
-      this.filteredBuildings = this.allBuildings.filter(this.filterAll, this);
+    calculateFilters: function () {
+      this.filteredBuildings = this.allBuildings.filter(this.filterAll, this)
     },
-    filterAll: function(building) {
+    filterAll: function (building) {
       return (
         this.filterBuildingsByRegion(building) &&
         this.filterBuildingsByRestroomAccessibility(building)
-      );
+      )
     },
-    filterBuildingsByRegion: function(building) {
-      // return all given buildings if no region filter is selected; or return buildings in the selected region
+    filterBuildingsByRegion: function (building) {
+      // return all given buildings if no region filter is selected or return buildings in the selected region
       return this.filters.selectedRegions.includes(
         Number(building.region.regionId)
-      );
+      )
     },
-    filterBuildingsByRestroomAccessibility: function(building) {
-      // return all given buildings if no accessibility filter is selected;
+    filterBuildingsByRestroomAccessibility: function (building) {
+      // return all given buildings if no accessibility filter is selected
       // or return all buildings that contain bathrooms with the chosen attributes
       for (
         var filterInd = 0;
@@ -138,12 +138,12 @@ export default {
             this.filters.selectedAccessibilities[filterInd]
           )
         ) {
-          return false;
+          return false
         }
       }
-      return true;
+      return true
     },
-    buildingContainsAccessibility: function(building, accessibility) {
+    buildingContainsAccessibility: function (building, accessibility) {
       // look at each floor in the building, each bathroom on the floor, and check if it has the accessibility option
       for (var floorInd = 0; floorInd < building.floors.length; floorInd++) {
         if (
@@ -152,12 +152,12 @@ export default {
             accessibility
           )
         ) {
-          return true;
+          return true
         }
       }
-      return false;
+      return false
     },
-    floorContainsAccessibility: function(floor, accessibility) {
+    floorContainsAccessibility: function (floor, accessibility) {
       for (
         var bathroomInd = 0;
         bathroomInd < floor.bathrooms.length;
@@ -169,35 +169,35 @@ export default {
             accessibility
           )
         ) {
-          return true;
+          return true
         }
       }
-      return false;
+      return false
     },
-    bathroomHasAccessibility: function(bathroom, accessibility) {
+    bathroomHasAccessibility: function (bathroom, accessibility) {
       if (Number(accessibility) === 0) {
-        return bathroom.wheelchairAccessible;
+        return bathroom.wheelchairAccessible
       } else if (Number(accessibility) === 1) {
-        return Number(bathroom.genderType) === this.genderNeutralType;
+        return Number(bathroom.genderType) === this.genderNeutralType
       } else if (Number(accessibility) === 2) {
         return (
           bathroom.menstrualProductType !== null &&
           Number(bathroom.menstrualProductType) !== -1
-        );
-      } else if (Number(accessibility) == 3) {
-        return bathroom.babyChangingStation;
+        )
+      } else if (Number(accessibility) === 3) {
+        return bathroom.babyChangingStation
       }
     }
   },
-  mounted: function() {
-    this.getAllBuildings();
-    this.getAllRegions();
+  mounted: function () {
+    this.getAllBuildings()
+    this.getAllRegions()
   }
-};
+}
 </script>
 
 <style scoped>
 .left {
-  text-align: left;
+  text-align: left
 }
 </style>
